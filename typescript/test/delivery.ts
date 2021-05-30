@@ -1,7 +1,7 @@
 import 'mocha';
 import { expect } from 'chai';
 
-import { delivery, DeliveryResults, splitDispatch } from "../src/delivery";
+import { delivery, deliveries, DeliveryResults, splitDispatch } from "../src/delivery";
 import { test } from '../src/PizzaDeliveryInput';
 
 describe('delivery', () => {
@@ -10,75 +10,137 @@ describe('delivery', () => {
   })
 
   it ('should return 0 for no dispatch', () => {
-    expect(delivery().houses).to.equal(0);
-    expect(delivery().houses).to.equal(0);
+    expect(delivery().housesCount).to.equal(0);
+    expect(delivery().housesCount).to.equal(0);
   })
 
   it ('should return 0 for empty dispatch', () => {
     const dispatch = '';
-    expect(delivery(dispatch).houses).to.equal(0);
+    expect(delivery(dispatch).housesCount).to.equal(0);
   })
 
   it ('should return 2 for ">"', () => {
     const dispatch = '>';
-    expect(delivery(dispatch).houses).to.equal(2);
+    expect(delivery(dispatch).housesCount).to.equal(2);
   })
 
   it ('should return 2 for "<"', () => {
     const dispatch = '<';
-    expect(delivery(dispatch).houses).to.equal(2);
+    expect(delivery(dispatch).housesCount).to.equal(2);
   })
 
   it ('should return 2 for "><"', () => {
     const dispatch = '><';
-    expect(delivery(dispatch).houses).to.equal(2);
+    expect(delivery(dispatch).housesCount).to.equal(2);
   })
 
   it ('should return 2 for "^"', () => {
     const dispatch = '^';
-    expect(delivery(dispatch).houses).to.equal(2);
+    expect(delivery(dispatch).housesCount).to.equal(2);
   })
 
   it ('should return 2 for "v"', () => {
     const dispatch = 'v';
-    expect(delivery(dispatch).houses).to.equal(2);
+    expect(delivery(dispatch).housesCount).to.equal(2);
   })
 
   it ('should return 2 for "^v"', () => {
     const dispatch = '^v';
-    expect(delivery(dispatch).houses).to.equal(2);
+    expect(delivery(dispatch).housesCount).to.equal(2);
   })
 
   it ('should return 4 for "^>v<"', () => {
     const dispatch = '^>v<';
-    expect(delivery(dispatch).houses).to.equal(4);
+    expect(delivery(dispatch).housesCount).to.equal(4);
   })
 
   it ('should return 2 for "^v^v^v^v^v"', () => {
     const dispatch = '^v^v^v^v^v';
-    expect(delivery(dispatch).houses).to.equal(2);
+    expect(delivery(dispatch).housesCount).to.equal(2);
   })
 
   it ('should return 10 for "^^<<v<<v><"', () => {
     const dispatch = '^^<<v<<v><';
-    expect(delivery(dispatch).houses).to.equal(10);
+    expect(delivery(dispatch).housesCount).to.equal(10);
   })
 
   it ('should return 5 for "^<v<>"', () => {
     const dispatch = '^<v<>';
-    expect(delivery(dispatch).houses).to.equal(5);
+    expect(delivery(dispatch).housesCount).to.equal(5);
   })
 
   it ('should return 6 for "^<<v<"', () => {
     const dispatch = '^<<v<';
-    expect(delivery(dispatch).houses).to.equal(6);
+    expect(delivery(dispatch).housesCount).to.equal(6);
   })
 
   it ('should return 2565 for test', () => {
     const dispatch = test;
-    expect(delivery(dispatch).houses).to.equal(2565);
+    expect(delivery(dispatch).housesCount).to.equal(2565);
   })
 
+  it ('should deliver test length + 1 pizzas', () => {
+    const dispatch = test;
+    const res = delivery(dispatch);
+
+    expect(res.pizzasCount).to.equal(test.length + 1);
+  });
+});
+
+describe('deliveries', () => {
+  it('should exist', () => {
+    expect(deliveries).to.exist;
+  })
+
+  it ('should return 3 for 2 deliverees and "^v"', () => {
+    const dispatch = '^v';
+    const res = deliveries(2, dispatch);
+
+    expect(res.housesCount).to.equal(3);
+  })
+
+  it ('should return 3 for 2 deliverees and "^>v<"', () => {
+    const dispatch = '^>v<';
+    const res = deliveries(2, dispatch);
+
+    expect(res.housesCount).to.equal(3);
+  })
+
+  it ('should return 11 for 2 deliverees and "^v^v^v^v^v"', () => {
+    const dispatch = '^v^v^v^v^v';
+    const res = deliveries(2, dispatch);
+
+    expect(res.housesCount).to.equal(11);
+  })
+
+  it ('should return 14 for 3 deliverees and "^v>^v>^v>^v<^v<"', () => {
+    const dispatch = '^v>^v>^v>^v<^v<';
+    const res = deliveries(3, dispatch);
+
+    expect(res.housesCount).to.equal(14);
+  })
+
+  it ('should return 2639 for 2 deliverees and test', () => {
+    const dispatch = test;
+    const res = deliveries(2, test);
+
+    expect(res.housesCount).to.equal(2639);
+  })
+
+  it ('should return 2565 for 1 deliverees and test', () => {
+    const dispatch = test;
+    const res = deliveries(1, test);
+
+    expect(res.housesCount).to.equal(2565);
+  })
+
+  it ('should deliver test length + 1 pizzas', () => {
+    const dispatch = test;
+    const count = 2;
+    const res = deliveries(count, test);
+
+    expect(res.pizzasCount).to.equal(test.length + count);
+  });
 });
 
 describe('splitDispatch', () => {
@@ -102,17 +164,19 @@ describe('splitDispatch', () => {
     expect(splits[1].length).to.equal(4096);
   })
 
-  it ('should return 2799 for 2 deliverees and test', () => {
+  it ('should return 2639 for 2 deliverees and test', () => {
     const dispatch = test;
     const splits = splitDispatch(2, test);
 
-    expect(delivery(splits[0]).houses).to.equal(1348);
-    expect(delivery(splits[1]).houses).to.equal(1490);
+    expect(delivery(splits[0]).housesCount).to.equal(1348);
+    expect(delivery(splits[1]).housesCount).to.equal(1490);
 
     const res = delivery(splits[0]);
-    expect(res.houses).to.equal(1348);
+    expect(res.housesCount).to.equal(1348);
+
+    res.grid.resetPosition();
 
     const res2 = delivery(splits[1], res.grid);
-    expect(res2.houses).to.equal(2799);
+    expect(res2.housesCount).to.equal(2639);
   })
 });

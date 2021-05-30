@@ -133,12 +133,12 @@ describe('Grid', () => {
     const grid = new Grid();
     const key = grid.getKey(0, 0);
 
-    expect(grid.getHouses()).to.equal(0);
+    expect(grid.getHousesCount()).to.equal(0);
 
     grid.deliver();
     grid.deliver();
 
-    expect(grid.getHouses()).to.equal(1);
+    expect(grid.getHousesCount()).to.equal(1);
   })
 
   it('getHouses() is 2', () => {
@@ -152,7 +152,7 @@ describe('Grid', () => {
     grid.move(dir2);
     grid.deliver();
 
-    expect(grid.getHouses()).to.equal(2);
+    expect(grid.getHousesCount()).to.equal(2);
   })
 
 });
