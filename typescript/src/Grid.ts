@@ -51,6 +51,11 @@ export class Grid {
         this.x -= 1;
         break;
 
+      // ignore
+      case '\n':
+        ret = false;
+        break;
+
       default:
         ret = false;
         console.error(`error move unknown direction [${ dir }]`);

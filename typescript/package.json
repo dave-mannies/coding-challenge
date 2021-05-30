@@ -6,6 +6,7 @@
   "main": "src/index.ts",
   "scripts": {
     "start": "npx ts-node src/main.ts",
+    "start:all": "npx ts-node src/main.ts 'src/PizzaDeliveryInput.txt'",
     "test": "mocha --require ts-node/register --watch-extensions ts 'test/*.ts'"
   },
   "author": "",
