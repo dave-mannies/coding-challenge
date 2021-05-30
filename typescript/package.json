@@ -5,6 +5,7 @@
   "repository": "none",
   "main": "src/index.ts",
   "scripts": {
+    "start": "npx ts-node src/main.ts",
     "test": "mocha --require ts-node/register --watch-extensions ts 'test/*.ts'"
   },
   "author": "",
