@@ -1,4 +1,16 @@
 <ng-container *ngIf="results">
+  <label>Date:</label>
+  <div>{{ results.date | date:'medium' }}</div>
+  <br />
+
+  <label>Deliverees:</label>
+  <div>{{ results.deliverees }}</div>
+  <br />
+
+  <label>Dispatch:</label>
+  <div>{{ results.dispatch }}</div>
+  <br />
+
   <label>Pizzas delivered:</label>
   <div>{{ results.pizzasCount }}</div>
   <br />

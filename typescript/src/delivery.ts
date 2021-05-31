@@ -4,6 +4,9 @@ import { Grid } from './Grid';
  * Results of delivery(...) invocation.
  */
 export interface DeliveryResults {
+  date?: Date;
+  deliverees?: number;
+  dispatch?: string;
   grid: Grid;
   housesCount: number;
   pizzasCount: number;
@@ -28,6 +31,9 @@ export function delivery(dispatch: string = '', grid: Grid = new Grid()): Delive
   }
 
   return {
+    date: new Date(),
+    deliverees: 1,
+    dispatch,
     grid,
     housesCount: grid.getHousesCount(),
     pizzasCount: grid.getPizzaCount()
@@ -51,6 +57,10 @@ export function deliveries(count: number, dispatch: string): DeliveryResults {
     res.grid.resetPosition();
     res = delivery(dispatch, grid);
   });
+
+  res.date = new Date();
+  res.deliverees = count;
+  res.dispatch = dispatch;
 
   return res;
 }
