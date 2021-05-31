@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: []
 })
 export class AppComponent {
-  title = 'angular11';
+  title = 'coding challenge: Angular 11';
 }

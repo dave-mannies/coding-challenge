@@ -14,6 +14,7 @@ export class ReportsComponent implements OnInit {
   constructor(public dservice: DeliveryService) {
     this.results = this.dservice.getDeliveryResults();
 
+    // todo remove
     console.log(JSON.stringify(this.results, null, 2));
   }
 

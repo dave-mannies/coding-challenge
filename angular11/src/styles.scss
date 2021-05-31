@@ -28,23 +28,43 @@ p {
   height: 60px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   background-color: #eee;
   color: #333;
+  padding-right: 2em;
+
+  .menu {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .title {
+    font-weight: bolder;
+  }
 
   a[mat-list-item] {
-    margin-right: 2em;
+    padding: 0.5em;
     text-decoration: none;
     font-weight: normal;
+    border-radius: 1em;
 
     &.active {
       font-weight: bold;
       color: #8888ff;
     }
-  }
-}
 
-.toolbar img {
-  margin: 0 16px;
+    &:hover {
+      background-color: #fff;
+    }
+  }
+
+  > * {
+    line-height: 2em;
+  }
+
+  img {
+    margin: 0 16px;
+  }
 }
 
 .content {

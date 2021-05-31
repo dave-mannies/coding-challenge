@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from "@angular/forms";
 
 import {
   PagePlayComponent, PlayComponent,
@@ -19,7 +20,8 @@ import { InputsComponent } from './components/inputs/inputs.component';
     InputsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ]
 })
 export class DeliveryModule { }

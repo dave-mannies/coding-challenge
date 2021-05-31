@@ -1,1 +1,10 @@
-<p>inputs works!</p>
+<label>Deliverees: </label>
+<select [(ngModel)]="inputs.deliverees">
+  <option *ngFor="let val of DELIVEREES" [value]="val">{{ val }}</option>
+</select>
+<br />
+
+<label>Dispatch: </label>
+<select [(ngModel)]="inputs.dispatch">
+  <option *ngFor="let val of DISPATCHES" [value]="val">{{ val }}</option>
+</select>
