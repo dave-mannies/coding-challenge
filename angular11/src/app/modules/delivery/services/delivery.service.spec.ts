@@ -16,6 +16,12 @@ describe('DeliveryService', () => {
     expect(service.results).toBeTruthy();
   });
 
+  it('should be created and first result provided for default inputs', () => {
+    expect(service.results.current).toBeTruthy();
+    expect(service.results.updated).toBeTruthy();
+    expect(service.results.history.length).toBe(1);
+  });
+
   it('getDeliveryResults() to default', () => {
     const res = service.getDeliveryResults();
     expect(res).toBeTruthy();
@@ -35,7 +41,7 @@ describe('DeliveryService', () => {
 
     expect(service.results.current).toBeTruthy();
     expect(service.results.updated).toBeTruthy();
-    expect(service.results.history.length).toBe(1);
+    expect(service.results.history.length).toBe(2);
   });
 
   it('addResults() to update multiple results', () => {
@@ -47,7 +53,7 @@ describe('DeliveryService', () => {
     service.addResults(res);
 
     expect(service.results.updated).toBeTruthy();
-    expect(service.results.history.length).toBe(2);
+    expect(service.results.history.length).toBe(3);
     expect(service.results.current?.housesCount).toBe(7);
     expect(service.results.history[1].housesCount).toBe(10);
   });

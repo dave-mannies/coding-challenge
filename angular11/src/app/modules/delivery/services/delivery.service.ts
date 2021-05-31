@@ -32,7 +32,10 @@ export class DeliveryService {
     updated: undefined
   };
 
-  constructor() { }
+  constructor() {
+    const res = this.getDeliveryResults();
+    this.addResults(res);
+  }
 
   getDeliveryResults(inputs?: Inputs): DeliveryResults {
     return deliveries(inputs?.deliverees ?? this.inputs.deliverees, inputs?.dispatch ?? this.inputs.dispatch);
