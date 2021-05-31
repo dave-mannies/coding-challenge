@@ -29,7 +29,7 @@ function main(): void {
   } else {
     // incorrect number of options
 
-    console.error(`error incorrect number of arguements ${ process.argv.length } when 3 or 4 expected`);
+    console.error(`error incorrect number of arguments ${ process.argv.length } when 3 or 4 expected`);
     console.log(`Expecting "ts-node src/main.ts 'src/PizzaDeliveryInput.txt'"`);
     console.log(`Expecting or "ts-node src/main.ts 1 '^^<<v<<v><'`);
     return;
@@ -49,10 +49,9 @@ function main(): void {
     console.log('Part 2:');
     part2(2, dispatch);
   } else {
-    // dispatch from command line arguements
+    // dispatch from command line arguments
     part2(count, dispatch);
   }
-
 }
 
 function part1(dispatch: string): void {

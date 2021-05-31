@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PagePlayComponent } from './page-play.component';
+import { PlayComponent, ResultsComponent } from '../';
 
 describe('PagePlayComponent', () => {
   let component: PagePlayComponent;
@@ -8,7 +9,7 @@ describe('PagePlayComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PagePlayComponent ]
+      declarations: [ PagePlayComponent, PlayComponent, ResultsComponent ]
     })
     .compileComponents();
   });

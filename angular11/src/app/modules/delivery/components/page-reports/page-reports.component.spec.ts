@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PageReportsComponent } from './page-reports.component';
+import { ReportsComponent, ResultsComponent } from '../';
 
 describe('PageReportsComponent', () => {
   let component: PageReportsComponent;
@@ -8,7 +9,7 @@ describe('PageReportsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PageReportsComponent ]
+      declarations: [ PageReportsComponent, ReportsComponent, ResultsComponent ]
     })
     .compileComponents();
   });
