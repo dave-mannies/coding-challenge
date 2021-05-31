@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DeliveryResults } from "@ts/*";
 
 @Component({
   selector: 'app-play',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
   ]
 })
 export class PlayComponent implements OnInit {
+  results!: DeliveryResults;
 
   constructor() { }
 
