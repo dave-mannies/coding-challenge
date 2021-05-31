@@ -2,7 +2,7 @@ import { HashLocationStrategy, LocationStrategy } from "@angular/common";
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { PagePlayComponent, PageReportsComponent } from "../modules/delivery/components";
+import { PagePlayComponent, PageReportsComponent } from "./modules/delivery/components";
 
 const routes: Routes = [
   {
