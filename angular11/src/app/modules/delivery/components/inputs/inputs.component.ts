@@ -20,4 +20,8 @@ export class InputsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getResults(): void {
+    const res = this.dservice.getDeliveryResults();
+    this.dservice.addResults(res);
+  }
 }

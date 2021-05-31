@@ -8,3 +8,5 @@
 <select [(ngModel)]="inputs.dispatch">
   <option *ngFor="let val of DISPATCHES" [value]="val">{{ val }}</option>
 </select>
+
+<button (click)="getResults()">Get</button>
