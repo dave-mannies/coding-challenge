@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { DeliveryService, DeliveryResults } from "../../services";
+import { DeliveryService, Results } from "../../services";
 
 @Component({
   selector: 'app-reports',
@@ -9,13 +9,10 @@ import { DeliveryService, DeliveryResults } from "../../services";
   ]
 })
 export class ReportsComponent implements OnInit {
-  results!: DeliveryResults;
+  results!: Results;
 
   constructor(public dservice: DeliveryService) {
-    this.results = this.dservice.getDeliveryResults();
-
-    // todo remove
-    console.log(JSON.stringify(this.results, null, 2));
+    this.results = dservice.results;
   }
 
   ngOnInit(): void {

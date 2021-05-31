@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DeliveryResults } from "@ts/*";
+
+import { DeliveryService, Results } from "../../services";
 
 @Component({
   selector: 'app-play',
@@ -8,9 +9,11 @@ import { DeliveryResults } from "@ts/*";
   ]
 })
 export class PlayComponent implements OnInit {
-  results!: DeliveryResults;
+  results!: Results;
 
-  constructor() { }
+  constructor(public dservice: DeliveryService) {
+    this.results = dservice.results;
+  }
 
   ngOnInit(): void {
   }
