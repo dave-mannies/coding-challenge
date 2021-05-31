@@ -1,8 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { FormsModule } from "@angular/forms";
 import { RouterTestingModule } from '@angular/router/testing';
+import { GanalyticsComponent } from "../ganalytics/ganalytics.component";
 import { AppComponent } from './app.component';
-import { InputsComponent } from "./modules/delivery/components";
+import { InputsComponent } from "../../modules/delivery/components";
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -13,7 +14,8 @@ describe('AppComponent', () => {
       ],
       declarations: [
         AppComponent,
-        InputsComponent
+        InputsComponent,
+        GanalyticsComponent
       ],
     }).compileComponents();
   });
