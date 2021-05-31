@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PageHistoryComponent } from './page-history.component';
-import { HistoryComponent } from '../';
+import { HistoryComponent, ResultsComponent } from '../';
 
 describe('PageHistoryComponent', () => {
   let component: PageHistoryComponent;
@@ -9,7 +9,7 @@ describe('PageHistoryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PageHistoryComponent, HistoryComponent ]
+      declarations: [ PageHistoryComponent, HistoryComponent, ResultsComponent ]
     })
     .compileComponents();
   });
