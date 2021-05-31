@@ -24,4 +24,12 @@ describe('InputsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('getResults() should update', () => {
+    expect(component.getResults).toBeTruthy();
+    expect(component.dservice).toBeTruthy();
+    expect(component.dservice.results.history.length).toBe(1);
+    component.getResults();
+    expect(component.dservice.results.history.length).toBe(2);
+  });
 });
