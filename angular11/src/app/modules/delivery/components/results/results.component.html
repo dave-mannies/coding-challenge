@@ -1,20 +1,20 @@
-<ng-container *ngIf="results">
+<div class="results" *ngIf="results">
   <label>Date:</label>
-  <div>{{ results.date | date:'medium' }}</div>
+  <div class="results__date">{{ results.date | date:'medium' }}</div>
   <br />
 
   <label>Deliverees:</label>
-  <div>{{ results.deliverees }}</div>
+  <div class="results__deliverees">{{ results.deliverees }}</div>
   <br />
 
   <label>Dispatch:</label>
-  <div>{{ results.dispatch }}</div>
+  <div class="results__dispatch">{{ results.dispatch }}</div>
   <br />
 
   <label>Pizzas delivered:</label>
-  <div>{{ results.pizzasCount }}</div>
+  <div class="results__delivered">{{ results.pizzasCount }}</div>
   <br />
 
   <label>Houses delivered to:</label>
-  <div>{{ results.housesCount }}</div>
-</ng-container>
+  <div class="results__houses">{{ results.housesCount }}</div>
+</div>

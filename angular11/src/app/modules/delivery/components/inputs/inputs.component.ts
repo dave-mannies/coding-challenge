@@ -4,8 +4,11 @@ import { DeliveryService, Inputs } from "../../services";
 @Component({
   selector: 'app-inputs',
   templateUrl: './inputs.component.html',
-  styles: [
-  ]
+  styles: [`
+    select {
+      max-width: 3em;
+    }
+  `]
 })
 export class InputsComponent implements OnInit {
   DELIVEREES = DeliveryService.DELIVEREES;
@@ -18,6 +21,29 @@ export class InputsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  getFile(ev: Event): void {
+    let el = ev.target as HTMLInputElement;
+    if (el && el.files) {
+      let file = el.files[0];
+
+      let fileReader = new FileReader();
+
+      fileReader.onload = (e) => {
+        this.inputs.dispatch = fileReader.result?.toString() || '';
+      }
+
+      fileReader.onerror = (e) => {
+        console.error(`error reading file ${ fileReader.error }`);
+      }
+
+      fileReader.onabort = (e) => {
+        console.error(`error aborted reading file`);
+      }
+
+      fileReader.readAsText(file);
+    }
   }
 
   getResults(): void {
