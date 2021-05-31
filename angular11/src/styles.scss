@@ -42,9 +42,14 @@ p {
     font-weight: bolder;
   }
 
+  a,
+  a:visited {
+    color: #333;
+    text-decoration: none;
+  }
+
   a[mat-list-item] {
     padding: 0.5em;
-    text-decoration: none;
     font-weight: normal;
     border-radius: 1em;
 
