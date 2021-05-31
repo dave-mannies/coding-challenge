@@ -45,7 +45,8 @@ export class DeliveryService {
 
     const len = this.results.history.length;
     if (len > DeliveryService.MAX_HISTORY_LEN) {
-      this.results.history.splice(len, len - DeliveryService.MAX_HISTORY_LEN);
+      const del = len - DeliveryService.MAX_HISTORY_LEN;
+      this.results.history.splice(len - del, del);
     }
   }
 }

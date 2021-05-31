@@ -5,9 +5,8 @@ import { FormsModule } from "@angular/forms";
 import {
   PagePlayComponent, PlayComponent,
   PageReportsComponent, ReportsComponent,
+  InputsComponent, ResultsComponent
 } from './components';
-import { InputsComponent } from './components/inputs/inputs.component';
-import { ResultsComponent } from './components/results/results.component';
 
 @NgModule({
   declarations: [
