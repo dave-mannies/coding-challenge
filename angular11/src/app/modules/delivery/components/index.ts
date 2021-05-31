@@ -4,3 +4,5 @@ export * from './play/play.component';
 export * from './reports/reports.component';
 export * from './results/results.component';
 export * from './inputs/inputs.component';
+export * from './page-history/page-history.component';
+export * from './history/history.component';

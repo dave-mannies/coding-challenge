@@ -7,6 +7,8 @@ import {
   PageReportsComponent, ReportsComponent,
   InputsComponent, ResultsComponent
 } from './components';
+import { PageHistoryComponent } from './components/page-history/page-history.component';
+import { HistoryComponent } from './components/history/history.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import {
     PlayComponent,
     ReportsComponent,
     InputsComponent,
-    ResultsComponent
+    ResultsComponent,
+    PageHistoryComponent,
+    HistoryComponent
   ],
   exports: [
     InputsComponent

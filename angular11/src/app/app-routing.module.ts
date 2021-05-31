@@ -2,7 +2,7 @@ import { HashLocationStrategy, LocationStrategy } from "@angular/common";
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { PagePlayComponent, PageReportsComponent } from "./modules/delivery/components";
+import { PagePlayComponent, PageReportsComponent, PageHistoryComponent } from "./modules/delivery/components";
 
 const routes: Routes = [
   {
@@ -14,8 +14,12 @@ const routes: Routes = [
     component: PageReportsComponent
   },
   {
+    path: 'history',
+    component: PageHistoryComponent
+  },
+  {
     path: '**',
-    redirectTo: 'play'
+    redirectTo: 'history'
   },
 
 ];
