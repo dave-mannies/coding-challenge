@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { MaterialModule } from "../../modules/material";
 import { GanalyticsComponent } from "../ganalytics/ganalytics.component";
 import { AppComponent } from './app.component';
-import { InputsComponent } from "../../modules/delivery/components";
+import { InputsComponent, InputsModalComponent } from "../../modules/delivery/components";
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -17,6 +17,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         InputsComponent,
+        InputsModalComponent,
         GanalyticsComponent
       ],
     }).compileComponents();

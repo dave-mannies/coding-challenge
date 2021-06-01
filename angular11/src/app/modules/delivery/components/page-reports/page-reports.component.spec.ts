@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MaterialModule } from "../../../material";
 
 import { PageReportsComponent } from './page-reports.component';
 import { ReportsComponent, ResultsComponent } from '../';
@@ -9,7 +10,8 @@ describe('PageReportsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PageReportsComponent, ReportsComponent, ResultsComponent ]
+      declarations: [ PageReportsComponent, ReportsComponent, ResultsComponent ],
+      imports: [ MaterialModule ]
     })
     .compileComponents();
   });

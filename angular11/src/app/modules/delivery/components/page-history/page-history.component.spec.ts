@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MaterialModule } from "../../../material";
 
 import { PageHistoryComponent } from './page-history.component';
 import { HistoryComponent, ResultsComponent } from '../';
@@ -9,7 +10,8 @@ describe('PageHistoryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PageHistoryComponent, HistoryComponent, ResultsComponent ]
+      declarations: [ PageHistoryComponent, HistoryComponent, ResultsComponent ],
+      imports: [ MaterialModule ]
     })
     .compileComponents();
   });

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MaterialModule } from "../../../material";
 
 import { InputsModalComponent } from './inputs-modal.component';
 
@@ -8,7 +9,8 @@ describe('InputsModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ InputsModalComponent ]
+      declarations: [ InputsModalComponent ],
+      imports: [ MaterialModule ]
     })
     .compileComponents();
   });
