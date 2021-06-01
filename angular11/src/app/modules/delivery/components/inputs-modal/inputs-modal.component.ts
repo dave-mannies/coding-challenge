@@ -30,6 +30,12 @@ export class InputsModalComponent implements OnInit {
       data: {
         template: this.inputsTemplate
       }
+    })
+    .afterClosed()
+    .subscribe(res => {
+      if (res) {
+        this.dservice.getAddResults();
+      }
     });
   }
 }

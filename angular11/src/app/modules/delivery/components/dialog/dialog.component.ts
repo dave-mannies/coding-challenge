@@ -23,10 +23,10 @@ export class DialogComponent<T> implements OnInit {
   }
 
   cancel(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 
   save(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(true);
   }
 }

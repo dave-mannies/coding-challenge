@@ -6,10 +6,6 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-  <div>
-    {{ data.context | json }}
-  </div>
-
   <button mat-button (click)="cancel()" cdkFocusInitial>Cancel</button>
   <button mat-button color="primary" (click)="save()" [mat-dialog-close]="data.context">Deliver</button>
 </mat-dialog-actions>
