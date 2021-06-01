@@ -38,7 +38,7 @@
 
     <ng-container matColumnDef="dispatch">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Dispatch</mat-header-cell>
-      <mat-cell *matCellDef="let result">{{ result.dispatch }}</mat-cell>
+      <mat-cell *matCellDef="let result">{{ result.dispatch.substring(0, 10) }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="delivered">

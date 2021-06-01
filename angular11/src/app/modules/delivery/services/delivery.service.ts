@@ -34,8 +34,9 @@ export class DeliveryService {
   nextId = 1;
 
   constructor() {
-    const res = this.getDeliveryResults();
-    this.addResults(res);
+    this.getAddResults({ deliverees: 1, dispatch: test });
+    this.getAddResults({ deliverees: 2, dispatch: test });
+    this.getAddResults();
   }
 
   getDeliveryResults(inputs?: Inputs): DeliveryResults {
