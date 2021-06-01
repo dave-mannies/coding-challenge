@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent, GanalyticsComponent } from './components';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DeliveryModule } from "./modules/delivery/delivery.module";
+import { MaterialModule } from "./modules/material";
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { DeliveryModule } from "./modules/delivery/delivery.module";
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MaterialModule,
     DeliveryModule
   ],
   providers: [],

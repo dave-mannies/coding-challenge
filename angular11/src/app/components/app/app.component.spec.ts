@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { FormsModule } from "@angular/forms";
 import { RouterTestingModule } from '@angular/router/testing';
+import { MaterialModule } from "../../modules/material";
 import { GanalyticsComponent } from "../ganalytics/ganalytics.component";
 import { AppComponent } from './app.component';
 import { InputsComponent } from "../../modules/delivery/components";
@@ -10,7 +11,8 @@ describe('AppComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        FormsModule
+        FormsModule,
+        MaterialModule
       ],
       declarations: [
         AppComponent,
