@@ -2,7 +2,6 @@ import 'mocha';
 import { expect } from 'chai';
 
 import { Grid } from "../src/Grid";
-import exp = require("constants");
 
 describe('Grid', () => {
   it('should exist', () => {
@@ -120,13 +119,13 @@ describe('Grid', () => {
 
     expect(grid.grid.get(key)).to.equal(undefined);
 
-    grid.deliver();
+    grid.deliver(1);
 
-    expect(grid.grid.get(key)).to.equal(1);
+    expect(grid.grid.get(key)?.pizzas).to.equal(1);
 
-    grid.deliver();
+    grid.deliver(2);
 
-    expect(grid.grid.get(key)).to.equal(2);
+    expect(grid.grid.get(key)?.pizzas).to.equal(2);
   })
 
   it('getHouses() is 1', () => {
@@ -135,8 +134,8 @@ describe('Grid', () => {
 
     expect(grid.getHousesCount()).to.equal(0);
 
-    grid.deliver();
-    grid.deliver();
+    grid.deliver(1);
+    grid.deliver(2);
 
     expect(grid.getHousesCount()).to.equal(1);
   })
@@ -146,13 +145,39 @@ describe('Grid', () => {
     const dir = ">";
     const dir2 = "<";
 
-    grid.deliver();
+    grid.deliver(1);
     grid.move(dir);
-    grid.deliver();
+    grid.deliver(2);
     grid.move(dir2);
-    grid.deliver();
+    grid.deliver(3);
 
     expect(grid.getHousesCount()).to.equal(2);
   })
+
+  it('getPizzaCount() is 3', () => {
+    const grid = new Grid();
+
+    grid.deliver(1);
+    grid.move('>');
+    grid.deliver(2);
+    grid.move('>');
+    grid.deliver(3);
+
+    expect(grid.getPizzaCount()).to.equal(3);
+  })
+
+  it('getGridEntries() is 3', () => {
+    const grid = new Grid();
+
+    grid.deliver(1);
+    grid.move('>');
+    grid.deliver(2);
+    grid.move('<');
+    grid.deliver(3);
+
+    expect(grid.getPizzaCount()).to.equal(3);
+    expect(grid.getGridEntries().length).to.equal(3);
+  })
+
 
 });

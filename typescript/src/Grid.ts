@@ -1,10 +1,43 @@
 /**
+ * Per delivery pizza deliver info. When applied
+ * to HouseEntry x and y are not used.
+ *
+ * @property dId - deliveree id
+ * @property order - dispatch order of delivery
+ * @property pizzas - optional total of pizzas delivered at order
+ * @property x - optional x location
+ * @property y - optional y location
+ */
+export interface DeliveryEntry {
+  dId: number;
+  order: number;
+  pizzas: number;
+  x?: number;
+  y?: number;
+}
+
+/**
+ * Per House pizza delivery info.
+ *
+ * @property x - x location
+ * @property y - y location
+ * @property deliveries - array of DeliveryEntry
+ * @property pizzas - total of pizza delivered
+ */
+export interface HouseEntry {
+  x: number;
+  y: number;
+  deliveries: DeliveryEntry[];
+  pizzas: number;
+}
+
+/**
  * Two-dimensional grid of houses with current house position
  * and movement with grid.
  */
 export class Grid {
   // 2d grid with count a pizza's delivered by house
-  grid = new Map<string, number>();
+  grid = new Map<string, HouseEntry>();
   // current x position
   x = 0;
   // current y position
@@ -53,6 +86,7 @@ export class Grid {
 
       // ignore
       case '\n':
+      case '.':
         ret = false;
         break;
 
@@ -76,14 +110,19 @@ export class Grid {
 
   /**
    * Deliver pizza to current house.
+   *
+   * @param order - dispatch deliver order
+   * @param dId - deliveree Id who delivered pizza
    */
-  deliver(): void {
+  deliver(order: number, dId: number = 1): HouseEntry {
     const key = this.getKey(this.x, this.y);
-    let value = this.grid.get(key) ?? 0;
+    let value = this.grid.get(key) ?? { deliveries: [], x: this.x, y: this.y, pizzas: 0 };
 
-    value++;
-
+    value.pizzas++;
     this.grid.set(key, value);
+    value.deliveries.push({ dId, order: order, pizzas: value.pizzas });
+
+    return value;
   }
 
   /**
@@ -103,10 +142,31 @@ export class Grid {
    */
   getPizzaCount(): number {
     let count = 0;
-    this.grid.forEach((value, key) => {
-      count += value;
-    });
+
+    for (let value of this.grid.values()) {
+      count += value.pizzas;
+    }
 
     return count;
+  }
+
+  /**
+   * Get array with every tracked delivery.
+   *
+   * @return ordered array of DeliveryEntry
+   */
+  getGridEntries(): DeliveryEntry[] {
+    const ret: DeliveryEntry[] = [];
+
+    this.grid.forEach((house, key) => {
+      house.deliveries.map(delivery => {
+        ret.push({ x: house.x, y: house.y,
+          order: delivery.order, dId: delivery.dId, pizzas: delivery.pizzas });
+      });
+    });
+
+    ret.sort((a, b) => a.order - b.order );
+
+    return ret;
   }
 }

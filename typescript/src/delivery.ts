@@ -20,13 +20,13 @@ export interface DeliveryResults {
  * @param dispatch - string of grid dispatch move directions
  * @param grid - optional grid to
  */
-export function delivery(dispatch: string = '', grid: Grid = new Grid()): DeliveryResults  {
+export function delivery(dispatch: string = '', grid: Grid = new Grid(), dId: number = 1): DeliveryResults  {
   if (dispatch) {
-    grid.deliver();
+    grid.deliver(1);
 
-    dispatch.toLowerCase().split('').forEach(dir => {
+    dispatch.toLowerCase().split('').forEach((dir, i) => {
       if (grid.move(dir)) {
-        grid.deliver();
+        grid.deliver(i);
       }
     });
   }
@@ -54,9 +54,9 @@ export function deliveries(count: number, dispatch: string): DeliveryResults {
   const grid = new Grid();
   let res: DeliveryResults = { housesCount: 0, pizzasCount: 0, grid };
 
-  splits.forEach(dispatch => {
+  splits.forEach((dispatch, i) => {
     res.grid.resetPosition();
-    res = delivery(dispatch, grid);
+    res = delivery(dispatch, grid, i);
   });
 
   res.date = new Date();
