@@ -4,6 +4,7 @@ import { Grid } from './Grid';
  * Results of delivery(...) invocation.
  */
 export interface DeliveryResults {
+  id?: number;
   date?: Date;
   deliverees?: number;
   dispatch?: string;

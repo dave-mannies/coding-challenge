@@ -1,6 +1,9 @@
-<ng-container *ngFor="let result of results.history; let i = index">
-  <hr />
-  <h2>Results #{{ i + 1 }}</h2>
-  <app-results [results]="result"></app-results>
-  <hr />
-</ng-container>
+<mat-card *ngFor="let result of results.history; let i = index">
+  <mat-card-title *ngIf="result.id">
+    Results #{{ result.id }}
+  </mat-card-title>
+
+  <mat-card-content>
+    <app-results [results]="result"></app-results>
+  </mat-card-content>
+</mat-card>

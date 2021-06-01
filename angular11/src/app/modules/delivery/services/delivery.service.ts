@@ -31,6 +31,7 @@ export class DeliveryService {
     history: [],
     updated: undefined
   };
+  nextId = 1;
 
   constructor() {
     const res = this.getDeliveryResults();
@@ -42,6 +43,8 @@ export class DeliveryService {
   }
 
   addResults(results: DeliveryResults): void {
+    results.id = this.nextId++;
+
     this.results.current = results;
     this.results.history.unshift(results);
     this.results.updated = new Date();
@@ -51,5 +54,13 @@ export class DeliveryService {
       const del = len - DeliveryService.MAX_HISTORY_LEN;
       this.results.history.splice(len - del, del);
     }
+  }
+
+  getAddResults(inputs?: Inputs): DeliveryResults {
+    const res = this.getDeliveryResults(inputs);
+
+    this.addResults(res);
+
+    return res;
   }
 }
