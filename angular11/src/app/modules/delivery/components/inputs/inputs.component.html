@@ -1,14 +1,48 @@
-<label>Deliverees: </label>
-<select [(ngModel)]="inputs.deliverees">
-  <option *ngFor="let val of DELIVEREES" [value]="val">{{ val }}</option>
-</select>
-<br />
+<ng-container *ngIf="inputs">
+  <label>Deliverees: </label>
+  <mat-button-toggle-group name="deliverees" aria-label="Deliverees" [(value)]="inputs.deliverees">
+    <mat-button-toggle [value]="1">1</mat-button-toggle>
+    <mat-button-toggle [value]="2">2</mat-button-toggle>
+    <mat-button-toggle [value]="3">3</mat-button-toggle>
+    <mat-button-toggle [value]="4">4</mat-button-toggle>
+  </mat-button-toggle-group>
 
-<label>Dispatch: </label>
-<select [(ngModel)]="inputs.dispatch">
-  <option *ngFor="let val of DISPATCHES" [value]="val">{{ val }}</option>
-</select>
+  <!--<select [(ngModel)]="inputs.deliverees">-->
+  <!--  <option *ngFor="let val of DELIVEREES" [value]="val">{{ val }}</option>-->
+  <!--</select>-->
+  <br />
+  <br />
 
-<input type="file" (change)="getFile($event)" />
+  <label>Entry Mode: </label>
+  <mat-button-toggle-group name="mode" aria-label="Input Mode" [(value)]="selectedMode">
+    <mat-button-toggle [value]="modeEnum.Enter">Enter</mat-button-toggle>
+    <mat-button-toggle [value]="modeEnum.Select">Select</mat-button-toggle>
+    <mat-button-toggle [value]="modeEnum.File">File</mat-button-toggle>
+  </mat-button-toggle-group>
 
-<button (click)="getResults()">Deliver</button>
+  <br />
+  <br />
+
+  <label>Dispatch: </label>
+  <br />
+
+  <ng-container *ngIf="selectedMode === modeEnum.Enter">
+    <textarea [(ngModel)]="inputs.dispatch" cols="40" rows="10">
+    </textarea>
+  </ng-container>
+
+  <ng-container *ngIf="selectedMode === modeEnum.Select">
+    <select [(ngModel)]="inputs.dispatch">
+      <option *ngFor="let val of DISPATCHES" [value]="val">{{ val }}</option>
+    </select>
+  </ng-container>
+
+  <ng-container *ngIf="selectedMode === modeEnum.File">
+    <input type="file" (change)="getFile($event)" />
+  </ng-container>
+
+
+
+  <!--<button (click)="getResults()">Deliver</button>-->
+
+</ng-container>

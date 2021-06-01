@@ -6,10 +6,10 @@ import { MaterialModule } from "../material";
 import {
   PagePlayComponent, PlayComponent,
   PageReportsComponent, ReportsComponent,
-  InputsComponent, ResultsComponent
+  InputsComponent, ResultsComponent, InputsModalComponent,
+  PageHistoryComponent, HistoryComponent ,
+  DialogComponent
 } from './components';
-import { PageHistoryComponent } from './components/page-history/page-history.component';
-import { HistoryComponent } from './components/history/history.component';
 
 @NgModule({
   declarations: [
@@ -20,10 +20,14 @@ import { HistoryComponent } from './components/history/history.component';
     InputsComponent,
     ResultsComponent,
     PageHistoryComponent,
-    HistoryComponent
+    HistoryComponent,
+    InputsModalComponent,
+    DialogComponent
   ],
   exports: [
-    InputsComponent
+    InputsComponent,
+    InputsModalComponent,
+    DialogComponent
   ],
   imports: [
     CommonModule,

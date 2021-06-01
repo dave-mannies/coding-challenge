@@ -2,7 +2,12 @@ import { HashLocationStrategy, LocationStrategy } from "@angular/common";
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { PagePlayComponent, PageReportsComponent, PageHistoryComponent } from "./modules/delivery/components";
+import {
+  PagePlayComponent,
+  PageReportsComponent,
+  PageHistoryComponent,
+  InputsComponent
+} from "./modules/delivery/components";
 
 const routes: Routes = [
   {
@@ -16,6 +21,10 @@ const routes: Routes = [
   {
     path: 'history',
     component: PageHistoryComponent
+  },
+  {
+    path: 'inputs',
+    component: InputsComponent
   },
   {
     path: '**',

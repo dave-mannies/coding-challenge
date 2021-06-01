@@ -1,0 +1,23 @@
+<div class="inputs-modal-state">
+  <div>
+    <label>Deliverees: </label>
+    <span class="results__deliverees">{{ inputs.deliverees }}</span>
+    <br />
+
+    <label>Dispatch: </label>
+    <span class="results__dispatch">{{ inputs.dispatch.substring(0, 30) }}</span>
+  </div>
+
+  <mat-icon aria-hidden="false"
+            aria-label="Display modal to enter Deliverees and Dispatch parameters"
+            (click)="showModal()">
+    edit
+  </mat-icon>
+</div>
+
+<ng-template #inputsTemplate>
+  <div class="inputs-modal">
+    <h2>Edit Delivery Parameters</h2>
+    <app-inputs></app-inputs>
+  </div>
+</ng-template>

@@ -1,20 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { DeliveryService, Inputs } from "../../services";
 
+export enum ModeEnum {
+  Enter,
+  Select,
+  File
+}
+
 @Component({
   selector: 'app-inputs',
   templateUrl: './inputs.component.html',
-  styles: [`
-    select {
-      max-width: 3em;
-    }
-  `]
+  styles: []
 })
 export class InputsComponent implements OnInit {
   DELIVEREES = DeliveryService.DELIVEREES;
   DISPATCHES = DeliveryService.DISPATCHES;
 
   inputs!: Inputs;
+
+  modeEnum = ModeEnum;
+  selectedMode = ModeEnum.Enter;
 
   constructor(public dservice: DeliveryService) {
     this.inputs = dservice.inputs;

@@ -6,3 +6,5 @@ export * from './results/results.component';
 export * from './inputs/inputs.component';
 export * from './page-history/page-history.component';
 export * from './history/history.component';
+export * from './inputs-modal/inputs-modal.component';
+export * from './dialog/dialog.component';
