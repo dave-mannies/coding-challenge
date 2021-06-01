@@ -1,5 +1,6 @@
 import 'mocha';
 import { expect } from 'chai';
+import { deliveries } from "../src";
 
 import { Grid } from "../src/Grid";
 
@@ -166,7 +167,7 @@ describe('Grid', () => {
     expect(grid.getPizzaCount()).to.equal(3);
   })
 
-  it('getGridEntries() is 3', () => {
+  it('getDeliveryEntries() length is 3', () => {
     const grid = new Grid();
 
     grid.deliver(1);
@@ -175,8 +176,21 @@ describe('Grid', () => {
     grid.move('<');
     grid.deliver(3);
 
+    const res = grid.getDeliveryEntries();
+
     expect(grid.getPizzaCount()).to.equal(3);
-    expect(grid.getGridEntries().length).to.equal(3);
+    expect(res.length).to.equal(3);
+  })
+
+  it ('getDeliveryEntries() entries should have 3 unique dIds for 3 deliverees and "^v>^v>^v>^v<^v<"', () => {
+    const dispatch = '^v>^v>^v>^v<^v<';
+    const res = deliveries(3, dispatch);
+    const entries = res.grid.getDeliveryEntries();
+    const dIds = new Set();
+
+    entries.forEach(entry => dIds.add(entry.dId));
+
+    expect(dIds.size).to.equal(3);
   })
 
 

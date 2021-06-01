@@ -155,7 +155,7 @@ export class Grid {
    *
    * @return ordered array of DeliveryEntry
    */
-  getGridEntries(): DeliveryEntry[] {
+  getDeliveryEntries(): DeliveryEntry[] {
     const ret: DeliveryEntry[] = [];
 
     this.grid.forEach((house, key) => {

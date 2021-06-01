@@ -19,14 +19,15 @@ export interface DeliveryResults {
  *
  * @param dispatch - string of grid dispatch move directions
  * @param grid - optional grid to
+ * @param dId - deliveree id
  */
 export function delivery(dispatch: string = '', grid: Grid = new Grid(), dId: number = 1): DeliveryResults  {
   if (dispatch) {
-    grid.deliver(1);
+    grid.deliver(1, dId);
 
     dispatch.toLowerCase().split('').forEach((dir, i) => {
       if (grid.move(dir)) {
-        grid.deliver(i);
+        grid.deliver(i + 2, dId);
       }
     });
   }
@@ -56,7 +57,7 @@ export function deliveries(count: number, dispatch: string): DeliveryResults {
 
   splits.forEach((dispatch, i) => {
     res.grid.resetPosition();
-    res = delivery(dispatch, grid, i);
+    res = delivery(dispatch, grid, i + 1);
   });
 
   res.date = new Date();

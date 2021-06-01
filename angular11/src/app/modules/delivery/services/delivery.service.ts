@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { deliveries, test, DeliveryResults, Grid } from "@ts/index";
+import { deliveries, test, DeliveryResults, Grid, DeliveryEntry } from "@ts/index";
 
 export interface Inputs {
   deliverees: number;
@@ -63,5 +63,17 @@ export class DeliveryService {
     this.addResults(res);
 
     return res;
+  }
+
+  getDeliveryTracking(results?: DeliveryResults): DeliveryEntry[] {
+    let ret: DeliveryEntry[] = [];
+
+    results = results ?? this.results.current;
+
+    if (results) {
+      ret = results.grid.getDeliveryEntries();
+    }
+
+    return ret;
   }
 }

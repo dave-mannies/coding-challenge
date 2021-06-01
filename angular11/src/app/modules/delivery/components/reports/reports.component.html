@@ -1,3 +1,36 @@
 <ng-container *ngIf="results.current">
   <app-results [results]="results.current"></app-results>
+
+  <mat-table [dataSource]="dataSource"
+             matSort matSortActive="x" matSortDirection="asc" matSortDisableClear>
+
+    <ng-container matColumnDef="order">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Order</mat-header-cell>
+      <mat-cell *matCellDef="let result">{{ result.order }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="dId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Deliveree Id</mat-header-cell>
+      <mat-cell *matCellDef="let result">{{ result.dId }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="x">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>X</mat-header-cell>
+      <mat-cell *matCellDef="let result">{{ result.x }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="y">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Y</mat-header-cell>
+      <mat-cell *matCellDef="let result">{{ result.y }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="pizzas">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Pizzas</mat-header-cell>
+      <mat-cell *matCellDef="let result">{{ result.pizzas }}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
 </ng-container>
