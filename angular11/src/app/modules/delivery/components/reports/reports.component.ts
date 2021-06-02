@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 
 import { DeliveryResults, DeliveryService, Results } from "../../services";
@@ -9,7 +11,10 @@ import { DeliveryResults, DeliveryService, Results } from "../../services";
   styles: [
   ]
 })
-export class ReportsComponent implements OnInit {
+export class ReportsComponent implements OnInit, AfterViewInit {
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
   results!: Results;
   dataSource = new MatTableDataSource<any>([]);
   displayedColumns = ['order', 'dId', 'x', 'y', 'pizzas'];
@@ -19,6 +24,9 @@ export class ReportsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit(): void {
     this.navChanged();
   }
 
@@ -27,7 +35,8 @@ export class ReportsComponent implements OnInit {
     clearTimeout(this.__naving)
     this.__naving = setTimeout(() => {
       this.dataSource.data = this.dservice.getDeliveryTracking();
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     }, 1000);
   }
-
 }

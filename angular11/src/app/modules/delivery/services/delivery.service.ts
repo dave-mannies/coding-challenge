@@ -43,6 +43,9 @@ export class DeliveryService {
     this.getAddResults();
     this.getAddResults({ deliverees: 1, dispatch: test });
     this.getAddResults({ deliverees: 2, dispatch: test });
+
+    this.results.current = this.results.history[0];
+    this.results.currentIndex = 0;
   }
 
   getDeliveryResults(inputs?: Inputs): DeliveryResults {
@@ -53,14 +56,16 @@ export class DeliveryService {
     results.id = this.nextId++;
 
     this.results.current = results;
-    this.results.history.unshift(results);
+    this.results.history.push(results);
     this.results.updated = new Date();
 
     const len = this.results.history.length;
     if (len > DeliveryService.MAX_HISTORY_LEN) {
       const del = len - DeliveryService.MAX_HISTORY_LEN;
-      this.results.history.splice(len - del, del);
+      this.results.history.splice(0, del);
     }
+
+    this.results.currentIndex = this.results.history.length - 1;
   }
 
   getAddResults(inputs?: Inputs): DeliveryResults {
