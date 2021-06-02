@@ -8,6 +8,7 @@ export interface Inputs {
 }
 
 export  interface Results {
+  currentIndex: number;
   current?: DeliveryResults;
   history: DeliveryResults[];
   updated?: Date;
@@ -18,7 +19,7 @@ export  interface Results {
 })
 export class DeliveryService {
   static DELIVEREES = [1, 2, 3, 4];
-  static DISPATCHES = ['>>><<<<<<', 'vv', '<<', 'vvvv', '^^<<v<<v><', '^v^v^v^v^v'];
+  static DISPATCHES = ['^v>^v>^v>^v<^v<', '>>><<<<<<', 'vv', '<<', 'vvvv', '^^<<v<<v><', '^v^v^v^v^v'];
   // max count of results saved to history
   static MAX_HISTORY_LEN = 5;
 
@@ -27,6 +28,7 @@ export class DeliveryService {
     dispatch: DeliveryService.DISPATCHES[0]
   };
   results: Results = {
+    currentIndex: 0,
     current: undefined,
     history: [],
     updated: undefined
@@ -34,6 +36,10 @@ export class DeliveryService {
   nextId = 1;
 
   constructor() {
+    setTimeout(() => this.prepopulate(), 500);
+  }
+
+  prepopulate() {
     this.getAddResults();
     this.getAddResults({ deliverees: 1, dispatch: test });
     this.getAddResults({ deliverees: 2, dispatch: test });

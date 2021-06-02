@@ -13,7 +13,7 @@ interface ExDeliveryEntry extends DeliveryEntry {
   styles: [
   ]
 })
-export class PlayComponent implements OnInit, OnChanges, AfterViewInit {
+export class PlayComponent implements OnInit, AfterViewInit {
   @ViewChild('board') board!: ElementRef;
 
   showDel = [true, true, true, true];
@@ -38,6 +38,10 @@ export class PlayComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    this.navChanged();
+  }
+
+  fitToBoard(): void {
     const el = this.board.nativeElement;
 
     const offsetWidth = el.offsetWidth;
@@ -55,8 +59,12 @@ export class PlayComponent implements OnInit, OnChanges, AfterViewInit {
     el.style.setProperty('--mult', mult);
   }
 
-  ngOnChanges (changes: SimpleChanges): void {
-    console.log('ngOnChanges');
+  // __na
+  navChanged() {
+    setTimeout(() => {
+      this.getTracking();
+      this.fitToBoard();
+    }, 1000);
   }
 
   getTracking(): void {
