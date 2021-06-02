@@ -1,5 +1,10 @@
 <div class="results" *ngIf="results">
   <div>
+    <label>Id:</label>
+    <div class="results__id">#{{ results.id }}</div>
+  </div>
+
+  <div>
     <label>Date:</label>
     <div class="results__date">{{ results.date | date:'short' }}</div>
   </div>
