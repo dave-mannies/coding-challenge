@@ -92,8 +92,6 @@ export class PlayComponent implements OnInit, OnChanges, AfterViewInit {
     this.ymin = ymin;
     this.ymax = ymax;
     this.pmax = pmax;
-
-    console.log({xmin, xmax, ymin, ymax, pmax});
   }
 
   toggleChanged(dId: number): void {
