@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from "@angular/material/table";
 import { DeliveryResults, DeliveryService, Results } from "../../services";
 
@@ -13,7 +13,7 @@ export enum ViewEnum {
   styles: [
   ]
 })
-export class HistoryComponent implements OnInit {
+export class HistoryComponent implements OnInit, AfterViewInit {
   results!: Results;
   viewEnum = ViewEnum;
   viewMode = ViewEnum.Cards;
@@ -22,10 +22,12 @@ export class HistoryComponent implements OnInit {
 
   constructor(public dservice: DeliveryService) {
     this.results = dservice.results;
-    this.dataSource.data = this.results.history;
   }
 
   ngOnInit(): void {
   }
 
+  ngAfterViewInit(): void {
+    this.dataSource.data = this.results.history;
+  }
 }
