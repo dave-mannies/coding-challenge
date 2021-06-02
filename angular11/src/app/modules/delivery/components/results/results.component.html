@@ -1,20 +1,26 @@
 <div class="results" *ngIf="results">
-  <label>Date:</label>
-  <div class="results__date">{{ results.date | date:'medium' }}</div>
-  <br />
+  <div>
+    <label>Date:</label>
+    <div class="results__date">{{ results.date | date:'short' }}</div>
+  </div>
 
-  <label>Deliverees:</label>
-  <div class="results__deliverees">{{ results.deliverees }}</div>
-  <br />
+  <div>
+    <label>Deliverees:</label>
+    <div class="results__deliverees">{{ results.deliverees }}</div>
+  </div>
 
-  <label>Dispatch:</label>
-  <div class="results__dispatch">{{ results.dispatch?.substring(0, 30) }}</div>
-  <br />
+  <div>
+    <label class="compressed--hide">Dispatch:</label>
+    <div class="results__dispatch compressed--hide">{{ results.dispatch?.substring(0, 30) }}</div>
+  </div>
 
-  <label>Pizzas delivered:</label>
-  <div class="results__delivered">{{ results.pizzasCount }}</div>
-  <br />
+  <div>
+    <label>Pizzas delivered:</label>
+    <div class="results__delivered">{{ results.pizzasCount }}</div>
+  </div>
 
-  <label>Houses delivered to:</label>
-  <div class="results__houses">{{ results.housesCount }}</div>
+  <div>
+    <label>Houses delivered to:</label>
+    <div class="results__houses">{{ results.housesCount }}</div>
+  </div>
 </div>

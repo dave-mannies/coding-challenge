@@ -1,5 +1,5 @@
 <ng-container *ngIf="results.current">
-  <app-results [results]="results.current"></app-results>
+  <app-results class="compressed" [results]="results.current"></app-results>
 
   <mat-table [dataSource]="dataSource"
              matSort matSortActive="x" matSortDirection="asc" matSortDisableClear>

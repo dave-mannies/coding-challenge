@@ -74,6 +74,7 @@ p {
 }
 
 .content {
+  min-width: 640px;
   margin: 2em;
   height: calc(100% - 120px);
 
@@ -83,8 +84,14 @@ p {
 }
 
 .results {
-  min-width: 20em;
-  max-width: 20em;
+  display: flex;
+  flex-direction: column;
+  min-width: 12em;
+  max-width: 12em;
+
+  > div {
+    margin: 0.25em 0;
+  }
 }
 
 .results__dispatch {
@@ -93,6 +100,20 @@ p {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.compressed {
+  .results {
+    flex-direction: row;
+    justify-content: space-between;
+    min-width: auto;
+    max-width: none;
+    margin: 0 0 0.25em;
+  }
+
+  .compressed--hide {
+    display: none;
+  }
 }
 
 .inputs-modal-state {
@@ -128,5 +149,82 @@ app-history {
   }
 }
 
+@mixin coordinates() {
+  @for $i from -200 through 200 {
+    *[x='#{$i}'] { --left: #{$i}; }
+    *[y='#{$i}'] { --top: #{$i}; }
+  }
+}
 
+.play__board {
+  position: absolute;
+  left: 1em;
+  right: 1em;
+  top: 2em;
+  bottom: 1em;
+  background-color: #eee;
+  border: 2px solid blue;
+  border-radius: 1em;
 
+  --xoffset: 60;
+  --yoffset: 200;
+  --mult: 2;
+
+  span {
+    position: absolute;
+    background-color: green;
+    display: inline-block;
+    left: calc((var(--xoffset) + var(--mult) * var(--left)) * 1px);
+    top: calc((var(--yoffset) + var(--mult) * var(--top)) * 1px);
+    width: 1px;
+    height: 1px;
+
+    &[did='1'] { background-color: green };
+    &[did='2'] { background-color: blue };
+    &[did='3'] { background-color: black };
+    &[did='4'] { background-color: white };
+
+  }
+
+  .x-axis {
+    position: absolute;
+    left: 0;
+    top: calc(var(--yoffset)  * 1px);
+    width: 100%;
+    background-color: #333;
+  }
+
+  .y-axis {
+    position: absolute;
+    top: 0;
+    left: calc(var(--xoffset)  * 1px);
+    height: 100%;
+    background-color: #333;
+  }
+
+  @include coordinates();
+
+}
+
+.play {
+  position: absolute;
+  bottom: 1em;
+  top: 14em;
+  left: 1em;
+  right: 1em;
+}
+
+.play__options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  label {
+    display: block;
+    text-align: center;
+  }
+}
+
+.play--heading {
+  text-align: center;
+}
