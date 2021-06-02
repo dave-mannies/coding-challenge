@@ -32,6 +32,30 @@ export interface HouseEntry {
 }
 
 /**
+ * Tracking analysis info.
+ *
+ * @property entries - array of deliveries
+ * @property xmin - farthest left
+ * @property xmax - farthest right
+ * @property ymin - farthest up
+ * @property ymax - farthest down
+ * @property pmax - most pizzas delivered to one house
+ * @property pavg - average pizzas delivered to a house
+ * @property totalPizzas - total number of pizzas delivred
+ * @property totalHouses - total unique houses delivered to
+ */
+export interface TrackingAnalysis {
+  xmin: number;
+  xmax: number;
+  ymin: number;
+  ymax: number;
+  pmax: number;
+  pavg: number;
+  totalPizzas: number;
+  totalHouses: number;
+}
+
+/**
  * Two-dimensional grid of houses with current house position
  * and movement with grid.
  */
@@ -49,7 +73,7 @@ export class Grid {
   /**
    * Reset current x, y grid position to start.
    */
-  resetPosition(): void {
+  resetPosition (): void {
     this.x = 0;
     this.y = 0;
   }
@@ -60,7 +84,7 @@ export class Grid {
    * @param dir - ^ | v | < | >
    * @returns boolean true if dir is a valid direction
    */
-  move(dir: string): boolean {
+  move (dir: string): boolean {
     let ret = true;
 
     switch (dir) {
@@ -92,7 +116,7 @@ export class Grid {
 
       default:
         ret = false;
-        console.error(`error move unknown direction [${ dir }]`);
+        console.error(`error move unknown direction [${dir}]`);
         break;
     }
 
@@ -106,7 +130,7 @@ export class Grid {
    * @param y - y position
    * @returns the unique key for given x, y pair
    */
-  getKey = (x: number, y: number) => `${ x }, ${ y }`;
+  getKey = (x: number, y: number) => `${x}, ${y}`;
 
   /**
    * Deliver pizza to current house.
@@ -114,13 +138,13 @@ export class Grid {
    * @param order - dispatch deliver order
    * @param dId - deliveree Id who delivered pizza
    */
-  deliver(order: number, dId: number = 1): HouseEntry {
+  deliver (order: number, dId: number = 1): HouseEntry {
     const key = this.getKey(this.x, this.y);
-    let value = this.grid.get(key) ?? { deliveries: [], x: this.x, y: this.y, pizzas: 0 };
+    let value = this.grid.get(key) ?? {deliveries: [], x: this.x, y: this.y, pizzas: 0};
 
     value.pizzas++;
     this.grid.set(key, value);
-    value.deliveries.push({ dId, order: order, pizzas: value.pizzas });
+    value.deliveries.push({dId, order: order, pizzas: value.pizzas});
 
     return value;
   }
@@ -131,7 +155,7 @@ export class Grid {
    *
    * @return count of houses the got pizza
    */
-  getHousesCount(): number {
+  getHousesCount (): number {
     return this.grid.size;
   }
 
@@ -140,7 +164,7 @@ export class Grid {
    *
    * @return total count of pizzas
    */
-  getPizzaCount(): number {
+  getPizzaCount (): number {
     let count = 0;
 
     for (let value of this.grid.values()) {
@@ -155,17 +179,80 @@ export class Grid {
    *
    * @return ordered array of DeliveryEntry
    */
-  getDeliveryEntries(): DeliveryEntry[] {
+  getDeliveryEntries (): DeliveryEntry[] {
     const ret: DeliveryEntry[] = [];
 
-    this.grid.forEach((house, key) => {
+    this.grid.forEach((house) => {
       house.deliveries.map(delivery => {
-        ret.push({ x: house.x, y: house.y,
-          order: delivery.order, dId: delivery.dId, pizzas: delivery.pizzas });
+        ret.push({
+          x: house.x, y: house.y,
+          order: delivery.order, dId: delivery.dId, pizzas: delivery.pizzas
+        });
       });
     });
 
-    ret.sort((a, b) => a.order - b.order );
+    ret.sort((a, b) => a.order - b.order);
+
+    return ret;
+  }
+
+  /**
+   * Get analysis of tracking data.
+   * Returns TrackingAnalysis with info.
+   *
+   * @returns TrackingAnalysis
+   */
+  public static getAnalysis (grid: Grid, entries?: DeliveryEntry[]): TrackingAnalysis {
+    const ret = {
+      entries: entries ?? grid.getDeliveryEntries(),
+      xmin: 0,
+      xmax: 0,
+      ymin: 0,
+      ymax: 0,
+      pmax: 0,
+      pavg: 0,
+      totalPizzas: 0,
+      totalHouses: 0
+    };
+
+    ret.entries.forEach(track => {
+      ret.xmin = Math.min(ret.xmin, track.x!);
+      ret.xmax = Math.max(ret.xmax, track.x!);
+      ret.ymin = Math.min(ret.ymin, track.y!);
+      ret.ymax = Math.max(ret.ymax, track.y!);
+      ret.pmax = Math.max(ret.pmax, track.pizzas!);
+    });
+
+    ret.totalPizzas = ret.entries.length;
+    ret.totalHouses = grid.grid.size;
+    ret.pavg = ret.totalPizzas / ret.totalHouses;
+
+    return ret;
+  }
+
+  /**
+   * Get analysis of tracking data.
+   * Returns TrackingAnalysis with info.
+   *
+   * @returns TrackingAnalysis
+   */
+  public static mergeAnalysis (grid: Grid, analyses: TrackingAnalysis[]): TrackingAnalysis {
+    const ret = analyses[0];
+
+    // todo
+
+    //
+    // const ret2 = {
+    //   entries: Grid.getDeliveryEntries(),
+    //   xmin: 0,
+    //   xmax: 0,
+    //   ymin: 0,
+    //   ymax: 0,
+    //   pmax: 0,
+    //   pavg: 0,
+    //   totalPizzas: 0,
+    //   totalHouses: 0
+    // };
 
     return ret;
   }

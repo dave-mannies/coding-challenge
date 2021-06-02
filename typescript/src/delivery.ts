@@ -1,4 +1,4 @@
-import { Grid } from './Grid';
+import { Grid, TrackingAnalysis } from './Grid';
 
 /**
  * Results of delivery(...) invocation.
@@ -11,15 +11,18 @@ export interface DeliveryResults {
   grid: Grid;
   housesCount: number;
   pizzasCount: number;
+  analysis: TrackingAnalysis[];
 }
 
 /**
  * Delivery pizza using given dispatch move directions. Provide
  * optional grid to stack deliveries for multiple deliverees.
+ * Returns DeliveryResults.
  *
  * @param dispatch - string of grid dispatch move directions
  * @param grid - optional grid to
  * @param dId - deliveree id
+ * @returns DeliveryResults
  */
 export function delivery(dispatch: string = '', grid: Grid = new Grid(), dId: number = 1): DeliveryResults  {
   if (dispatch) {
@@ -38,7 +41,8 @@ export function delivery(dispatch: string = '', grid: Grid = new Grid(), dId: nu
     dispatch,
     grid,
     housesCount: grid.getHousesCount(),
-    pizzasCount: grid.getPizzaCount()
+    pizzasCount: grid.getPizzaCount(),
+    analysis: [ Grid.getAnalysis(grid) ]
   };
 }
 
@@ -46,14 +50,16 @@ export function delivery(dispatch: string = '', grid: Grid = new Grid(), dId: nu
  * Delivery pizzas using given dispatch move directions with multiple deliverees.
  * Dispatch move directions are applied 1 at a time to each deliveree in turn.
  * "^v><" would apply to 2 deliverees as "^>" and "v<".
+ * Returns DeliveryResults.
  *
  * @param count - number of deliverees to split displatch
  * @param dispatch - string of grid dispatch move directions
+ * @returns DeliveryResults
  */
 export function deliveries(count: number, dispatch: string): DeliveryResults {
   const splits = splitDispatch(count, dispatch);
   const grid = new Grid();
-  let res: DeliveryResults = { housesCount: 0, pizzasCount: 0, grid };
+  let res: DeliveryResults = { housesCount: 0, pizzasCount: 0, grid, analysis: [] };
 
   splits.forEach((dispatch, i) => {
     res.grid.resetPosition();
@@ -76,6 +82,7 @@ export function deliveries(count: number, dispatch: string): DeliveryResults {
  *
  * @param count - number of deliverees to split displatch
  * @param dispatch - string of grid dispatch move directions
+ * @returns - array of string for each deliveree
  */
 export function splitDispatch(count: number, dispatch: string = ''): string[] {
   const ret: string[][] = [];

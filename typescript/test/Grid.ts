@@ -1,6 +1,6 @@
 import 'mocha';
 import { expect } from 'chai';
-import { deliveries } from "../src";
+import { deliveries, delivery } from "../src";
 
 import { Grid } from "../src/Grid";
 
@@ -193,5 +193,19 @@ describe('Grid', () => {
     expect(dIds.size).to.equal(3);
   })
 
+  it ('getAnalysis() results exist and are correct for "^v>^v>^v>^v<^v<"', () => {
+    const dispatch = '^v>^v>^v>^v<^v<';
+    const res = delivery(dispatch);
+    const analysis = res.analysis[0];
 
+    expect(res.analysis.length).to.equal(1, 'length');
+    expect(analysis.xmin).to.equal(0, 'xmin');
+    expect(analysis.xmax).to.equal(3, 'xmax');
+    expect(analysis.ymin).to.equal(0, 'ymin');
+    expect(analysis.ymax).to.equal(1, 'ymax');
+    expect(analysis.pmax).to.equal(4, 'pmax');
+    expect(analysis.pavg).to.equal(2, 'pavg');
+    expect(analysis.totalPizzas).to.equal(16, 'totalPizzas');
+    expect(analysis.totalHouses).to.equal(8, 'totalHouses');
+  })
 });
