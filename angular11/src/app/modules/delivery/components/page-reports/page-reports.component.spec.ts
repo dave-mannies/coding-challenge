@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MaterialModule } from "../../../material";
 
 import { PageReportsComponent } from './page-reports.component';
-import { ReportsComponent, ResultsComponent } from '../';
+import { ReportsComponent, ResultsComponent, ResultsHistoryComponent } from '../';
 
 describe('PageReportsComponent', () => {
   let component: PageReportsComponent;
@@ -10,7 +10,7 @@ describe('PageReportsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PageReportsComponent, ReportsComponent, ResultsComponent ],
+      declarations: [ PageReportsComponent, ReportsComponent, ResultsComponent, ResultsHistoryComponent ],
       imports: [ MaterialModule ]
     })
     .compileComponents();

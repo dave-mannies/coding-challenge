@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ResultsComponent } from "../";
+import { ResultsComponent, ResultsHistoryComponent } from "../";
+import { MaterialModule } from "../../../material";
 import { PlayComponent } from './play.component';
 
 describe('PlayComponent', () => {
@@ -9,7 +10,8 @@ describe('PlayComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PlayComponent, ResultsComponent ]
+      declarations: [ PlayComponent, ResultsComponent, ResultsHistoryComponent ],
+      imports: [ MaterialModule ]
     })
     .compileComponents();
   });

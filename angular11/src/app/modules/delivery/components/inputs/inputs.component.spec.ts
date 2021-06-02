@@ -29,8 +29,8 @@ describe('InputsComponent', () => {
   it('getResults() should update', () => {
     expect(component.getResults).toBeTruthy();
     expect(component.dservice).toBeTruthy();
-    expect(component.dservice.results.history.length).toBe(1);
+    expect(component.dservice.results.history.length).toBe(0);
     component.getResults();
-    expect(component.dservice.results.history.length).toBe(2);
+    expect(component.dservice.results.history.length).toBe(1);
   });
 });

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MaterialModule } from "../../../material";
 
 import { HistoryComponent } from './history.component';
 import { ResultsComponent } from '../';
@@ -9,7 +10,8 @@ describe('HistoryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HistoryComponent, ResultsComponent ]
+      declarations: [ HistoryComponent, ResultsComponent ],
+      imports: [ MaterialModule ]
     })
     .compileComponents();
   });

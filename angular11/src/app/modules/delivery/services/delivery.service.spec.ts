@@ -16,16 +16,10 @@ describe('DeliveryService', () => {
     expect(service.results).toBeTruthy();
   });
 
-  it('should be created and first result provided for default inputs', () => {
-    expect(service.results.current).toBeTruthy();
-    expect(service.results.updated).toBeTruthy();
-    expect(service.results.history.length).toBe(1);
-  });
-
   it('getDeliveryResults() to default', () => {
     const res = service.getDeliveryResults();
     expect(res).toBeTruthy();
-    expect(res.housesCount).toBe(10);
+    expect(res.housesCount).toBe(8);
   });
 
   it('getDeliveryResults() to use inputs', () => {
@@ -41,7 +35,7 @@ describe('DeliveryService', () => {
 
     expect(service.results.current).toBeTruthy();
     expect(service.results.updated).toBeTruthy();
-    expect(service.results.history.length).toBe(2);
+    expect(service.results.history.length).toBe(1);
   });
 
   it('addResults() to update multiple results', () => {
@@ -53,9 +47,9 @@ describe('DeliveryService', () => {
     service.addResults(res);
 
     expect(service.results.updated).toBeTruthy();
-    expect(service.results.history.length).toBe(3);
+    expect(service.results.history.length).toBe(2);
     expect(service.results.current?.housesCount).toBe(7);
-    expect(service.results.history[1].housesCount).toBe(10);
+    expect(service.results.history[1].housesCount).toBe(7);
   });
 
   it('addResults() to limit history', () => {
@@ -72,7 +66,7 @@ describe('DeliveryService', () => {
     expect(service.results.updated).toBeTruthy();
     expect(service.results.history.length).toBe(5);
     expect(service.results.current?.housesCount).toBe(7);
-    expect(service.results.history[1].housesCount).toBe(10);
+    expect(service.results.history[1].housesCount).toBe(8);
   });
 
 });
