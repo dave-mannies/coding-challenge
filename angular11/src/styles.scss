@@ -108,7 +108,10 @@ p {
     justify-content: space-between;
     min-width: auto;
     max-width: none;
-    margin: 0 0 0.25em;
+    margin: -1em 0 1em;
+    background-color: #eee;
+    padding: 0 1em;
+    border-radius: 1em;
   }
 
   .compressed--hide {
@@ -152,7 +155,7 @@ app-history {
 @mixin coordinates() {
   @for $i from -200 through 200 {
     *[x='#{$i}'] { --left: #{$i}; }
-    *[y='#{$i}'] { --top: #{$i}; }
+    *[y='#{$i}'] { --top: #{-1 * $i}; }
   }
 }
 
@@ -166,18 +169,16 @@ app-history {
   border: 2px solid blue;
   border-radius: 1em;
 
-  --xoffset: 60;
-  --yoffset: 200;
-  --mult: 2;
-
   span {
     position: absolute;
     background-color: green;
+    opacity: 0.1;
     display: inline-block;
-    left: calc((var(--xoffset) + var(--mult) * var(--left)) * 1px);
-    top: calc((var(--yoffset) + var(--mult) * var(--top)) * 1px);
-    width: 1px;
-    height: 1px;
+    left: calc((var(--xoffset) + (-1 * var(--mult)/2) + (var(--mult) * var(--left))) * 1px);
+    top: calc((var(--yoffset) + (-1 * var(--mult)/2) + (var(--mult) * var(--top))) * 1px);
+    width: calc(var(--mult) * 1px);
+    height: calc(var(--mult) * 1px);
+    border-radius: 100%;
 
     &[did='1'] { background-color: green };
     &[did='2'] { background-color: blue };
@@ -190,6 +191,7 @@ app-history {
     position: absolute;
     left: 0;
     top: calc(var(--yoffset)  * 1px);
+    height: 2px;
     width: 100%;
     background-color: #333;
   }
@@ -199,6 +201,7 @@ app-history {
     top: 0;
     left: calc(var(--xoffset)  * 1px);
     height: 100%;
+    width: 2px;
     background-color: #333;
   }
 
@@ -212,6 +215,8 @@ app-history {
   top: 14em;
   left: 1em;
   right: 1em;
+  background-color: #ffdddd;
+  border-radius: 1em;
 }
 
 .play__options {

@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 
 import { DeliveryEntry, DeliveryService, Results } from "../../services";
 
@@ -13,7 +13,7 @@ interface ExDeliveryEntry extends DeliveryEntry {
   styles: [
   ]
 })
-export class PlayComponent implements OnInit, OnChanges {
+export class PlayComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChild('board') board!: ElementRef;
 
   showDel = [true, true, true, true];
@@ -27,6 +27,7 @@ export class PlayComponent implements OnInit, OnChanges {
   ymin = 0;
   ymax = 0;
   pmax = 0;
+  deliverees = 0;
 
   constructor(public dservice: DeliveryService) {
     this.results = dservice.results;
@@ -34,6 +35,24 @@ export class PlayComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.getTracking();
+  }
+
+  ngAfterViewInit(): void {
+    const el = this.board.nativeElement;
+
+    const offsetWidth = el.offsetWidth;
+    const offsetHeight = el.offsetHeight;
+    const width = Math.abs(this.xmax - this.xmin + 1);
+    const height = Math.abs(this.ymax - this.ymin + 1);
+    const mult = Math.min( Math.floor(offsetWidth / width), Math.floor( offsetHeight / height ) );
+    const mwidth = width * mult;
+    const mheight = height * mult;
+    const xoffset = offsetWidth / 2 - ((this.xmin + this.xmax) / 2) * mult;
+    const yoffset = offsetHeight / 2 + ((this.ymin + this.ymax) / 2) * mult;
+
+    el.style.setProperty('--xoffset', xoffset);
+    el.style.setProperty('--yoffset', yoffset);
+    el.style.setProperty('--mult', mult);
   }
 
   ngOnChanges (changes: SimpleChanges): void {
@@ -47,6 +66,7 @@ export class PlayComponent implements OnInit, OnChanges {
   }
 
   analyze() {
+    this.deliverees = this.results.current?.deliverees ?? 1;
     this.max = this.tracking.length / (this.results.current?.deliverees ?? 1);
     this.start = this.max > 0 ? 1 : 0;
     this.end = this.max;
@@ -60,8 +80,8 @@ export class PlayComponent implements OnInit, OnChanges {
     this.tracking.forEach(track => {
       xmin = Math.min(xmin, track.x!);
       xmax = Math.max(xmax, track.x!);
-      ymin = Math.min(ymin, track.x!);
-      ymax = Math.max(ymax, track.x!);
+      ymin = Math.min(ymin, track.y!);
+      ymax = Math.max(ymax, track.y!);
       pmax = Math.max(pmax, track.pizzas!);
 
       track.title = `${ track.x! }, ${ track.y! }: ${ track.pizzas } pizzas`

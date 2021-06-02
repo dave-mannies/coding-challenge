@@ -18,7 +18,7 @@ export  interface Results {
 })
 export class DeliveryService {
   static DELIVEREES = [1, 2, 3, 4];
-  static DISPATCHES = ['^^<<v<<v><', '^v^v^v^v^v'];
+  static DISPATCHES = ['>>><<<<<<', 'vv', '<<', 'vvvv', '^^<<v<<v><', '^v^v^v^v^v'];
   // max count of results saved to history
   static MAX_HISTORY_LEN = 5;
 

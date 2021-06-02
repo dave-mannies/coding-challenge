@@ -12,7 +12,7 @@
     </mat-card-title>
 
     <mat-card-content>
-      <app-results [results]="result"></app-results>
+      <app-results [results]="result" (click)="results.current=result"></app-results>
     </mat-card-content>
   </mat-card>
 </ng-container>
