@@ -102,13 +102,24 @@ p {
   text-overflow: ellipsis;
 }
 
+.results-history {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: -1em 0 1em;
+
+  app-results {
+    margin: 0 1em;
+    flex-grow: 2;
+  }
+}
+
 .compressed {
   .results {
     flex-direction: row;
     justify-content: space-between;
     min-width: auto;
     max-width: none;
-    margin: -1em 0 1em;
     background-color: #eee;
     padding: 0 1em;
     border-radius: 1em;

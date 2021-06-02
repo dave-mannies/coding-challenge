@@ -1,0 +1,17 @@
+<ng-container *ngIf="results">
+  <div class="results-history">
+    <button mat-mini-fab aria-label="Show Previous Results"
+            [disabled]="disableNav(-1)"
+            (click)="nav(-1)">
+      <mat-icon>navigate_before</mat-icon>
+    </button>
+
+    <app-results class="compressed" [results]="results.current"></app-results>
+
+    <button mat-mini-fab aria-label="Show Previous Results"
+            [disabled]="disableNav(1)"
+            (click)="nav(1)">
+      <mat-icon>navigate_next</mat-icon>
+    </button>
+  </div>
+</ng-container>

@@ -8,7 +8,7 @@ import {
   PageReportsComponent, ReportsComponent,
   InputsComponent, ResultsComponent, InputsModalComponent,
   PageHistoryComponent, HistoryComponent ,
-  DialogComponent
+  DialogComponent, ResultsHistoryComponent
 } from './components';
 
 @NgModule({
@@ -22,7 +22,8 @@ import {
     PageHistoryComponent,
     HistoryComponent,
     InputsModalComponent,
-    DialogComponent
+    DialogComponent,
+    ResultsHistoryComponent
   ],
   exports: [
     InputsComponent,
