@@ -16,10 +16,18 @@ export class ReportsComponent implements OnInit {
 
   constructor(public dservice: DeliveryService) {
     this.results = dservice.results;
-    this.dataSource.data = dservice.getDeliveryTracking();
   }
 
   ngOnInit(): void {
+    this.navChanged();
+  }
+
+  __naving = 0;
+  navChanged() {
+    clearTimeout(this.__naving)
+    this.__naving = setTimeout(() => {
+      this.dataSource.data = this.dservice.getDeliveryTracking();
+    }, 1000);
   }
 
 }

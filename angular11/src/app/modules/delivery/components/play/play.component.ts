@@ -59,9 +59,10 @@ export class PlayComponent implements OnInit, AfterViewInit {
     el.style.setProperty('--mult', mult);
   }
 
-  // __na
+  __naving = 0;
   navChanged() {
-    setTimeout(() => {
+    clearTimeout(this.__naving)
+    this.__naving = setTimeout(() => {
       this.getTracking();
       this.fitToBoard();
     }, 1000);

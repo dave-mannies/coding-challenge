@@ -1,6 +1,8 @@
-<ng-container *ngIf="results.current">
-  <app-results class="compressed" [results]="results.current"></app-results>
+<ng-container *ngIf="results">
+  <app-results-history [results]="results" (change)="navChanged()"></app-results-history>
+</ng-container>
 
+<ng-container *ngIf="results.current">
   <mat-table [dataSource]="dataSource"
              matSort matSortActive="x" matSortDirection="asc" matSortDisableClear>
 
