@@ -1,32 +1,31 @@
 <div class="results" *ngIf="results">
-  <div>
-    <label>Id:</label>
-    <div class="results__id">#{{ results.id }}</div>
+  <div class="results__id">
+    <label>Id: </label>
+    <span>#{{ results.id }}</span>
   </div>
 
-  <div>
-    <label>Date:</label>
-    <div class="results__date">{{ results.date | date:'short' }}</div>
+  <div class="results__date">
+    <label>Date: </label>
+    <span>{{ results.date | date:'short' }}</span>
   </div>
 
-  <div>
-    <label>Deliverees:</label>
-    <div class="results__deliverees">{{ results.deliverees }}</div>
+  <div class="results__deliverees">
+    <label>Deliverees: </label>
+    <span>{{ results.deliverees }}</span>
   </div>
 
-  <div>
-    <label class="compressed--hide">Dispatch:</label>
-    <br />
-    <div class="results__dispatch compressed--hide">{{ results.dispatch?.substring(0, 30) }}</div>
+  <div class="results__dispatch compressed--hide">
+    <label>Dispatch: </label>
+    <span>{{ results.dispatch?.substring(0, 30) }}</span>
   </div>
 
-  <div>
-    <label>Pizzas delivered:</label>
-    <div class="results__delivered">{{ results.pizzasCount }}</div>
+  <div class="results__delivered">
+    <label>Pizzas: </label>
+    <span>{{ results.pizzasCount }}</span>
   </div>
 
-  <div>
-    <label>Houses delivered to:</label>
-    <div class="results__houses">{{ results.housesCount }}</div>
+  <div class="results__houses">
+    <label>Houses: </label>
+    <span>{{ results.housesCount }}</span>
   </div>
 </div>
