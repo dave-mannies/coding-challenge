@@ -1,4 +1,13 @@
-import { AfterViewInit, Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostListener,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
 
 import { DeliveryEntry, DeliveryResults, DeliveryService, Results } from "../../services";
 
@@ -50,6 +59,11 @@ export class PlayComponent implements OnInit {
       el.style.setProperty('--yoffset', yoffset);
       el.style.setProperty('--mult', mult);
     }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.fitToBoard();
   }
 
   __naving: any = 0;
