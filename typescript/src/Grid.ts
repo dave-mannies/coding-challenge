@@ -34,7 +34,7 @@ export interface HouseEntry {
 /**
  * Tracking analysis info.
  *
- * @property entries - array of deliveries
+ * @property entries - array of DeliveryEntry
  * @property xmin - farthest left
  * @property xmax - farthest right
  * @property ymin - farthest up
@@ -45,6 +45,7 @@ export interface HouseEntry {
  * @property totalHouses - total unique houses delivered to
  */
 export interface TrackingAnalysis {
+  entries: DeliveryEntry[];
   xmin: number;
   xmax: number;
   ymin: number;

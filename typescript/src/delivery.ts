@@ -35,14 +35,16 @@ export function delivery(dispatch: string = '', grid: Grid = new Grid(), dId: nu
     });
   }
 
+  const analysis = Grid.getAnalysis(grid);
+
   return {
     date: new Date(),
     deliverees: 1,
     dispatch,
     grid,
-    housesCount: grid.getHousesCount(),
-    pizzasCount: grid.getPizzaCount(),
-    analysis: [ Grid.getAnalysis(grid) ]
+    housesCount: analysis.totalHouses,
+    pizzasCount: analysis.totalPizzas,
+    analysis: [ analysis ]
   };
 }
 
