@@ -30,15 +30,17 @@ describe('DeliveryService', () => {
   });
 
   it('addResults() to update results', () => {
+    const length = service.results.history.length;
     const res = service.getDeliveryResults();
     service.addResults(res);
 
     expect(service.results.current).toBeTruthy();
     expect(service.results.updated).toBeTruthy();
-    expect(service.results.history.length).toBe(1);
+    expect(service.results.history.length).toBe(length + 1);
   });
 
   it('addResults() to update multiple results', () => {
+    const length = service.results.history.length;
     const inputs: Inputs = { deliverees: 2, dispatch: '^>^>^>'};
     let res = service.getDeliveryResults();
 
@@ -47,9 +49,9 @@ describe('DeliveryService', () => {
     service.addResults(res);
 
     expect(service.results.updated).toBeTruthy();
-    expect(service.results.history.length).toBe(2);
+    expect(length).not.toBe(0);
     expect(service.results.current?.housesCount).toBe(7);
-    expect(service.results.history[1].housesCount).toBe(7);
+    expect(service.results.history[length + 1].housesCount).toBe(7);
   });
 
   it('addResults() to limit history', () => {

@@ -1,5 +1,5 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { Results } from "../../services";
+import { Component, Input, OnInit, Output, EventEmitter, AfterViewInit } from '@angular/core';
+import { DeliveryService, Results } from "../../services";
 
 @Component({
   selector: 'app-results-history',
@@ -7,13 +7,18 @@ import { Results } from "../../services";
   styles: [
   ]
 })
-export class ResultsHistoryComponent implements OnInit {
+export class ResultsHistoryComponent implements AfterViewInit {
   @Input() results!: Results;
   @Output() change = new EventEmitter<any>();
 
-  constructor() { }
+  constructor(public dservice: DeliveryService) {
+    if (!this.results) {
+      this.results = this.dservice.results;
+    }
+  }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
+    this.nav(0);
   }
 
   nav(dir: number) {
@@ -31,9 +36,12 @@ export class ResultsHistoryComponent implements OnInit {
         break;
     }
 
-    this.results.current = this.results.history[this.results.currentIndex];
-
-    this.change.emit(this.results.current);
+    const current = this.results.current;
+    const id = this.results.history[this.results.currentIndex].id;
+    if (!dir || (current && current.id !== id)) {
+      this.results.current = this.results.history[this.results.currentIndex];
+      this.change.emit(this.results.current);
+    }
   }
 
   disableNav(dir: number): boolean {

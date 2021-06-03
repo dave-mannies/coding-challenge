@@ -27,10 +27,12 @@ describe('InputsComponent', () => {
   });
 
   it('getResults() should update', () => {
+    const length = component.dservice.results.history.length;
+
     expect(component.getResults).toBeTruthy();
     expect(component.dservice).toBeTruthy();
-    expect(component.dservice.results.history.length).toBe(0);
+    expect(length).not.toBe(0);
     component.getResults();
-    expect(component.dservice.results.history.length).toBe(1);
+    expect(component.dservice.results.history.length).toBe(length + 1);
   });
 });

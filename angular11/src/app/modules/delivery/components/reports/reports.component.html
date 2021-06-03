@@ -1,41 +1,41 @@
-<ng-container *ngIf="results">
-  <app-results-history [results]="results" (change)="navChanged()"></app-results-history>
-</ng-container>
+<app-results-history (change)="navChanged($event)"></app-results-history>
 
-<div class="mat-elevation-z8">
-  <ng-container *ngIf="results.current">
-    <mat-table [dataSource]="dataSource"
-               matSort matSortActive="order" matSortDirection="asc" matSortDisableClear>
+<div class="reports mat-elevation-z8">
+  <mat-table [dataSource]="dataSource"
+             matSort matSortActive="order" matSortDirection="asc" matSortDisableClear>
 
-      <ng-container matColumnDef="order">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Order</mat-header-cell>
-        <mat-cell *matCellDef="let result">{{ result.order }}</mat-cell>
-      </ng-container>
+    <ng-container matColumnDef="order">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Order</mat-header-cell>
+      <mat-cell *matCellDef="let result">{{ result.order }}</mat-cell>
+    </ng-container>
 
-      <ng-container matColumnDef="dId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Deliveree Id</mat-header-cell>
-        <mat-cell *matCellDef="let result">{{ result.dId }}</mat-cell>
-      </ng-container>
+    <ng-container matColumnDef="dId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Deliveree Id</mat-header-cell>
+      <mat-cell *matCellDef="let result">{{ result.dId }}</mat-cell>
+    </ng-container>
 
-      <ng-container matColumnDef="x">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>X</mat-header-cell>
-        <mat-cell *matCellDef="let result">{{ result.x }}</mat-cell>
-      </ng-container>
+    <ng-container matColumnDef="x">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>X</mat-header-cell>
+      <mat-cell *matCellDef="let result">{{ result.x }}</mat-cell>
+    </ng-container>
 
-      <ng-container matColumnDef="y">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Y</mat-header-cell>
-        <mat-cell *matCellDef="let result">{{ result.y }}</mat-cell>
-      </ng-container>
+    <ng-container matColumnDef="y">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Y</mat-header-cell>
+      <mat-cell *matCellDef="let result">{{ result.y }}</mat-cell>
+    </ng-container>
 
-      <ng-container matColumnDef="pizzas">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Pizzas</mat-header-cell>
-        <mat-cell *matCellDef="let result">{{ result.pizzas }}</mat-cell>
-      </ng-container>
+    <ng-container matColumnDef="pizzas">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Pizzas</mat-header-cell>
+      <mat-cell *matCellDef="let result">{{ result.pizzas }}</mat-cell>
+    </ng-container>
 
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-    </mat-table>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>
-  </ng-container>
+  <mat-paginator [hidden]="!current" [pageSizeOptions]="[10]" showFirstLastButtons></mat-paginator>
+
+  <div class="reports__loading" *ngIf="!current">
+    <h3>Processing...</h3>
+  </div>
 </div>

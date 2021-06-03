@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { MaterialModule } from "../../../material";
 
 import { PageReportsComponent } from './page-reports.component';
@@ -11,7 +12,7 @@ describe('PageReportsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ PageReportsComponent, ReportsComponent, ResultsComponent, ResultsHistoryComponent ],
-      imports: [ MaterialModule ]
+      imports: [ MaterialModule, NoopAnimationsModule ]
     })
     .compileComponents();
   });

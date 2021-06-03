@@ -1,9 +1,9 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 
-import { DeliveryResults, DeliveryService, Results } from "../../services";
+import { DeliveryEntry, DeliveryResults } from "../../services";
 
 @Component({
   selector: 'app-reports',
@@ -11,32 +11,38 @@ import { DeliveryResults, DeliveryService, Results } from "../../services";
   styles: [
   ]
 })
-export class ReportsComponent implements OnInit, AfterViewInit {
+export class ReportsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  results!: Results;
+  current?: DeliveryResults;
+  tracking: DeliveryEntry[] = [];
   dataSource = new MatTableDataSource<any>([]);
   displayedColumns = ['order', 'dId', 'x', 'y', 'pizzas'];
 
-  constructor(public dservice: DeliveryService) {
-    this.results = dservice.results;
+  constructor() {
   }
 
   ngOnInit(): void {
   }
 
-  ngAfterViewInit(): void {
-    this.navChanged();
+  navChanged(current: DeliveryResults) {
+    this.current = undefined;
+    this.tracking = [];
+
+    setTimeout(() => {
+      this.getTracking(current);
+    });
   }
 
-  __naving = 0;
-  navChanged() {
-    clearTimeout(this.__naving)
-    this.__naving = setTimeout(() => {
-      this.dataSource.data = this.dservice.getDeliveryTracking();
+  getTracking(current: DeliveryResults): void {
+    this.current = current;
+
+    if (this.current && this.current.analysis.length) {
+      this.tracking = this.current.analysis[0].entries;
+      this.dataSource.data = this.tracking;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-    }, 1000);
+    }
   }
 }

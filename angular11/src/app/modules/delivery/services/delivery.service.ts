@@ -36,13 +36,13 @@ export class DeliveryService {
   nextId = 1;
 
   constructor() {
-    setTimeout(() => this.prepopulate(), 500);
+    this.prepopulate();
   }
 
   prepopulate() {
-    this.getAddResults();
-    this.getAddResults({ deliverees: 1, dispatch: test });
     this.getAddResults({ deliverees: 2, dispatch: test });
+    this.getAddResults({ deliverees: 1, dispatch: test });
+    this.getAddResults();
 
     this.results.current = this.results.history[0];
     this.results.currentIndex = 0;
@@ -81,8 +81,8 @@ export class DeliveryService {
 
     results = results ?? this.results.current;
 
-    if (results) {
-      ret = results.grid.getDeliveryEntries();
+    if (results && results.analysis.length) {
+      ret = results.analysis[0].entries;
     }
 
     return ret;
