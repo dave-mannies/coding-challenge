@@ -1,3 +1,4 @@
+@use '../utilities/responsive' as res;
 
 .reports {
   position: relative;
@@ -11,4 +12,9 @@
     text-align: center;
   }
 
+  @include res.mobile() {
+    .mat-row {
+      min-height: 32px;
+    }
+  }
 }
