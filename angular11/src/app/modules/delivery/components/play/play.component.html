@@ -1,61 +1,67 @@
-<ng-container *ngIf="results">
-  <app-results-history [results]="results" (change)="navChanged()"></app-results-history>
+<app-results-history (change)="navChanged($event)"></app-results-history>
+
+<ng-container>
+  <div class="play">
+    <div #board class="play__board">
+      <span class="x-axis"></span>
+      <span class="y-axis"></span>
+
+      <ng-container *ngFor="let track of tracking">
+        <span *ngIf="!track.hide"
+              [attr.x]="track.x"
+              [attr.y]="track.y"
+              [attr.pizzas]="track.pizzas"
+              [attr.did]="track.dId"
+              [attr.order]="track.order"
+        >&nbsp;</span>
+      </ng-container>
+    </div>
+
+    <h3 class="play--heading">
+      <span *ngIf="tracking.length">
+        Displaying tracking data from {{ start }} to {{ end }}.
+      </span>
+      <span *ngIf="!tracking.length">
+        Processing...
+      </span>
+    </h3>
+  </div>
+
+  <div class="play__options" *ngIf="tracking.length">
+    <div *ngIf="deliverees > 1">
+      <label>Deliverees: </label>
+      <mat-button-toggle name="deliverees" aria-label="Deliverees" >
+        <mat-button-toggle [checked]="showDel[0]" (change)="toggleChanged(0)">1</mat-button-toggle>
+        <mat-button-toggle [checked]="showDel[1]" (change)="toggleChanged(1)" *ngIf="deliverees > 1">2</mat-button-toggle>
+        <mat-button-toggle [checked]="showDel[2]" (change)="toggleChanged(2)" *ngIf="deliverees > 2">3</mat-button-toggle>
+        <mat-button-toggle [checked]="showDel[3]" (change)="toggleChanged(3)" *ngIf="deliverees > 3">4</mat-button-toggle>
+      </mat-button-toggle>
+    </div>
+
+    <div>
+      <label>Start</label>
+      <mat-slider
+        thumbLabel
+        [displayWith]="formatLabel"
+        min="1"
+        [max]="max"
+        [(ngModel)]="start"
+        (change)="startChanged()"
+        aria-label="units">
+      </mat-slider>
+    </div>
+
+    <div>
+      <label>End</label>
+      <mat-slider
+        thumbLabel
+        [displayWith]="formatLabel"
+        min="1"
+        [max]="max"
+        [(ngModel)]="end"
+        (change)="endChanged()"
+        aria-label="units">
+      </mat-slider>
+    </div>
+  </div>
 </ng-container>
-
-<div class="play">
-  <div #board class="play__board">
-    <span class="x-axis"></span>
-    <span class="y-axis"></span>
-
-    <ng-container *ngFor="let track of tracking">
-    <span *ngIf="!track.hide"
-          [attr.x]="track.x"
-          [attr.y]="track.y"
-          [attr.pizzas]="track.pizzas"
-          [attr.did]="track.dId"
-          [attr.order]="track.order"
-          [title]="track.title"
-    >&nbsp;</span>
-    </ng-container>
-  </div>
-
-  <div class="play--heading">Displaying tracking data from {{ start }} to {{ end }}.</div>
-</div>
-
-<div class="play__options">
-  <div *ngIf="deliverees > 1">
-    <label>Deliverees: </label>
-    <mat-button-toggle name="deliverees" aria-label="Deliverees" >
-      <mat-button-toggle [checked]="showDel[0]" (change)="toggleChanged(0)">1</mat-button-toggle>
-      <mat-button-toggle [checked]="showDel[1]" (change)="toggleChanged(1)" *ngIf="deliverees > 1">2</mat-button-toggle>
-      <mat-button-toggle [checked]="showDel[2]" (change)="toggleChanged(2)" *ngIf="deliverees > 2">3</mat-button-toggle>
-      <mat-button-toggle [checked]="showDel[3]" (change)="toggleChanged(3)" *ngIf="deliverees > 3">4</mat-button-toggle>
-    </mat-button-toggle>
-  </div>
-
-  <div>
-    <label>Start</label>
-    <mat-slider
-      thumbLabel
-      [displayWith]="formatLabel"
-      min="1"
-      [max]="max"
-      [(ngModel)]="start"
-      (change)="startChanged()"
-      aria-label="units">
-    </mat-slider>
-  </div>
-
-  <div>
-    <label>End</label>
-    <mat-slider
-      thumbLabel
-      [displayWith]="formatLabel"
-      min="1"
-      [max]="max"
-      [(ngModel)]="end"
-      (change)="endChanged()"
-      aria-label="units">
-    </mat-slider>
-  </div>
-</div>

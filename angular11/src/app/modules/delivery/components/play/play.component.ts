@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 
-import { DeliveryEntry, DeliveryService, Results } from "../../services";
+import { DeliveryEntry, DeliveryResults, DeliveryService, Results } from "../../services";
 
 interface ExDeliveryEntry extends DeliveryEntry {
   hide?: boolean;
@@ -13,94 +13,70 @@ interface ExDeliveryEntry extends DeliveryEntry {
   styles: [
   ]
 })
-export class PlayComponent implements OnInit, AfterViewInit {
+export class PlayComponent implements OnInit {
   @ViewChild('board') board!: ElementRef;
 
-  showDel = [true, true, true, true];
-  results!: Results;
+  current?: DeliveryResults;
   tracking: ExDeliveryEntry[] = [];
+  deliverees = 0;
+  showDel = [true, true, true, true];
   start = 0;
   end = 0;
   max = 0;
-  xmin = 0;
-  xmax = 0;
-  ymin = 0;
-  ymax = 0;
-  pmax = 0;
-  deliverees = 0;
 
-  constructor(public dservice: DeliveryService) {
-    this.results = dservice.results;
+  constructor() {
   }
 
   ngOnInit(): void {
-    this.getTracking();
-  }
-
-  ngAfterViewInit(): void {
-    this.navChanged();
   }
 
   fitToBoard(): void {
     const el = this.board.nativeElement;
+    const analysis = this.current?.analysis[0];
 
-    const offsetWidth = el.offsetWidth;
-    const offsetHeight = el.offsetHeight;
-    const width = Math.abs(this.xmax - this.xmin + 1);
-    const height = Math.abs(this.ymax - this.ymin + 1);
-    const mult = Math.min( Math.floor(offsetWidth / width), Math.floor( offsetHeight / height ) );
-    const mwidth = width * mult;
-    const mheight = height * mult;
-    const xoffset = offsetWidth / 2 - ((this.xmin + this.xmax) / 2) * mult;
-    const yoffset = offsetHeight / 2 + ((this.ymin + this.ymax) / 2) * mult;
+    if (analysis) {
+      const offsetWidth = el.offsetWidth;
+      const offsetHeight = el.offsetHeight;
+      const width = Math.abs(analysis.xmax - analysis.xmin + 1);
+      const height = Math.abs(analysis.ymax - analysis.ymin + 1);
+      const mult = Math.min( Math.floor(offsetWidth / width), Math.floor( offsetHeight / height ) );
+      const xoffset = offsetWidth / 2 - ((analysis.xmin + analysis.xmax) / 2) * mult;
+      const yoffset = offsetHeight / 2 + ((analysis.ymin + analysis.ymax) / 2) * mult;
 
-    el.style.setProperty('--xoffset', xoffset);
-    el.style.setProperty('--yoffset', yoffset);
-    el.style.setProperty('--mult', mult);
+      el.style.setProperty('--xoffset', xoffset);
+      el.style.setProperty('--yoffset', yoffset);
+      el.style.setProperty('--mult', mult);
+    }
   }
 
-  __naving = 0;
-  navChanged() {
-    clearTimeout(this.__naving)
+  __naving: any = 0;
+  navChanged(current: DeliveryResults) {
+    this.deliverees = 0;
+    this.current = undefined;
+    this.tracking = [];
+
+    clearTimeout(this.__naving);
     this.__naving = setTimeout(() => {
-      this.getTracking();
+      this.getTracking(current);
       this.fitToBoard();
-    }, 1000);
+    }, 100);
   }
 
-  getTracking(): void {
-    this.tracking = this.dservice.getDeliveryTracking();
-    this.analyze();
-    this.filter();
+  getTracking(current: DeliveryResults): void {
+    this.current = current;
+
+    if (this.current && this.current.analysis.length) {
+      this.tracking = this.current.analysis[0].entries;
+      this.analyze();
+      this.filter();
+    }
   }
 
   analyze() {
-    this.deliverees = this.results.current?.deliverees ?? 1;
-    this.max = this.tracking.length / (this.results.current?.deliverees ?? 1);
+    this.deliverees = this.current?.deliverees ?? 1;
+    this.max = this.tracking.length / (this.current?.deliverees ?? 1);
     this.start = this.max > 0 ? 1 : 0;
     this.end = this.max;
-
-    let xmin = 0;
-    let xmax = 0;
-    let ymin = 0;
-    let ymax = 0;
-    let pmax = 0;
-
-    this.tracking.forEach(track => {
-      xmin = Math.min(xmin, track.x!);
-      xmax = Math.max(xmax, track.x!);
-      ymin = Math.min(ymin, track.y!);
-      ymax = Math.max(ymax, track.y!);
-      pmax = Math.max(pmax, track.pizzas!);
-
-      track.title = `${ track.x! }, ${ track.y! }: ${ track.pizzas } pizzas`
-    });
-
-    this.xmin = xmin;
-    this.xmax = xmax;
-    this.ymin = ymin;
-    this.ymax = ymax;
-    this.pmax = pmax;
   }
 
   toggleChanged(dId: number): void {
