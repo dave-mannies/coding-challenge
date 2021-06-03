@@ -1,3 +1,5 @@
+@use '../utilities/responsive' as res;
+
 @mixin coordinates() {
   @for $i from -200 through 200 {
     *[x='#{$i}'] { --left: #{$i}; }
@@ -63,6 +65,14 @@
   right: 1em;
   background-color: #ffdddd;
   border-radius: 1em;
+
+  @include res.mobile {
+    left: 0;
+    top: 11em;
+    right: 0;
+    bottom: 0;
+    border-radius: 0.25em;
+  }
 }
 
 .play__options {

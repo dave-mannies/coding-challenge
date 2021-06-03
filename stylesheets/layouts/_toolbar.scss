@@ -1,31 +1,26 @@
+@use '../utilities/responsive' as res;
+
 .toolbar {
-  position: relative;
+  box-sizing: border-box;
+  z-index: 2;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  height: 4em;
   background-color: #eee;
   color: #333;
-  padding-right: 2em;
+  padding: 0;
   border: 2px solid #ddd;
+}
 
-  .menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+.toolbar__logo {
+  margin-top: 0.5em;
+}
 
-  .links {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .title {
-    font-weight: bolder;
-  }
+.toolbar__links {
+  display: flex;
+  flex-direction: row;
 
   a,
   a:visited {
@@ -47,13 +42,28 @@
       background-color: #fff;
     }
   }
-
-  > * {
-    line-height: 2em;
-  }
-
-  img {
-    margin: 0 16px;
-  }
 }
 
+.toolbar__title {
+  font-weight: bolder;
+  text-align: center;
+}
+
+.toolbar__inputs {
+  margin-top: 0.5em;
+}
+
+.toolbar {
+  display: grid;
+  grid-template-columns: 3em auto 3em;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "logo title inputs"
+    "logo links inputs";
+
+  .toolbar__logo { grid-area: logo }
+  .toolbar__title { grid-area: title }
+  .toolbar__inputs { grid-area: inputs }
+  .toolbar__links { grid-area: links }
+
+}
