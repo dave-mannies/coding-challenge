@@ -39,7 +39,10 @@ export class PlayComponent implements OnInit {
       const offsetHeight = el.offsetHeight;
       const width = Math.abs(analysis.xmax - analysis.xmin + 1);
       const height = Math.abs(analysis.ymax - analysis.ymin + 1);
-      const mult = Math.min( Math.floor(offsetWidth / width), Math.floor( offsetHeight / height ) );
+
+      let mult = Math.min( Math.floor(offsetWidth / width), Math.floor( offsetHeight / height ) );
+      mult = Math.min(25, mult);
+
       const xoffset = offsetWidth / 2 - ((analysis.xmin + analysis.xmax) / 2) * mult;
       const yoffset = offsetHeight / 2 + ((analysis.ymin + analysis.ymax) / 2) * mult;
 
@@ -102,7 +105,10 @@ export class PlayComponent implements OnInit {
     this.start
 
     this.tracking.forEach(track => {
-      track.hide = this.start > track.order || this.end < track.order || !this.showDel[track.dId - 1];
+      track.hide =
+        this.start > track.order ||
+        this.end < track.order ||
+        !this.showDel[track.dId - 1];
     });
   }
 
