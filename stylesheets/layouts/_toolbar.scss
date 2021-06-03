@@ -1,0 +1,59 @@
+.toolbar {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #eee;
+  color: #333;
+  padding-right: 2em;
+  border: 2px solid #ddd;
+
+  .menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .title {
+    font-weight: bolder;
+  }
+
+  a,
+  a:visited {
+    color: #333;
+    text-decoration: none;
+  }
+
+  a[mat-list-item] {
+    padding: 0.5em;
+    font-weight: normal;
+    border-radius: 1em;
+
+    &.active {
+      font-weight: bold;
+      color: #8888ff;
+    }
+
+    &:hover {
+      background-color: #fff;
+    }
+  }
+
+  > * {
+    line-height: 2em;
+  }
+
+  img {
+    margin: 0 16px;
+  }
+}
+

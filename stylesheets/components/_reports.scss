@@ -1,0 +1,14 @@
+
+.reports {
+  position: relative;
+  margin-top: 2em;
+
+  *[hidden] {
+    display: none;
+  }
+
+  .reports__loading {
+    text-align: center;
+  }
+
+}

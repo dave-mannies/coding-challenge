@@ -1,0 +1,10 @@
+.content {
+  min-width: 640px;
+  margin: 2em;
+  height: calc(100% - 120px);
+
+  > mat-card {
+    height: calc(100% - 40px);
+  }
+}
+
