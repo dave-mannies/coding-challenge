@@ -7,11 +7,14 @@
   "scripts": {
     "start": "npx ts-node src/main.ts",
     "start:all": "npx ts-node src/main.ts 'src/PizzaDeliveryInput.txt'",
-    "test": "mocha --require ts-node/register --watch-extensions ts 'test/*.ts'"
+    "test": "mocha --require ts-node/register --watch-extensions ts 'test/*.ts'",
+    "compodoc": "compodoc -p tsconfig.json -d compodoc --disableSourceCode --disableStyleTab -s",
+    "compodoc:all": "compodoc -p tsconfig.json -d compodoc -s"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@compodoc/compodoc": "^1.1.11",
     "@types/chai": "^4.2.18",
     "@types/mocha": "^8.2.2",
     "@types/node": "^15.6.1",

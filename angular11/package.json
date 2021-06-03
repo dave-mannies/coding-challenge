@@ -9,7 +9,9 @@
     "test": "ng test",
     "test:coverage": "ng test --no-watch --code-coverage",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "compodoc": "compodoc -p tsconfig.json -d compodoc --disableSourceCode --disableStyleTab -s",
+    "compodoc:all": "compodoc -p tsconfig.json -d compodoc -s"
   },
   "private": true,
   "dependencies": {
@@ -31,6 +33,7 @@
     "@angular-devkit/build-angular": "~0.1102.5",
     "@angular/cli": "~11.2.5",
     "@angular/compiler-cli": "~11.2.6",
+    "@compodoc/compodoc": "^1.1.11",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
