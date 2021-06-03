@@ -4,8 +4,8 @@ This repository contains my response to the coding challenge defined
 [here](https://gist.github.com/mikedelorenzo-koneksa/3d273f862e919782a181c28ef5f50f54).
 
 My response includes the following implementations:
-* Typescript
-* Angular 11
+* Typescript [docs](https://altrealtech.com/dmannies/coding-challenge/typescript/compodoc/index.html)
+* Angular 11 [docs](https://altrealtech.com/dmannies/coding-challenge/angular11/compodoc/index.html) [demo](https://altrealtech.com/dmannies/coding-challenge/angular11/index.html)
 
 The Typescript version is found in the typescript 
 directory. The typescript version can be invoked 
