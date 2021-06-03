@@ -39,6 +39,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.toolbar .title').textContent).not.toBeNull();
+    expect(compiled.querySelector('.toolbar .toolbar__title').textContent).not.toBeNull();
   });
 });
