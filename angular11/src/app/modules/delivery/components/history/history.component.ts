@@ -18,7 +18,7 @@ export class HistoryComponent implements OnInit, AfterViewInit {
   viewEnum = ViewEnum;
   viewMode = ViewEnum.Cards;
   dataSource = new MatTableDataSource<DeliveryResults>([]);
-  displayedColumns = ['id', 'date', 'deliverees', 'dispatch', 'delivered', 'houses'];
+  displayedColumns = ['id', 'date', 'deliverees', 'delivered', 'houses'];
 
   constructor(public dservice: DeliveryService) {
     this.results = dservice.results;

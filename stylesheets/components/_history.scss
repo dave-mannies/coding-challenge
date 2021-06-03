@@ -1,7 +1,13 @@
-app-history {
+@use '../utilities/responsive' as res;
+
+.history {
+  @include res.mobile {
+    margin-top: 2.5em;
+  }
+
   .mat-card {
     display: inline-block;
-    margin: 0.25em;
+    margin: 0.5em;
   }
 
   .view-mode {

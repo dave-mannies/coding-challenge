@@ -1,56 +1,58 @@
-<div class="view-mode">
-  <mat-button-toggle-group name="mode" aria-label="Input Mode" [(value)]="viewMode">
-    <mat-button-toggle [value]="viewEnum.Cards">Cards</mat-button-toggle>
-    <mat-button-toggle [value]="viewEnum.Table">Table</mat-button-toggle>
-  </mat-button-toggle-group>
+<div class="history">
+  <div class="view-mode">
+    <mat-button-toggle-group name="mode" aria-label="Input Mode" [(value)]="viewMode">
+      <mat-button-toggle [value]="viewEnum.Cards">Cards</mat-button-toggle>
+      <mat-button-toggle [value]="viewEnum.Table">Table</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+
+  <ng-container *ngIf="viewMode === viewEnum.Cards">
+    <mat-card *ngFor="let result of results.history; let i = index">
+      <mat-card-title *ngIf="result.id">
+        Results #{{ result.id }}
+      </mat-card-title>
+
+      <mat-card-content>
+        <app-results [results]="result"></app-results>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+
+  <ng-container *ngIf="viewMode === viewEnum.Table">
+    <mat-table [dataSource]="dataSource">
+
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+        <mat-cell *matCellDef="let result">{{ result.id }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
+        <mat-cell *matCellDef="let result">{{ result.date | date:'short' }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="deliverees">
+        <mat-header-cell *matHeaderCellDef>Deliverees</mat-header-cell>
+        <mat-cell *matCellDef="let result">{{ result.deliverees }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="dispatch">
+        <mat-header-cell *matHeaderCellDef>Dispatch</mat-header-cell>
+        <mat-cell *matCellDef="let result">{{ result.dispatch.substring(0, 10) }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="delivered">
+        <mat-header-cell *matHeaderCellDef>Pizzas</mat-header-cell>
+        <mat-cell *matCellDef="let result">{{ result.pizzasCount }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="houses">
+        <mat-header-cell *matHeaderCellDef>Houses</mat-header-cell>
+        <mat-cell *matCellDef="let result">{{ result.housesCount }}</mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+  </ng-container>
 </div>
-
-<ng-container *ngIf="viewMode === viewEnum.Cards">
-  <mat-card *ngFor="let result of results.history; let i = index">
-    <mat-card-title *ngIf="result.id">
-      Results #{{ result.id }}
-    </mat-card-title>
-
-    <mat-card-content>
-      <app-results [results]="result"></app-results>
-    </mat-card-content>
-  </mat-card>
-</ng-container>
-
-<ng-container *ngIf="viewMode === viewEnum.Table">
-  <mat-table [dataSource]="dataSource">
-
-    <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
-      <mat-cell *matCellDef="let result">{{ result.id }}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="date">
-      <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
-      <mat-cell *matCellDef="let result">{{ result.date | date:'medium' }}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="deliverees">
-      <mat-header-cell *matHeaderCellDef>Deliverees</mat-header-cell>
-      <mat-cell *matCellDef="let result">{{ result.deliverees }}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="dispatch">
-      <mat-header-cell *matHeaderCellDef>Dispatch</mat-header-cell>
-      <mat-cell *matCellDef="let result">{{ result.dispatch.substring(0, 10) }}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="delivered">
-      <mat-header-cell *matHeaderCellDef>Delivered</mat-header-cell>
-      <mat-cell *matCellDef="let result">{{ result.pizzasCount }}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="houses">
-      <mat-header-cell *matHeaderCellDef>Houses</mat-header-cell>
-      <mat-cell *matCellDef="let result">{{ result.housesCount }}</mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-  </mat-table>
-</ng-container>
