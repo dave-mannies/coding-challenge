@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { DeliveryResults } from "@ts/*";
 
 @Component({
@@ -7,12 +7,18 @@ import { DeliveryResults } from "@ts/*";
   styles: [
   ]
 })
-export class ResultsComponent implements OnInit {
+export class ResultsComponent implements OnInit, OnChanges {
   @Input() results?: DeliveryResults;
+  @Output() change = new EventEmitter<DeliveryResults>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  ngOnChanges (changes: SimpleChanges): void {
+    setTimeout(() => {
+      this.change.emit(this.results);
+    });
+  }
 }

@@ -1,5 +1,5 @@
-import { Component, Input, OnInit, Output, EventEmitter, AfterViewInit } from '@angular/core';
-import { DeliveryService, Results } from "../../services";
+import { Component, Input, OnInit, Output, EventEmitter, AfterViewInit, OnChanges, SimpleChanges } from '@angular/core';
+import { DeliveryResults, DeliveryService, Results } from "../../services";
 
 @Component({
   selector: 'app-results-history',
@@ -7,14 +7,18 @@ import { DeliveryService, Results } from "../../services";
   styles: [
   ]
 })
-export class ResultsHistoryComponent implements AfterViewInit {
+export class ResultsHistoryComponent implements AfterViewInit, OnChanges {
   @Input() results!: Results;
-  @Output() change = new EventEmitter<any>();
+  @Output() change = new EventEmitter<DeliveryResults>();
 
   constructor(public dservice: DeliveryService) {
     if (!this.results) {
       this.results = this.dservice.results;
     }
+  }
+
+  ngOnChanges (changes: SimpleChanges): void {
+    console.log('changed')
   }
 
   ngAfterViewInit(): void {
