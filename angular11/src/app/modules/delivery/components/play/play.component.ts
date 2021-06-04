@@ -32,8 +32,8 @@ export class PlayComponent implements OnInit {
   start = 0;
   end = 0;
   max = 0;
-  pmin = 0;
   pmax = 0;
+  pizzas = 0;
 
   constructor() {
   }
@@ -72,6 +72,7 @@ export class PlayComponent implements OnInit {
   }
 
   clear(): void {
+    clearTimeout(this.__animate);
     this.deliverees = 0;
     this.current = undefined;
     this.tracking = [];
@@ -93,7 +94,28 @@ export class PlayComponent implements OnInit {
     this.deliverees = this.current?.deliverees ?? 1;
     this.max = this.tracking.length / (this.current?.deliverees ?? 1);
     this.start = this.max > 0 ? 1 : 0;
-    this.end = this.max;
+    this.end = 1; // this.max;
+    this.pmax = analysis.pmax;
+    this.pizzas = 1;
+    this.animate();
+  }
+
+  __animate: any;
+  animate(): void {
+    this.end += this.max / 100;
+    this.end = Math.min(this.end, this.max);
+
+    this.filter();
+
+    if (this.end !== this.max) {
+      this.__animate = setTimeout(() => {
+        this.animate();
+      }, 50);
+    }
+  }
+
+  floor(val: number): number {
+    return Math.floor(val);
   }
 
   toggleChanged(dId: number): void {
@@ -122,6 +144,7 @@ export class PlayComponent implements OnInit {
       track.hide =
         this.start > track.order ||
         this.end < track.order ||
+        track.pizzas < this.pizzas ||
         !this.showDel[track.dId - 1];
     });
   }

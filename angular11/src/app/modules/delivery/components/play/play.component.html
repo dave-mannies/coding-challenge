@@ -7,7 +7,8 @@
       <span class="y-axis"></span>
 
       <ng-container *ngFor="let track of tracking">
-        <span *ngIf="!track.hide"
+        <span
+              [attr.hidden]="track.hide"
               [attr.x]="track.x"
               [attr.y]="track.y"
               [attr.pizzas]="track.pizzas"
@@ -19,7 +20,7 @@
 
     <h3 class="play--heading">
       <span *ngIf="tracking.length">
-        Displaying tracking data from {{ start }} to {{ end }}.
+        Displaying tracking data from {{ start }} to {{ floor(end) }}.
       </span>
       <span *ngIf="!tracking.length">
         Processing...
@@ -41,26 +42,42 @@
     <div>
       <label>Start</label>
       <mat-slider
+        class="play__slider"
         thumbLabel
         [displayWith]="formatLabel"
         min="1"
         [max]="max"
         [(ngModel)]="start"
         (change)="startChanged()"
-        aria-label="units">
+        aria-label="entry">
       </mat-slider>
     </div>
 
     <div>
       <label>End</label>
       <mat-slider
+        class="play__slider"
         thumbLabel
         [displayWith]="formatLabel"
         min="1"
         [max]="max"
         [(ngModel)]="end"
         (change)="endChanged()"
-        aria-label="units">
+        aria-label="entry">
+      </mat-slider>
+    </div>
+
+    <div>
+      <label>Pizzas Min</label>
+      <mat-slider
+        class="play__slider"
+        thumbLabel
+        [displayWith]="formatLabel"
+        min="1"
+        [max]="pmax"
+        [(ngModel)]="pizzas"
+        (change)="endChanged()"
+        aria-label="pizzas">
       </mat-slider>
     </div>
   </div>

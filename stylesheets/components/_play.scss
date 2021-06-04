@@ -28,11 +28,11 @@
     height: calc(var(--mult) * 1px);
     border-radius: 100%;
 
+    &[hidden=true] { visibility: hidden }
     &[did='1'] { background-color: green };
     &[did='2'] { background-color: blue };
     &[did='3'] { background-color: black };
     &[did='4'] { background-color: white };
-
   }
 
   .x-axis {
@@ -72,6 +72,7 @@
     right: 0;
     bottom: 0;
     border-radius: 0.25em;
+
   }
 }
 
@@ -83,6 +84,13 @@
   label {
     display: block;
     text-align: center;
+  }
+
+  @include res.mobile() {
+    .play__slider {
+      height: 48px;
+      min-width: 80px;
+    }
   }
 }
 
