@@ -13,6 +13,7 @@
   @include res.mobile {
     top: 4em;
     margin: 0;
+    height: calc(100% - 5.5em);
 
     > mat-card {
       height: calc(100% - 1em);
