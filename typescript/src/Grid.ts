@@ -56,6 +56,12 @@ export interface TrackingAnalysis {
   totalHouses: number;
 }
 
+export interface ScalingResults {
+  xoffset: number;
+  yoffset: number;
+  mult: number;
+}
+
 /**
  * Two-dimensional grid of houses with current house position
  * and movement with grid.
@@ -256,5 +262,24 @@ export class Grid {
     // };
 
     return ret;
+  }
+
+
+
+  public static getFit(analysis: TrackingAnalysis, containerWidth: number, containerHeight: number, maxMult: number): ScalingResults {
+    const width = Math.abs(analysis.xmax - analysis.xmin + 1);
+    const height = Math.abs(analysis.ymax - analysis.ymin + 1);
+
+    let mult = Math.min( Math.floor(containerWidth / width), Math.floor( containerHeight / height ) );
+    mult = Math.min(maxMult, mult);
+
+    const xoffset = containerWidth / 2 - ((analysis.xmin + analysis.xmax) / 2) * mult;
+    const yoffset = containerHeight / 2 + ((analysis.ymin + analysis.ymax) / 2) * mult;
+
+    return {
+      xoffset,
+      yoffset,
+      mult
+    };
   }
 }

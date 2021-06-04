@@ -9,7 +9,7 @@ import {
   ViewChild
 } from '@angular/core';
 
-import { DeliveryEntry, DeliveryResults, DeliveryService, Results } from "../../services";
+import { DeliveryEntry, DeliveryResults, DeliveryService, Grid, Results, TrackingAnalysis } from "../../services";
 
 interface ExDeliveryEntry extends DeliveryEntry {
   hide?: boolean;
@@ -32,6 +32,8 @@ export class PlayComponent implements OnInit {
   start = 0;
   end = 0;
   max = 0;
+  pmin = 0;
+  pmax = 0;
 
   constructor() {
   }
@@ -43,21 +45,13 @@ export class PlayComponent implements OnInit {
     const el = this.board.nativeElement;
     const analysis = this.current?.analysis[0];
 
-    if (analysis) {
-      const offsetWidth = el.offsetWidth;
-      const offsetHeight = el.offsetHeight;
-      const width = Math.abs(analysis.xmax - analysis.xmin + 1);
-      const height = Math.abs(analysis.ymax - analysis.ymin + 1);
+    if (el && analysis) {
+      const maxMult = 25;
+      const scale = Grid.getFit(analysis, el.offsetWidth, el.offsetHeight, maxMult);
 
-      let mult = Math.min( Math.floor(offsetWidth / width), Math.floor( offsetHeight / height ) );
-      mult = Math.min(25, mult);
-
-      const xoffset = offsetWidth / 2 - ((analysis.xmin + analysis.xmax) / 2) * mult;
-      const yoffset = offsetHeight / 2 + ((analysis.ymin + analysis.ymax) / 2) * mult;
-
-      el.style.setProperty('--xoffset', xoffset);
-      el.style.setProperty('--yoffset', yoffset);
-      el.style.setProperty('--mult', mult);
+      el.style.setProperty('--xoffset', scale.xoffset);
+      el.style.setProperty('--yoffset', scale.yoffset);
+      el.style.setProperty('--mult', scale.mult);
     }
   }
 
@@ -68,9 +62,7 @@ export class PlayComponent implements OnInit {
 
   __naving: any = 0;
   navChanged(current: DeliveryResults) {
-    this.deliverees = 0;
-    this.current = undefined;
-    this.tracking = [];
+    this.clear();
 
     clearTimeout(this.__naving);
     this.__naving = setTimeout(() => {
@@ -79,17 +71,25 @@ export class PlayComponent implements OnInit {
     }, 100);
   }
 
+  clear(): void {
+    this.deliverees = 0;
+    this.current = undefined;
+    this.tracking = [];
+    this.showDel = [true, true, true, true];
+  }
+
   getTracking(current: DeliveryResults): void {
     this.current = current;
 
     if (this.current && this.current.analysis.length) {
-      this.tracking = this.current.analysis[0].entries;
-      this.analyze();
+      const analysis = this.current.analysis[0];
+      this.tracking = analysis.entries;
+      this.analyze(analysis);
       this.filter();
     }
   }
 
-  analyze() {
+  analyze(analysis: TrackingAnalysis): void {
     this.deliverees = this.current?.deliverees ?? 1;
     this.max = this.tracking.length / (this.current?.deliverees ?? 1);
     this.start = this.max > 0 ? 1 : 0;
