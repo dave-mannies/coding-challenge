@@ -32,6 +32,10 @@
     height: 100%;
     width: calc(100% - 4em);
 
+    @include res.mobile_landscape_notch() {
+      width: calc(100% - 1em);
+    }
+
     > mat-card {
       height: calc(100% - 2em);
       box-shadow: none !important;
