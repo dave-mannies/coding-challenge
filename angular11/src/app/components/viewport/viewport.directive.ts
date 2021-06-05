@@ -13,8 +13,6 @@ export class ViewportDirective {
     let mobile_timer = 0;
     let viewport = document.getElementById('viewport');
 
-    console.log('here')
-
     if (navigator.userAgent.match(/iPhone/i) && viewport) {
       viewport.setAttribute('content', 'width=device-width,minimum-scale=1.0,maximum-scale=1.0,initial-scale=1.0');
 
