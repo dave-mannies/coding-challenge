@@ -9,6 +9,7 @@ export class ViewportDirective {
     this.viewport();
   }
 
+  // from https://www.ternstyle.us/blog/reset-iphone-zoom-on-orientation-change-to-landscape
   viewport(): void {
     let mobile_timer = 0;
     let viewport = document.getElementById('viewport');
