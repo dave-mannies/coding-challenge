@@ -30,6 +30,8 @@ describe('DeliveryService', () => {
   });
 
   it('addResults() to update results', () => {
+    service.results.history.pop();
+
     const length = service.results.history.length;
     const res = service.getDeliveryResults();
     service.addResults(res);
@@ -40,6 +42,10 @@ describe('DeliveryService', () => {
   });
 
   it('addResults() to update multiple results', () => {
+    service.results.history.pop();
+    service.results.history.pop();
+    service.results.history.pop();
+
     const length = service.results.history.length;
     const inputs: Inputs = { deliverees: 2, dispatch: '^>^>^>'};
     let res = service.getDeliveryResults();

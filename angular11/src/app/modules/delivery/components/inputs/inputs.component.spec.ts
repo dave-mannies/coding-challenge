@@ -27,6 +27,8 @@ describe('InputsComponent', () => {
   });
 
   it('getResults() should update', () => {
+    component.dservice.results.history.pop();
+
     const length = component.dservice.results.history.length;
 
     expect(component.getResults).toBeTruthy();
