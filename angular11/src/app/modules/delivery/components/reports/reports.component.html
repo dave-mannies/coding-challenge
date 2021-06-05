@@ -1,6 +1,11 @@
 <div class="reports">
   <app-results-history (change)="navChanged($event)"></app-results-history>
 
+  <app-tracking-options
+    [options]="options"
+    (change)="filter()"
+    *ngIf="tracking.length"></app-tracking-options>
+
   <div class="reports__table mat-elevation-z8">
     <mat-table [dataSource]="dataSource"
                matSort matSortActive="order" matSortDirection="asc" matSortDisableClear>

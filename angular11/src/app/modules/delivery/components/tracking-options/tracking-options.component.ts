@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { DeliveryResults, TrackingAnalysis } from "@ts/*";
+import { ExDeliveryEntry } from "../play/play.component";
 
 export interface TrackingOptions {
   deliverees: number;
@@ -50,5 +52,70 @@ export class TrackingOptionsComponent implements OnInit {
 
   formatLabel(value: number) {
     return value;
+  }
+}
+
+export class TrackingOptionsWrapper {
+  current?: DeliveryResults;
+  tracking: ExDeliveryEntry[] = [];
+  optionsDefault: TrackingOptions = {
+    deliverees: 0,
+    showDel: [true, true, true, true],
+    start: 0,
+    end: 0,
+    max: 0,
+    pmax: 0,
+    pizzas: 0
+  };
+  options: TrackingOptions = { ...this.optionsDefault };
+
+  constructor() {
+  }
+
+  navChanged(current: DeliveryResults) {
+    this.clear();
+
+    this.current = undefined;
+    this.tracking = [];
+
+    setTimeout(() => {
+      this.getTracking(current);
+    });
+  }
+
+  clear(): void {
+    this.options = { ...this.optionsDefault };
+    this.current = undefined;
+    this.tracking = [];
+  }
+
+  getTracking(current: DeliveryResults): void {
+    this.current = current;
+
+    if (this.current && this.current.analysis.length) {
+      const analysis = this.current.analysis[0];
+      this.tracking = analysis.entries;
+      this.analyze(analysis);
+      this.filter();
+    }
+  }
+
+  analyze(analysis: TrackingAnalysis): void {
+    this.options.deliverees = this.current?.deliverees ?? 1;
+    this.options.max = Math.floor(this.tracking.length / (this.current?.deliverees ?? 1));
+    this.options.start = this.options.max > 0 ? 1 : 0;
+    this.options.end = this.options.max;
+    this.options.pmax = analysis.pmax;
+    this.options.pizzas = 1;
+  }
+
+  filter(): void {
+    this.tracking.forEach(track => {
+      track.hide =
+        this.options.start > track.order ||
+        this.options.end < track.order ||
+        track.pizzas < this.options.pizzas ||
+        !this.options.showDel[track.dId - 1];
+    });
   }
 }
