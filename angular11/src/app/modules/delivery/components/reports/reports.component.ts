@@ -3,9 +3,8 @@ import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 
-import { DeliveryResults, TrackingAnalysis } from "../../services";
-import { ExDeliveryEntry } from "../play/play.component";
-import { TrackingOptions, TrackingOptionsWrapper } from "../tracking-options/tracking-options.component";
+import { DeliveryResults } from "../../services";
+import { TrackingOptionsWrapper, ExDeliveryEntry } from "../tracking-options/tracking-options.component";
 
 @Component({
   selector: 'app-reports',

@@ -10,12 +10,7 @@ import {
 } from '@angular/core';
 
 import { DeliveryEntry, DeliveryResults, DeliveryService, Grid, Results, TrackingAnalysis } from "../../services";
-import { TrackingOptions } from "../tracking-options/tracking-options.component";
-
-export interface ExDeliveryEntry extends DeliveryEntry {
-  hide?: boolean;
-  title?: string;
-}
+import { TrackingOptions, ExDeliveryEntry } from "../tracking-options/tracking-options.component";
 
 @Component({
   selector: 'app-play',

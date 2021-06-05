@@ -1,6 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { DeliveryResults, TrackingAnalysis } from "@ts/*";
-import { ExDeliveryEntry } from "../play/play.component";
+import { DeliveryEntry, DeliveryResults, TrackingAnalysis } from "@ts/*";
+
+export interface ExDeliveryEntry extends DeliveryEntry {
+  hide?: boolean;
+  title?: string;
+}
 
 export interface TrackingOptions {
   deliverees: number;
