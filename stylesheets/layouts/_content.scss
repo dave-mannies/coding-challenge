@@ -10,13 +10,31 @@
     height: calc(100% - 2em);
   }
 
-  @include res.mobile {
-    top: 4em;
+  .page-title {
+    display: none;
+  }
+
+  @include res.mobile() {
+    top: 3em;
     margin: 0;
-    height: calc(100% - 5.5em);
+    height: calc(100% - 4.5em);
 
     > mat-card {
       height: calc(100% - 1em);
+      box-shadow: none !important;
+    }
+  }
+
+  @include res.mobile_landscape() {
+    top: 0;
+    left: 4em;
+    margin: 0;
+    width: 100%;
+    height: calc(100% - 2em);
+
+    > mat-card {
+      height: 100%;
+      box-shadow: none !important;
     }
 
     .page-title {

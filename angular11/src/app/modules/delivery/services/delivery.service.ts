@@ -43,6 +43,8 @@ export class DeliveryService {
     this.getAddResults();
     this.getAddResults({ deliverees: 1, dispatch: test });
     this.getAddResults({ deliverees: 2, dispatch: test });
+    this.getAddResults({ deliverees: 3, dispatch: test });
+    this.getAddResults({ deliverees: 4, dispatch: test });
 
     this.results.current = this.results.history[0];
     this.results.currentIndex = 0;

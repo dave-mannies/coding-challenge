@@ -1,84 +1,86 @@
-<app-results-history (change)="navChanged($event)"></app-results-history>
+<div class="play__container">
+  <app-results-history class="play__results-history" (change)="navChanged($event)"></app-results-history>
 
-<ng-container>
-  <div class="play">
-    <div #board class="play__board">
-      <span class="x-axis"></span>
-      <span class="y-axis"></span>
+  <ng-container>
+    <div class="play mat-elevation-z2">
+      <div #board class="play__board mat-elevation-z4">
+        <span class="x-axis"></span>
+        <span class="y-axis"></span>
 
-      <ng-container *ngFor="let track of tracking">
-        <span
-              [attr.hidden]="track.hide"
-              [attr.x]="track.x"
-              [attr.y]="track.y"
-              [attr.pizzas]="track.pizzas"
-              [attr.did]="track.dId"
-              [attr.order]="track.order"
-        >&nbsp;</span>
-      </ng-container>
+        <ng-container *ngFor="let track of tracking">
+          <span
+                [attr.hidden]="track.hide"
+                [attr.x]="track.x"
+                [attr.y]="track.y"
+                [attr.pizzas]="track.pizzas"
+                [attr.did]="track.dId"
+                [attr.order]="track.order"
+          >&nbsp;</span>
+        </ng-container>
+      </div>
+
+      <h3 class="play--heading">
+        <span *ngIf="tracking.length">
+          Tracking from {{ start }} to {{ floor(end) }} of {{ max }}.
+        </span>
+        <span *ngIf="!tracking.length">
+          Processing...
+        </span>
+      </h3>
     </div>
 
-    <h3 class="play--heading">
-      <span *ngIf="tracking.length">
-        Displaying tracking data from {{ start }} to {{ floor(end) }}.
-      </span>
-      <span *ngIf="!tracking.length">
-        Processing...
-      </span>
-    </h3>
-  </div>
+    <div class="play__options" *ngIf="tracking.length">
+      <div class="play__deliverees mat-elevation-z2" *ngIf="deliverees > 1">
+        <label>Deliverees: </label>
+        <mat-button-toggle name="deliverees" aria-label="Deliverees" >
+          <mat-button-toggle [checked]="showDel[0]" (change)="toggleChanged(0)">1</mat-button-toggle>
+          <mat-button-toggle [checked]="showDel[1]" (change)="toggleChanged(1)" *ngIf="deliverees > 1">2</mat-button-toggle>
+          <mat-button-toggle [checked]="showDel[2]" (change)="toggleChanged(2)" *ngIf="deliverees > 2">3</mat-button-toggle>
+          <mat-button-toggle [checked]="showDel[3]" (change)="toggleChanged(3)" *ngIf="deliverees > 3">4</mat-button-toggle>
+        </mat-button-toggle>
+      </div>
 
-  <div class="play__options" *ngIf="tracking.length">
-    <div *ngIf="deliverees > 1">
-      <label>Deliverees: </label>
-      <mat-button-toggle name="deliverees" aria-label="Deliverees" >
-        <mat-button-toggle [checked]="showDel[0]" (change)="toggleChanged(0)">1</mat-button-toggle>
-        <mat-button-toggle [checked]="showDel[1]" (change)="toggleChanged(1)" *ngIf="deliverees > 1">2</mat-button-toggle>
-        <mat-button-toggle [checked]="showDel[2]" (change)="toggleChanged(2)" *ngIf="deliverees > 2">3</mat-button-toggle>
-        <mat-button-toggle [checked]="showDel[3]" (change)="toggleChanged(3)" *ngIf="deliverees > 3">4</mat-button-toggle>
-      </mat-button-toggle>
-    </div>
+      <div class="play__slider-container mat-elevation-z2">
+        <label>Pizzas Min</label>
+        <mat-slider
+          class="play__slider"
+          thumbLabel
+          [displayWith]="formatLabel"
+          min="1"
+          [max]="pmax"
+          [(ngModel)]="pizzas"
+          (change)="endChanged()"
+          aria-label="pizzas">
+        </mat-slider>
+      </div>
 
-    <div>
-      <label>Start</label>
-      <mat-slider
-        class="play__slider"
-        thumbLabel
-        [displayWith]="formatLabel"
-        min="1"
-        [max]="max"
-        [(ngModel)]="start"
-        (change)="startChanged()"
-        aria-label="entry">
-      </mat-slider>
-    </div>
+      <div class="play__slider-container mat-elevation-z2">
+        <label>Start</label>
+        <mat-slider
+          class="play__slider"
+          thumbLabel
+          [displayWith]="formatLabel"
+          min="1"
+          [max]="max"
+          [(ngModel)]="start"
+          (change)="startChanged()"
+          aria-label="entry">
+        </mat-slider>
+      </div>
 
-    <div>
-      <label>End</label>
-      <mat-slider
-        class="play__slider"
-        thumbLabel
-        [displayWith]="formatLabel"
-        min="1"
-        [max]="max"
-        [(ngModel)]="end"
-        (change)="endChanged()"
-        aria-label="entry">
-      </mat-slider>
+      <div class="play__slider-container mat-elevation-z2">
+        <label>End</label>
+        <mat-slider
+          class="play__slider"
+          thumbLabel
+          [displayWith]="formatLabel"
+          min="1"
+          [max]="max"
+          [(ngModel)]="end"
+          (change)="endChanged()"
+          aria-label="entry">
+        </mat-slider>
+      </div>
     </div>
-
-    <div>
-      <label>Pizzas Min</label>
-      <mat-slider
-        class="play__slider"
-        thumbLabel
-        [displayWith]="formatLabel"
-        min="1"
-        [max]="pmax"
-        [(ngModel)]="pizzas"
-        (change)="endChanged()"
-        aria-label="pizzas">
-      </mat-slider>
-    </div>
-  </div>
-</ng-container>
+  </ng-container>
+</div>

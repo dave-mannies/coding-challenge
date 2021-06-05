@@ -7,6 +7,25 @@
   }
 }
 
+.play__container {
+  @include res.mobile_landscape() {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+@include res.mobile_landscape() {
+  .play__results-history {
+    position: absolute;
+    left: 1em;
+    top: 2em;
+    width: calc(50% - 4em);
+  }
+}
+
 .play__board {
   position: absolute;
   left: 1em;
@@ -32,7 +51,7 @@
     &[did='1'] { background-color: green };
     &[did='2'] { background-color: blue };
     &[did='3'] { background-color: black };
-    &[did='4'] { background-color: white };
+    &[did='4'] { background-color: darkmagenta };
   }
 
   .x-axis {
@@ -54,13 +73,12 @@
   }
 
   @include coordinates();
-
 }
 
 .play {
   position: absolute;
   bottom: 1em;
-  top: 14em;
+  top: 11.5em;
   left: 1em;
   right: 1em;
   background-color: #ffdddd;
@@ -68,11 +86,16 @@
 
   @include res.mobile {
     left: 0;
-    top: 11em;
     right: 0;
     bottom: 0;
     border-radius: 0.25em;
+  }
 
+  @include res.mobile_landscape() {
+    left: calc(50% - 2em);
+    top: 0.5em;
+    right: 3em;
+    bottom: 1em;
   }
 }
 
@@ -80,20 +103,77 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  border-radius: 1em;
+  margin-top: 1em;
 
-  label {
-    display: block;
-    text-align: center;
+  > * {
+    min-width: 128px;
+    max-width: 128px;
+    padding: 0 0.25em;
+    border-radius: 1em;
+    background-color: #eee;
+
+    label {
+      display: block;
+      text-align: center;
+      margin: 0 -0.25em;
+      background-color: #ccc;
+      border-radius: 1em 1em 0 0;
+    }
+
+    @include res.mobile() {
+      min-width: 90px;
+      max-width: 90px;
+    }
+
+    @include res.mobile_landscape() {
+      margin: 0.5em;
+    }
+  }
+
+  .play__deliverees {
+    > .mat-button-toggle {
+      border-width: 0;
+      border-radius: 1em;
+
+      .mat-button-toggle * {
+        line-height: 36px;
+        max-height: 36px;
+      }
+
+      .mat-button-toggle-label-content {
+        padding: 0 9px;
+
+        @include res.mobile() {
+          padding: 0 5px;
+        }
+      }
+    }
   }
 
   @include res.mobile() {
     .play__slider {
       height: 48px;
-      min-width: 80px;
+      min-width: 70px;
+    }
+  }
+
+  @include res.mobile_landscape() {
+    flex-wrap: wrap;
+    margin-top: 9em;
+    margin-left: 1em;
+    max-width: calc(50% - 4em);
+
+    .play__slider {
+      height: 48px;
+      min-width: 90px;
     }
   }
 }
 
 .play--heading {
   text-align: center;
+}
+
+.play__slider-container {
 }

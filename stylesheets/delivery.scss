@@ -1,9 +1,11 @@
-@use './utilities';
+@use './utilities/responsive' as res;
 @use './layouts';
 @use './components';
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  width: 100%;
+  height: 100%;
+}
 
 h1,
 h2,
