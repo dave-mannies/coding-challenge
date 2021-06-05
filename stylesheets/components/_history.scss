@@ -1,18 +1,21 @@
 @use '../utilities/responsive' as res;
 
 .history {
+  .history__view {
+    margin-top: 2em;
+  }
+
   .history__results {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-    margin-top: 2em;
   }
 
   @include res.mobile {
     margin-top: 2.5em;
 
-    .history__results {
+    .history__view {
       margin-top: 4em;
     }
   }
