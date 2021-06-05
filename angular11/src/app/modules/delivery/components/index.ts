@@ -9,3 +9,4 @@ export * from './history/history.component';
 export * from './inputs-modal/inputs-modal.component';
 export * from './dialog/dialog.component';
 export * from './results-history/results-history.component';
+export * from './tracking-options/tracking-options.component';

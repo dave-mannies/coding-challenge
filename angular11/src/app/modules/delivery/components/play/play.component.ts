@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 
 import { DeliveryEntry, DeliveryResults, DeliveryService, Grid, Results, TrackingAnalysis } from "../../services";
+import { TrackingOptions } from "../tracking-options/tracking-options.component";
 
 interface ExDeliveryEntry extends DeliveryEntry {
   hide?: boolean;
@@ -27,13 +28,16 @@ export class PlayComponent implements OnInit {
 
   current?: DeliveryResults;
   tracking: ExDeliveryEntry[] = [];
-  deliverees = 0;
-  showDel = [true, true, true, true];
-  start = 0;
-  end = 0;
-  max = 0;
-  pmax = 0;
-  pizzas = 0;
+  optionsDefault: TrackingOptions = {
+    deliverees: 0,
+    showDel: [true, true, true, true],
+    start: 0,
+    end: 0,
+    max: 0,
+    pmax: 0,
+    pizzas: 0
+  };
+  options: TrackingOptions = { ...this.optionsDefault };
 
   constructor() {
   }
@@ -73,10 +77,9 @@ export class PlayComponent implements OnInit {
 
   clear(): void {
     clearTimeout(this.__animate);
-    this.deliverees = 0;
+    this.options = { ...this.optionsDefault };
     this.current = undefined;
     this.tracking = [];
-    this.showDel = [true, true, true, true];
   }
 
   getTracking(current: DeliveryResults): void {
@@ -91,23 +94,23 @@ export class PlayComponent implements OnInit {
   }
 
   analyze(analysis: TrackingAnalysis): void {
-    this.deliverees = this.current?.deliverees ?? 1;
-    this.max = Math.floor(this.tracking.length / (this.current?.deliverees ?? 1));
-    this.start = this.max > 0 ? 1 : 0;
-    this.end = 1; // this.max;
-    this.pmax = analysis.pmax;
-    this.pizzas = 1;
+    this.options.deliverees = this.current?.deliverees ?? 1;
+    this.options.max = Math.floor(this.tracking.length / (this.current?.deliverees ?? 1));
+    this.options.start = this.options.max > 0 ? 1 : 0;
+    this.options.end = 1; // this.max;
+    this.options.pmax = analysis.pmax;
+    this.options.pizzas = 1;
     this.animate();
   }
 
   __animate: any;
   animate(): void {
-    this.end += this.max / 100;
-    this.end = Math.min(this.end, this.max);
+    this.options.end += this.options.max / 100;
+    this.options.end = Math.min(this.options.end, this.options.max);
 
     this.filter();
 
-    if (this.end !== this.max) {
+    if (this.options.end !== this.options.max) {
       this.__animate = setTimeout(() => {
         this.animate();
       }, 50);
@@ -119,33 +122,33 @@ export class PlayComponent implements OnInit {
   }
 
   toggleChanged(dId: number): void {
-    this.showDel[dId] = !this.showDel[dId];
+    this.options.showDel[dId] = !this.options.showDel[dId];
     this.filter();
   }
 
   startChanged(): void {
-    if (this.end < this.start) {
-      this.end = Math.min(this.start + 100, this.max);
+    if (this.options.end < this.options.start) {
+      this.options.end = Math.min(this.options.start + 100, this.options.max);
     }
     this.filter();
   }
 
   endChanged(): void {
-    if (this.start > this.end) {
-      this.start = Math.max(this.end - 100, 0);
+    if (this.options.start > this.options.end) {
+      this.options.start = Math.max(this.options.end - 100, 0);
     }
     this.filter();
   }
 
   filter(): void {
-    this.start
+    this.options.start;
 
     this.tracking.forEach(track => {
       track.hide =
-        this.start > track.order ||
-        this.end < track.order ||
-        track.pizzas < this.pizzas ||
-        !this.showDel[track.dId - 1];
+        this.options.start > track.order ||
+        this.options.end < track.order ||
+        track.pizzas < this.options.pizzas ||
+        !this.options.showDel[track.dId - 1];
     });
   }
 
