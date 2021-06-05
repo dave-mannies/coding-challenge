@@ -154,7 +154,7 @@
   @include res.mobile() {
     .play__slider {
       height: 48px;
-      min-width: 70px;
+      min-width: 90px;
     }
   }
 
@@ -163,11 +163,6 @@
     margin-top: 9em;
     margin-left: 1em;
     max-width: calc(50% - 4em);
-
-    .play__slider {
-      height: 48px;
-      min-width: 90px;
-    }
   }
 }
 
