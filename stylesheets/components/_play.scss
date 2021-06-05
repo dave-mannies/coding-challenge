@@ -17,6 +17,10 @@
     top: 0;
     right: 0;
     bottom: 0;
+
+    .tracking-options {
+      margin-top: 9em;
+    }
   }
 }
 
@@ -51,10 +55,10 @@
     border-radius: 100%;
 
     &[hidden=true] { visibility: hidden }
-    &[did='1'] { background-color: green };
-    &[did='2'] { background-color: blue };
-    &[did='3'] { background-color: black };
-    &[did='4'] { background-color: darkmagenta };
+    &[did='1'] { background-color: var(--did-1-color) };
+    &[did='2'] { background-color: var(--did-2-color) };
+    &[did='3'] { background-color: var(--did-3-color) };
+    &[did='4'] { background-color: var(--did-4-color) };
   }
 
   .x-axis {

@@ -1,6 +1,7 @@
 @use './utilities/responsive' as res;
 @use './layouts';
 @use './components';
+@use 'variables';
 
 html, body {
   width: 100%;

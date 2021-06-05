@@ -1,5 +1,5 @@
 <div class="reports">
-  <app-results-history (change)="navChanged($event)"></app-results-history>
+  <app-results-history class="reports__results-history" (change)="navChanged($event)"></app-results-history>
 
   <app-tracking-options
     [options]="options"
@@ -35,11 +35,11 @@
         <mat-cell *matCellDef="let result">{{ result.pizzas }}</mat-cell>
       </ng-container>
 
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true;"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
     </mat-table>
 
-    <mat-paginator [hidden]="!current" [pageSizeOptions]="[10]" showFirstLastButtons></mat-paginator>
+<!--    <mat-paginator [hidden]="!current" [pageSizeOptions]="[10]" showFirstLastButtons></mat-paginator>-->
 
     <div class="reports__loading" *ngIf="!current">
       <h3>Processing...</h3>

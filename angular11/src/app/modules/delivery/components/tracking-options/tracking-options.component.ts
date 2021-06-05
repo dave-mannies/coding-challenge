@@ -84,7 +84,7 @@ export class TrackingOptionsWrapper {
 
     setTimeout(() => {
       this.getTracking(current);
-    });
+    }, 100);
   }
 
   clear(): void {
