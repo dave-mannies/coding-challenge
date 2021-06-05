@@ -8,7 +8,10 @@
 }
 
 .play__container {
+  margin-top: 1em;
+
   @include res.mobile_landscape() {
+    margin-top: 0;
     position: absolute;
     left: 0;
     top: 0;
@@ -93,9 +96,13 @@
 
   @include res.mobile_landscape() {
     left: calc(50% - 2em);
-    top: 0.5em;
-    right: 3em;
-    bottom: 1em;
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  @include res.mobile_landscape_notch() {
+    right: -3em;
   }
 }
 
@@ -122,11 +129,13 @@
     }
 
     @include res.mobile() {
-      min-width: 90px;
-      max-width: 90px;
+      min-width: 84px;
+      max-width: 84px;
     }
 
     @include res.mobile_landscape() {
+      min-width: 90px;
+      max-width: 90px;
       margin: 0.5em;
     }
   }
@@ -154,7 +163,7 @@
   @include res.mobile() {
     .play__slider {
       height: 48px;
-      min-width: 90px;
+      min-width: 88px;
     }
   }
 
@@ -163,6 +172,11 @@
     margin-top: 9em;
     margin-left: 1em;
     max-width: calc(50% - 4em);
+
+    .play__slider {
+      height: 48px;
+      min-width: 92px;
+    }
   }
 }
 

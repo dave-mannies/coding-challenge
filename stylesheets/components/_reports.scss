@@ -1,6 +1,10 @@
 @use '../utilities/responsive' as res;
 
 .reports {
+  margin-top: 1em;
+}
+
+.reports__table {
   position: relative;
   margin-top: 2em;
 

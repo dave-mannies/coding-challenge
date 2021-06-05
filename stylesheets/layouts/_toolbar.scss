@@ -10,7 +10,7 @@
   height: 4em;
   background-color: #eee;
   color: #333;
-  padding: 0;
+  padding: 0 1em;
   border: 2px solid #ddd;
 
   @include res.mobile_landscape() {

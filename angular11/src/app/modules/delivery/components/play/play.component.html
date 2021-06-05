@@ -31,7 +31,7 @@
 
     <div class="play__options" *ngIf="tracking.length">
       <div class="play__deliverees mat-elevation-z2" *ngIf="deliverees > 1">
-        <label>Deliverees: </label>
+        <label>Deliverees</label>
         <mat-button-toggle name="deliverees" aria-label="Deliverees" >
           <mat-button-toggle [checked]="showDel[0]" (change)="toggleChanged(0)">1</mat-button-toggle>
           <mat-button-toggle [checked]="showDel[1]" (change)="toggleChanged(1)" *ngIf="deliverees > 1">2</mat-button-toggle>
