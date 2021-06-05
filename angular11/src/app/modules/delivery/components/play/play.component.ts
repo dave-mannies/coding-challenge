@@ -12,7 +12,7 @@ import {
 import { DeliveryEntry, DeliveryResults, DeliveryService, Grid, Results, TrackingAnalysis } from "../../services";
 import { TrackingOptions } from "../tracking-options/tracking-options.component";
 
-interface ExDeliveryEntry extends DeliveryEntry {
+export interface ExDeliveryEntry extends DeliveryEntry {
   hide?: boolean;
   title?: string;
 }
@@ -121,25 +121,6 @@ export class PlayComponent implements OnInit {
     return Math.floor(val);
   }
 
-  toggleChanged(dId: number): void {
-    this.options.showDel[dId] = !this.options.showDel[dId];
-    this.filter();
-  }
-
-  startChanged(): void {
-    if (this.options.end < this.options.start) {
-      this.options.end = Math.min(this.options.start + 100, this.options.max);
-    }
-    this.filter();
-  }
-
-  endChanged(): void {
-    if (this.options.start > this.options.end) {
-      this.options.start = Math.max(this.options.end - 100, 0);
-    }
-    this.filter();
-  }
-
   filter(): void {
     this.options.start;
 
@@ -150,9 +131,5 @@ export class PlayComponent implements OnInit {
         track.pizzas < this.options.pizzas ||
         !this.options.showDel[track.dId - 1];
     });
-  }
-
-  formatLabel(value: number) {
-    return value;
   }
 }
