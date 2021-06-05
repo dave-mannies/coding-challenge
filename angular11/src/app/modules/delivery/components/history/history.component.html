@@ -6,17 +6,19 @@
     </mat-button-toggle-group>
   </div>
 
-  <div class="history__results">
+  <div class="history__view">
     <ng-container *ngIf="viewMode === viewEnum.Cards">
-      <mat-card class="mat-elevation-z2" *ngFor="let result of results.history; let i = index">
-        <mat-card-title *ngIf="result.id">
-          Results #{{ result.id }}
-        </mat-card-title>
+      <div class="history__results">
+        <mat-card class="mat-elevation-z2" *ngFor="let result of results.history; let i = index">
+          <mat-card-title *ngIf="result.id">
+            Results #{{ result.id }}
+          </mat-card-title>
 
-        <mat-card-content>
-          <app-results [results]="result"></app-results>
-        </mat-card-content>
-      </mat-card>
+          <mat-card-content>
+            <app-results [results]="result"></app-results>
+          </mat-card-content>
+        </mat-card>
+      </div>
     </ng-container>
 
     <ng-container *ngIf="viewMode === viewEnum.Table">
