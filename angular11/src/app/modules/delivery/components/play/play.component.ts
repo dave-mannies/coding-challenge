@@ -92,7 +92,7 @@ export class PlayComponent implements OnInit {
 
   analyze(analysis: TrackingAnalysis): void {
     this.deliverees = this.current?.deliverees ?? 1;
-    this.max = this.tracking.length / (this.current?.deliverees ?? 1);
+    this.max = Math.floor(this.tracking.length / (this.current?.deliverees ?? 1));
     this.start = this.max > 0 ? 1 : 0;
     this.end = 1; // this.max;
     this.pmax = analysis.pmax;
