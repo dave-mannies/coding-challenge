@@ -44,6 +44,7 @@
         &.mat-button-toggle-checked {
           color: #fff;
           opacity: 0.5;
+          font-weight: bold;
 
           &:nth-of-type(1) { background-color: var(--did-1-color) };
           &:nth-of-type(2) { background-color: var(--did-2-color) };

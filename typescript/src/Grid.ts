@@ -60,6 +60,9 @@ export interface ScalingResults {
   xoffset: number;
   yoffset: number;
   mult: number;
+  zoom: number;
+  xpan: number;
+  ypan: number;
 }
 
 /**
@@ -279,7 +282,10 @@ export class Grid {
     return {
       xoffset,
       yoffset,
-      mult
+      mult,
+      zoom: 1,
+      xpan: 0,
+      ypan: 0
     };
   }
 }

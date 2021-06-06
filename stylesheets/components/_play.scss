@@ -24,8 +24,8 @@
   }
 }
 
-@include res.mobile_landscape() {
-  .play__results-history {
+.play__results-history {
+  @include res.mobile_landscape() {
     position: absolute;
     left: 1em;
     top: 2em;
@@ -33,7 +33,53 @@
   }
 }
 
-.play__board {
+.play {
+  position: absolute;
+  bottom: 1em;
+  top: 11.5em;
+  left: 1em;
+  right: 1em;
+  background-color: #ffdddd;
+  border-radius: 1em;
+
+  @include res.mobile {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 0.25em;
+  }
+
+  @include res.mobile_landscape() {
+    left: calc(50% - 2em);
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+.play__pan-zoom {
+  position: absolute;
+  right: 2em;
+  bottom: 2em;
+
+  display: flex;
+  flex-direction: column;
+
+  button {
+    opacity: 0.25;
+    margin: 0.5em;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.play--heading {
+  text-align: center;
+}
+
+.play__board__container {
   position: absolute;
   left: 1em;
   right: 1em;
@@ -42,12 +88,28 @@
   background-color: #eee;
   border: 2px solid blue;
   border-radius: 1em;
+  overflow: hidden;
+}
+
+.play__board {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  //transform: scale(0.02);
+  //transform: scale(1/var(--mult));
+  //transform: translate(calc(var(--xoffset) * 1px), calc(var(--yoffset) * 1px));
 
   span {
     position: absolute;
     background-color: green;
     opacity: 0.1;
     display: inline-block;
+    //left: calc((-0.5 + var(--left)) * 20px);
+    //top: calc((-0.5 + var(--top)) * 20px);
+    //width: 20px;
+    //height: 20px;
     left: calc((var(--xoffset) + (-1 * var(--mult)/2) + (var(--mult) * var(--left))) * 1px);
     top: calc((var(--yoffset) + (-1 * var(--mult)/2) + (var(--mult) * var(--top))) * 1px);
     width: calc(var(--mult) * 1px);
@@ -82,30 +144,3 @@
   @include coordinates();
 }
 
-.play {
-  position: absolute;
-  bottom: 1em;
-  top: 11.5em;
-  left: 1em;
-  right: 1em;
-  background-color: #ffdddd;
-  border-radius: 1em;
-
-  @include res.mobile {
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 0.25em;
-  }
-
-  @include res.mobile_landscape() {
-    left: calc(50% - 2em);
-    top: 0;
-    right: 0;
-    bottom: 0;
-  }
-}
-
-.play--heading {
-  text-align: center;
-}
