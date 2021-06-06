@@ -7,7 +7,7 @@ import { DeliveryResults, DeliveryService, Results } from "../../services";
   styles: [
   ]
 })
-export class ResultsHistoryComponent implements AfterViewInit, OnChanges {
+export class ResultsHistoryComponent implements AfterViewInit {
   @Input() results!: Results;
   @Output() change = new EventEmitter<DeliveryResults>();
 
@@ -15,10 +15,6 @@ export class ResultsHistoryComponent implements AfterViewInit, OnChanges {
     if (!this.results) {
       this.results = this.dservice.results;
     }
-  }
-
-  ngOnChanges (changes: SimpleChanges): void {
-    console.log('changed')
   }
 
   ngAfterViewInit(): void {
