@@ -40,17 +40,28 @@
       border-radius: 1em;
       background-color: transparent;
 
-      .mat-button-toggle:nth-of-type(1) { background-color: var(--did-1-color) };
-      .mat-button-toggle:nth-of-type(2) { background-color: var(--did-2-color) };
-      .mat-button-toggle:nth-of-type(3) { background-color: var(--did-3-color) };
-      .mat-button-toggle:nth-of-type(4) { background-color: var(--did-4-color) };
+      .mat-button-toggle {
+        &.mat-button-toggle-checked {
+          color: #fff;
+          opacity: 0.5;
+
+          &:nth-of-type(1) { background-color: var(--did-1-color) };
+          &:nth-of-type(2) { background-color: var(--did-2-color) };
+          &:nth-of-type(3) { background-color: var(--did-3-color) };
+          &:nth-of-type(4) { background-color: var(--did-4-color) };
+        }
+      }
+
+      //.mat-button-toggle.mat-button-toggle-checked:nth-of-type(1) { background-color: var(--did-1-color) };
+      //.mat-button-toggle:nth-of-type(2) { background-color: var(--did-2-color) };
+      //.mat-button-toggle:nth-of-type(3) { background-color: var(--did-3-color) };
+      //.mat-button-toggle:nth-of-type(4) { background-color: var(--did-4-color) };
 
       @include res.mobile() {
         margin-left: -3px;
       }
 
       .mat-button-toggle * {
-        color: #fff;
         line-height: 36px;
         max-height: 36px;
       }
