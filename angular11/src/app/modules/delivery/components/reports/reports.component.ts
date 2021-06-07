@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterContentInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
@@ -12,7 +12,7 @@ import { TrackingOptionsWrapper, ExDeliveryEntry } from "../tracking-options/tra
   styles: [
   ]
 })
-export class ReportsComponent extends TrackingOptionsWrapper implements OnInit {
+export class ReportsComponent extends TrackingOptionsWrapper implements OnInit, AfterContentInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -26,15 +26,22 @@ export class ReportsComponent extends TrackingOptionsWrapper implements OnInit {
   ngOnInit(): void {
   }
 
-  getTracking(current: DeliveryResults): void {
-    super.getTracking(current);
+  ngAfterContentInit(): void {
+    // this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+    this.dataSource.filterPredicate =
+      (data: ExDeliveryEntry, filter: string): boolean => !data.hide ?? false;
+  }
 
+  clear(): void {
+    super.clear();
+    this.dataSource.data = this.tracking;
+  }
+
+  getTracking(current: DeliveryResults): void {
     if (this.current) {
+      super.getTracking(current);
       this.dataSource.data = this.tracking;
-      // this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-      this.dataSource.filterPredicate =
-        (data: ExDeliveryEntry, filter: string): boolean => !data.hide ?? false;
     }
   }
 

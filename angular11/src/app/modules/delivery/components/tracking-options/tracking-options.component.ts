@@ -79,12 +79,10 @@ export class TrackingOptionsWrapper {
   navChanged(current: DeliveryResults) {
     this.clear();
 
-    this.current = undefined;
-    this.tracking = [];
-
-    setTimeout(() => {
-      this.getTracking(current);
-    }, 100);
+    requestAnimationFrame(() => {
+      this.current = current;
+      this.getTracking(this.current!);
+    });
   }
 
   clear(): void {

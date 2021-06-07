@@ -40,7 +40,10 @@ export class ResultsHistoryComponent implements AfterViewInit {
     const id = this.results.history[this.results.currentIndex].id;
     if (!dir || (current && current.id !== id)) {
       this.results.current = this.results.history[this.results.currentIndex];
-      this.change.emit(this.results.current);
+
+      requestAnimationFrame(() => {
+        this.change.emit(this.results.current);
+      });
     }
   }
 
