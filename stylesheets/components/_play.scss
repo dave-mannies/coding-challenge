@@ -1,12 +1,5 @@
 @use '../utilities/responsive' as res;
 
-@mixin coordinates() {
-  @for $i from -200 through 200 {
-    *[x='#{$i}'] { --left: #{$i}; }
-    *[y='#{$i}'] { --top: #{-1 * $i}; }
-  }
-}
-
 .play__container {
   margin-top: 1em;
 
@@ -79,7 +72,7 @@
   text-align: center;
 }
 
-.play__board__container {
+.board__container {
   position: absolute;
   left: 1em;
   right: 1em;
@@ -91,7 +84,14 @@
   overflow: hidden;
 }
 
-.play__board {
+@mixin coordinates() {
+  @for $i from -200 through 200 {
+    &[x='#{$i}'] { --left: #{$i}; }
+    &[y='#{$i}'] { --top: #{-1 * $i}; }
+  }
+}
+
+.board {
   position: absolute;
   left: 0;
   right: 0;
@@ -99,48 +99,46 @@
   bottom: 0;
   //transform: scale(0.02);
   //transform: scale(1/var(--mult));
-  //transform: translate(calc(var(--xoffset) * 1px), calc(var(--yoffset) * 1px));
+  transform: translate(calc(var(--xoffset) * 1px), calc(var(--yoffset) * 1px));
+  will-change: transform;
+}
 
-  span {
-    position: absolute;
-    background-color: green;
-    opacity: 0.1;
-    display: inline-block;
-    //left: calc((-0.5 + var(--left)) * 20px);
-    //top: calc((-0.5 + var(--top)) * 20px);
-    //width: 20px;
-    //height: 20px;
-    left: calc((var(--xoffset) + (-1 * var(--mult)/2) + (var(--mult) * var(--left))) * 1px);
-    top: calc((var(--yoffset) + (-1 * var(--mult)/2) + (var(--mult) * var(--top))) * 1px);
-    width: calc(var(--mult) * 1px);
-    height: calc(var(--mult) * 1px);
-    border-radius: 100%;
+.board__entry {
+  position: absolute;
+  opacity: 0.1;
+  display: inline-block;
+  left: calc(var(--mult) * var(--left) * 1px);
+  top: calc(var(--mult) * var(--top) * 1px);
+  width: calc(var(--mult) * 1px);
+  height: calc(var(--mult) * 1px);
+  border-radius: 100%;
 
-    &[hidden=true] { visibility: hidden }
-    &[did='1'] { background-color: var(--did-1-color) };
-    &[did='2'] { background-color: var(--did-2-color) };
-    &[did='3'] { background-color: var(--did-3-color) };
-    &[did='4'] { background-color: var(--did-4-color) };
-  }
-
-  .x-axis {
-    position: absolute;
-    left: 0;
-    top: calc(var(--yoffset)  * 1px);
-    height: 2px;
-    width: 100%;
-    background-color: #333;
-  }
-
-  .y-axis {
-    position: absolute;
-    top: 0;
-    left: calc(var(--xoffset)  * 1px);
-    height: 100%;
-    width: 2px;
-    background-color: #333;
-  }
+  &[hidden=true] { opacity: 0; }
+  &[did='1'] { background-color: var(--did-1-color); };
+  &[did='2'] { background-color: var(--did-2-color); };
+  &[did='3'] { background-color: var(--did-3-color); };
+  &[did='4'] { background-color: var(--did-4-color); };
 
   @include coordinates();
+}
+
+.board__x-axis {
+  position: absolute;
+  left: calc(var(--xoffset) * -1px);
+  top: calc((var(--mult)/2 - 1) * 1px);
+  height: 2px;
+  width: 100%;
+  background-color: #ccc;
+  opacity: 0.5;
+}
+
+.board__y-axis {
+  position: absolute;
+  top: calc(var(--yoffset) * -1px);
+  left: calc((var(--mult)/2 - 1) * 1px);
+  height: 100%;
+  width: 2px;
+  background-color: #ccc;
+  opacity: 0.5;
 }
 

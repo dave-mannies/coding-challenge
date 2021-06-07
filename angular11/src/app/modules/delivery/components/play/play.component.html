@@ -3,13 +3,14 @@
 
   <ng-container>
     <div class="play mat-elevation-z2">
-      <div #board class="play__board__container mat-elevation-z4">
-        <div class="play__board">
-          <span class="x-axis"></span>
-          <span class="y-axis"></span>
+      <div #board class="board__container mat-elevation-z4">
+        <div class="board">
+          <span class="board__x-axis"></span>
+          <span class="board__y-axis"></span>
 
           <ng-container *ngFor="let track of tracking">
           <span
+            class="board__entry"
             [attr.hidden]="track.hide"
             [attr.x]="track.x"
             [attr.y]="track.y"

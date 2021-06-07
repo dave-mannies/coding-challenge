@@ -1,26 +1,20 @@
 import {
+  AfterContentInit, AfterViewChecked,
   AfterViewInit,
   Component,
   ElementRef,
   HostListener,
-  OnChanges,
   OnInit,
-  SimpleChanges,
   ViewChild
 } from '@angular/core';
 
 import {
-  DeliveryEntry,
   DeliveryResults,
-  DeliveryService,
   Grid,
-  Results,
   ScalingResults,
   TrackingAnalysis
 } from "../../services";
 import {
-  TrackingOptions,
-  ExDeliveryEntry,
   TrackingOptionsWrapper
 } from "../tracking-options/tracking-options.component";
 
@@ -75,35 +69,36 @@ export class PlayComponent extends TrackingOptionsWrapper implements OnInit {
     this.fitToBoard();
   }
 
-  __naving: any = 0;
   navChanged(current: DeliveryResults) {
     this.clear();
 
-    clearTimeout(this.__naving);
-    this.__naving = setTimeout(() => {
+    requestAnimationFrame(() => {
       this.getTracking(current);
       this.fitToBoard();
-    }, 100);
+    });
+  }
+
+  clear(): void {
+    super.clear();
+
+    this.panZoom = { xoffset: 0, yoffset: 0, mult: 0, zoom: 1, xpan: 0, ypan: 0};
   }
 
   analyze(analysis: TrackingAnalysis): void {
     super.analyze(analysis);
 
-    this.options.end = 1;
+    //this.options.end = 1;
     this.animate();
   }
 
-  __animate: any;
   animate(): void {
-    this.options.end += this.options.max / 100;
+    this.options.end += Math.min(20, this.options.max / 20);
     this.options.end = Math.min(this.options.end, this.options.max);
 
     this.filter();
 
     if (this.options.end !== this.options.max) {
-      this.__animate = setTimeout(() => {
-        this.animate();
-      }, 50);
+      requestAnimationFrame(() => this.animate())
     }
   }
 
@@ -114,11 +109,9 @@ export class PlayComponent extends TrackingOptionsWrapper implements OnInit {
   zoom(dir: number): void {
     // this.scale.xoffset += dir * 100;
     // this.panZoom.xpan += dir * 100;
-    this.panZoom.mult += 3 * dir;
+    this.panZoom.mult += 10 * dir;
     this.panZoom.mult = Math.max(0, this.panZoom.mult);
     // this.panZoom.zoom += dir / 2;
-
-
 
     console.log(JSON.stringify(this.scale));
     console.log(JSON.stringify(this.panZoom));
@@ -130,3 +123,4 @@ export class PlayComponent extends TrackingOptionsWrapper implements OnInit {
     return false;
   }
 }
+
