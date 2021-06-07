@@ -39,6 +39,7 @@
       border-width: 0;
       border-radius: 1em;
       background-color: transparent;
+      margin-left: -3px;
 
       .mat-button-toggle {
         &.mat-button-toggle-checked {
@@ -53,26 +54,29 @@
         }
       }
 
-      //.mat-button-toggle.mat-button-toggle-checked:nth-of-type(1) { background-color: var(--did-1-color) };
-      //.mat-button-toggle:nth-of-type(2) { background-color: var(--did-2-color) };
-      //.mat-button-toggle:nth-of-type(3) { background-color: var(--did-3-color) };
-      //.mat-button-toggle:nth-of-type(4) { background-color: var(--did-4-color) };
-
-      @include res.mobile() {
-        margin-left: -3px;
-      }
-
       .mat-button-toggle * {
         line-height: 36px;
         max-height: 36px;
       }
 
-      .mat-button-toggle-label-content {
-        padding: 0 9px;
+      > button > .mat-button-toggle-label-content {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-top: 4px;
+        min-width: 88px;
+        max-width: 88px;
+        margin-left: 1px;
+        padding: 0;
 
-        @include res.mobile() {
-          padding: 0 5px;
+        @include res.mobile_landscape() {
+          margin-left: 4px;
         }
+      }
+
+      // includes children
+      .mat-button-toggle-label-content {
+        padding: 0 4px;
       }
     }
   }
