@@ -87,12 +87,12 @@ export class PlayComponent extends TrackingOptionsWrapper implements OnInit {
   analyze(analysis: TrackingAnalysis): void {
     super.analyze(analysis);
 
-    //this.options.end = 1;
+    this.options.end = 1;
     this.animate();
   }
 
   animate(): void {
-    this.options.end += Math.min(20, this.options.max / 20);
+    this.options.end += this.options.max / 10;
     this.options.end = Math.min(this.options.end, this.options.max);
 
     this.filter();
