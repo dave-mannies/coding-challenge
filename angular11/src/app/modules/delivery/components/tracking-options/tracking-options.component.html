@@ -1,7 +1,7 @@
 <div class="tracking-options">
   <div class="tracking-options__deliverees mat-elevation-z2" *ngIf="options.deliverees > 1">
     <label>Deliverees</label>
-    <mat-button-toggle name="deliverees" aria-label="Deliverees" >
+    <mat-button-toggle name="deliverees" aria-label="Deliverees" [attr.deliverees]="options.deliverees" >
       <mat-button-toggle [checked]="options.showDel[0]" (change)="toggleChanged(0)">1</mat-button-toggle>
       <mat-button-toggle [checked]="options.showDel[1]" (change)="toggleChanged(1)" *ngIf="options.deliverees > 1">2</mat-button-toggle>
       <mat-button-toggle [checked]="options.showDel[2]" (change)="toggleChanged(2)" *ngIf="options.deliverees > 2">3</mat-button-toggle>
