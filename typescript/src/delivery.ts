@@ -59,6 +59,8 @@ export function delivery(dispatch: string = '', grid: Grid = new Grid(), dId: nu
  * @returns DeliveryResults
  */
 export function deliveries(count: number, dispatch: string): DeliveryResults {
+  console.time('deliveries')
+
   const splits = splitDispatch(count, dispatch);
   const grid = new Grid();
   let res: DeliveryResults = { housesCount: 0, pizzasCount: 0, grid, analysis: [] };
@@ -71,6 +73,8 @@ export function deliveries(count: number, dispatch: string): DeliveryResults {
   res.date = new Date();
   res.deliverees = count;
   res.dispatch = dispatch;
+
+  console.timeEnd('deliveries');
 
   return res;
 }
