@@ -10,3 +10,4 @@ export * from './inputs-modal/inputs-modal.component';
 export * from './dialog/dialog.component';
 export * from './results-history/results-history.component';
 export * from './tracking-options/tracking-options.component';
+export * from './tracking-html/tracking-html.component';

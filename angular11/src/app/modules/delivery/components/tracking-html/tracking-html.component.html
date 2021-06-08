@@ -1,0 +1,41 @@
+<div #board class="tracking__container mat-elevation-z4">
+  <div class="tracking">
+    <span class="tracking__x-axis"></span>
+    <span class="tracking__y-axis"></span>
+
+    <ng-container *ngFor="let track of tracking">
+          <span
+            class="tracking__entry"
+            [attr.hidden]="track.hide"
+            [attr.x]="track.x"
+            [attr.y]="track.y"
+            [attr.pizzas]="track.pizzas"
+            [attr.did]="track.dId"
+            [attr.order]="track.order"
+          >&nbsp;</span>
+    </ng-container>
+  </div>
+</div>
+
+<h3 class="tracking--heading">
+  <span *ngIf="tracking.length">
+    Tracking from {{ options.start }} to {{ floor(options.end) }} of {{ options.max }}.
+  </span>
+  <span *ngIf="!tracking.length">
+    Processing...
+  </span>
+</h3>
+
+<div class="tracking__pan-zoom">
+  <button mat-mini-fab aria-label="Zoom In"
+          [disabled]="disableZoom(1)"
+          (click)="zoom(1)">
+    <mat-icon>add</mat-icon>
+  </button>
+
+  <button mat-mini-fab aria-label="Zoom In"
+          [disabled]="disableZoom(-1)"
+          (click)="zoom(-1)">
+    <mat-icon>remove</mat-icon>
+  </button>
+</div>

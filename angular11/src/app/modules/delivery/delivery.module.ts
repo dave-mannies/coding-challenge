@@ -9,7 +9,7 @@ import {
   InputsComponent, ResultsComponent, InputsModalComponent,
   PageHistoryComponent, HistoryComponent ,
   DialogComponent, ResultsHistoryComponent,
-  TrackingOptionsComponent
+  TrackingHtmlComponent, TrackingOptionsComponent
 } from './components';
 
 @NgModule({
@@ -25,7 +25,8 @@ import {
     InputsModalComponent,
     DialogComponent,
     ResultsHistoryComponent,
-    TrackingOptionsComponent
+    TrackingOptionsComponent,
+    TrackingHtmlComponent
   ],
   exports: [
     InputsComponent,
