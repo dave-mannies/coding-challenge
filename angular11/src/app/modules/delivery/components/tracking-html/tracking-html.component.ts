@@ -1,6 +1,6 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { DeliveryResults, Grid, ScalingResults, TrackingAnalysis } from "@ts/*";
-import { TrackingOptionsWrapper } from "../tracking-options/tracking-options.component";
+import { ExDeliveryEntry, TrackingOptionsWrapper } from "../tracking-options/tracking-options.component";
 
 @Component({
   selector: 'app-tracking-html',
@@ -13,6 +13,7 @@ export class TrackingHtmlComponent extends TrackingOptionsWrapper implements OnI
 
   scale: ScalingResults = { xoffset: 0, yoffset: 0, mult: 0, zoom: 1, xpan: 0, ypan: 0};
   panZoom: ScalingResults = { xoffset: 0, yoffset: 0, mult: 0, zoom: 1, xpan: 0, ypan: 0};
+  hover?: ExDeliveryEntry;
 
   constructor() {
     super();
@@ -51,6 +52,31 @@ export class TrackingHtmlComponent extends TrackingOptionsWrapper implements OnI
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
     this.fitToBoard();
+  }
+
+  onMousedown(ev: MouseEvent): void {
+    console.log(`mousedown`);
+  }
+
+  onMouseup(ev: MouseEvent): void {
+    console.log(`mouseup`);
+  }
+
+  onMousemove(ev: MouseEvent): void {
+    console.log(`mousemove`);
+  }
+
+  onMouseenter(ev: MouseEvent): void {
+    const target = ev.target as HTMLElement;
+    const index = Number.parseInt(target.getAttribute('index') ?? '-1');
+
+    if (index !== -1 && index < this.tracking.length) {
+      this.hover = this.tracking[index];
+    }
+  }
+
+  onMouseleave(ev: MouseEvent): void {
+    this.hover = undefined;
   }
 
   navChanged(current: DeliveryResults) {
@@ -93,7 +119,7 @@ export class TrackingHtmlComponent extends TrackingOptionsWrapper implements OnI
   zoom(dir: number): void {
     // this.scale.xoffset += dir * 100;
     // this.panZoom.xpan += dir * 100;
-    this.panZoom.mult += 10 * dir;
+    this.panZoom.mult += 2 * dir;
     this.panZoom.mult = Math.max(0, this.panZoom.mult);
     // this.panZoom.zoom += dir / 2;
 

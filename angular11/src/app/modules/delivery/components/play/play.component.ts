@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, HostListener, ViewChild } from '@angular/core';
 
 import { DeliveryResults } from "../../services";
 import { TrackingHtmlComponent } from "../tracking-html/tracking-html.component";
@@ -12,10 +12,10 @@ import { TrackingHtmlComponent } from "../tracking-html/tracking-html.component"
 export class PlayComponent {
   @ViewChild('board') board!: TrackingHtmlComponent;
 
-  constructor() {
+  constructor () {
   }
 
-  navChanged(current: DeliveryResults) {
+  navChanged (current: DeliveryResults) {
     this.board.navChanged(current);
   }
 }
