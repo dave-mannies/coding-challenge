@@ -7,6 +7,12 @@
   border-radius: 1em;
   margin-top: 1em;
 
+  @include res.mobile_landscape() {
+    flex-wrap: wrap;
+    margin-left: 1em;
+    max-width: calc(50% - 4em);
+  }
+
   > * {
     min-width: 128px;
     max-width: 128px;
@@ -30,72 +36,7 @@
     @include res.mobile_landscape() {
       min-width: 90px;
       max-width: 90px;
-      margin: 0.5em;
-    }
-  }
-
-  .tracking-options__deliverees {
-    > .mat-button-toggle {
-      border-width: 0;
-      border-radius: 1em;
-      background-color: transparent;
-      margin-left: -3px;
-
-      .mat-button-toggle {
-        &.mat-button-toggle-checked {
-          color: #fff;
-          opacity: 0.5;
-          font-weight: bold;
-
-          &:nth-of-type(1) { background-color: var(--did-1-color) };
-          &:nth-of-type(2) { background-color: var(--did-2-color) };
-          &:nth-of-type(3) { background-color: var(--did-3-color) };
-          &:nth-of-type(4) { background-color: var(--did-4-color) };
-        }
-      }
-
-      .mat-button-toggle * {
-        line-height: 36px;
-        max-height: 36px;
-      }
-
-      > button > .mat-button-toggle-label-content {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        margin-top: 4px;
-        min-width: 88px;
-        max-width: 88px;
-        margin-left: 1px;
-        padding: 0;
-
-        @include res.mobile_landscape() {
-          margin-left: 4px;
-        }
-      }
-
-      // includes children
-      .mat-button-toggle-label-content {
-        padding: 0 4px;
-      }
-    }
-  }
-
-  @include res.mobile() {
-    .tracking-options__slider {
-      height: 48px;
-      min-width: 88px;
-    }
-  }
-
-  @include res.mobile_landscape() {
-    flex-wrap: wrap;
-    margin-left: 1em;
-    max-width: calc(50% - 4em);
-
-    .tracking-options__slider {
-      height: 48px;
-      min-width: 92px;
+      margin: 1em;
     }
   }
 }

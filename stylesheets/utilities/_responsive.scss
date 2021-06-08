@@ -30,6 +30,7 @@ $mobile-smallest: 700px;
   }
 }
 
+// approximate based on aspect ratio
 @mixin mobile_landscape_notch {
   @media screen and (orientation: landscape) and (min-aspect-ratio: 19/9) {
     @content;

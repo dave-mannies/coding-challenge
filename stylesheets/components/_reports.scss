@@ -39,22 +39,7 @@
     bottom: 0.5em;
   }
 
-  .mat-table {
-    border-radius: 1em;
-  }
-
-  mat-paginator[hidden=true] {
-    display: none;
-  }
-
   .reports__loading {
     text-align: center;
-  }
-
-  @include res.mobile() {
-    .mat-row,
-    .mat-header-row {
-      min-height: 32px;
-    }
   }
 }
