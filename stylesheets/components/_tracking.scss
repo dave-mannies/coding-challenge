@@ -68,7 +68,7 @@
   &[did='2'] { background-color: var(--did-2-color); };
   &[did='3'] { background-color: var(--did-3-color); };
   &[did='4'] { background-color: var(--did-4-color); };
-  &:hover { opacity: 1; background-color: var(--did-hover-color); }
+  &:hover[hidden=false] { opacity: 1; background-color: var(--did-hover-color); }
 
   @include coordinates();
 }
