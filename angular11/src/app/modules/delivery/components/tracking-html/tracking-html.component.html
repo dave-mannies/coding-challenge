@@ -1,9 +1,7 @@
 <div #board class="tracking__container mat-elevation-z4">
   <div class="tracking"
-       (mousedown)="onMousedown($event)"
-       (mouseup)="onMouseup($event)"
-
-       (mousemove)="onMousemove($event)">
+       (dblclick)="onDblclick($event)"
+  >
     <span class="tracking__x-axis"></span>
     <span class="tracking__y-axis"></span>
 
@@ -17,8 +15,8 @@
             [attr.pizzas]="track.pizzas"
             [attr.did]="track.dId"
             [attr.order]="track.order"
-            (mouseenter)="onMouseenter($event)"
-            (mouseleave)="onMouseleave($event)"
+            (mouseenter)="onMouseenterEntry($event)"
+            (mouseleave)="onMouseleaveEntry($event)"
           >&nbsp;</span>
     </ng-container>
   </div>

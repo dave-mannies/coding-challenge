@@ -14,6 +14,7 @@ export class TrackingHtmlComponent extends TrackingOptionsWrapper implements OnI
   scale: ScalingResults = { xoffset: 0, yoffset: 0, mult: 0, zoom: 1, xpan: 0, ypan: 0};
   panZoom: ScalingResults = { xoffset: 0, yoffset: 0, mult: 0, zoom: 1, xpan: 0, ypan: 0};
   hover?: ExDeliveryEntry;
+  panning = false;
 
   constructor() {
     super();
@@ -40,12 +41,17 @@ export class TrackingHtmlComponent extends TrackingOptionsWrapper implements OnI
       const scale = this.scale;
       const panZoom = this.panZoom;
 
-      el.style.setProperty('--xoffset', '' + (scale.xoffset + panZoom.xoffset));
-      el.style.setProperty('--yoffset', '' + (scale.yoffset + panZoom.yoffset));
+      el.style.setProperty('--xoffset', '' + (scale.xoffset + panZoom.xpan));
+      el.style.setProperty('--yoffset', '' + (scale.yoffset + panZoom.ypan));
       el.style.setProperty('--mult', '' + (scale.mult + panZoom.mult));
       el.style.setProperty('--zoom', '' + (panZoom.zoom));
       el.style.setProperty('--xpan', '' + (panZoom.xpan));
       el.style.setProperty('--ypan', '' + (panZoom.ypan));
+
+      console.log(JSON.stringify(this.scale));
+      console.log(JSON.stringify(this.panZoom));
+
+      console.log(`css vars updated`);
     }
   }
 
@@ -55,18 +61,21 @@ export class TrackingHtmlComponent extends TrackingOptionsWrapper implements OnI
   }
 
   onMousedown(ev: MouseEvent): void {
+    this.panning = true;
     console.log(`mousedown`);
   }
 
   onMouseup(ev: MouseEvent): void {
+    this.panning = false;
+
     console.log(`mouseup`);
   }
 
   onMousemove(ev: MouseEvent): void {
-    console.log(`mousemove`);
+    console.log(`mousemove ${ ev.button } ${ ev.clientX } ${ ev.clientY }`);
   }
 
-  onMouseenter(ev: MouseEvent): void {
+  onMouseenterEntry(ev: MouseEvent): void {
     const target = ev.target as HTMLElement;
     const index = Number.parseInt(target.getAttribute('index') ?? '-1');
 
@@ -75,8 +84,46 @@ export class TrackingHtmlComponent extends TrackingOptionsWrapper implements OnI
     }
   }
 
-  onMouseleave(ev: MouseEvent): void {
+  onMouseleaveEntry(ev: MouseEvent): void {
     this.hover = undefined;
+  }
+
+  onDblclick(ev: MouseEvent): void {
+    this.zoom(1);
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  onKeydown(ev: KeyboardEvent): void {
+    if (!this.panZoom.mult) {
+      return;
+    }
+
+    const offset = 20;
+
+    console.log(`onKeydown ${ ev.key }`);
+
+    switch(ev.key) {
+      case 'ArrowLeft':
+        this.panZoom.xpan -= offset;
+        break;
+
+      case 'ArrowRight':
+        this.panZoom.xpan += offset;
+        break;
+
+      case 'ArrowUp':
+        this.panZoom.ypan -= offset;
+        break;
+
+      case 'ArrowDown':
+        this.panZoom.ypan += offset;
+        break;
+
+
+    }
+
+
+    this.updateCssVars()
   }
 
   navChanged(current: DeliveryResults) {
@@ -117,14 +164,13 @@ export class TrackingHtmlComponent extends TrackingOptionsWrapper implements OnI
   }
 
   zoom(dir: number): void {
-    // this.scale.xoffset += dir * 100;
-    // this.panZoom.xpan += dir * 100;
     this.panZoom.mult += 2 * dir;
     this.panZoom.mult = Math.max(0, this.panZoom.mult);
-    // this.panZoom.zoom += dir / 2;
 
-    console.log(JSON.stringify(this.scale));
-    console.log(JSON.stringify(this.panZoom));
+    // this.scale.xoffset += dir * 100;
+    // this.panZoom.mult = 2 * dir;
+    // this.panZoom.xpan += dir * 100;
+    // this.panZoom.ypan += dir * 100;
 
     this.updateCssVars()
   }
