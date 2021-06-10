@@ -47,9 +47,7 @@
   right: 0;
   top: 0;
   bottom: 0;
-  //transform: scale(0.02);
-  //transform: scale(1/var(--mult));
-  transform: translate(calc(var(--xoffset) * 1px), calc(var(--yoffset) * 1px));
+  transform: scale(var(--zoom)) translate(calc(var(--xoffset) * 1px), calc(var(--yoffset) * 1px));
   will-change: transform;
 }
 
@@ -62,6 +60,7 @@
   width: calc(var(--mult) * 1px);
   height: calc(var(--mult) * 1px);
   border-radius: 100%;
+  cursor: pointer;
 
   &[hidden=true] { opacity: 0; }
   &[did='1'] { background-color: var(--did-1-color); };

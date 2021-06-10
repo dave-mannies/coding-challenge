@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { DeliveryResults, Grid, ScalingResults, TrackingAnalysis } from "@ts/*";
 import { ExDeliveryEntry, TrackingOptionsWrapper } from "../tracking-options/tracking-options.component";
 
@@ -9,10 +9,10 @@ import { ExDeliveryEntry, TrackingOptionsWrapper } from "../tracking-options/tra
   ]
 })
 export class TrackingHtmlComponent extends TrackingOptionsWrapper implements OnInit {
+  @Input() animateLoad = false;
   @ViewChild('board') board!: ElementRef;
 
-  scale: ScalingResults = { xoffset: 0, yoffset: 0, mult: 0, zoom: 1, xpan: 0, ypan: 0};
-  panZoom: ScalingResults = { xoffset: 0, yoffset: 0, mult: 0, zoom: 1, xpan: 0, ypan: 0};
+  scale: ScalingResults = { xoffset: 0, yoffset: 0, mult: 10, zoom: 1, xpan: 0, ypan: 0};
   hover?: ExDeliveryEntry;
   panning = false;
 
@@ -29,7 +29,10 @@ export class TrackingHtmlComponent extends TrackingOptionsWrapper implements OnI
 
     if (el && analysis) {
       const maxMult = 25;
-      this.scale = Grid.getFit(analysis, el.offsetWidth, el.offsetHeight, maxMult);
+      const scale = Grid.getFit(analysis, el.offsetWidth, el.offsetHeight, maxMult);
+
+      this.scale = scale;
+
       this.updateCssVars(el);
     }
   }
@@ -39,17 +42,14 @@ export class TrackingHtmlComponent extends TrackingOptionsWrapper implements OnI
 
     if (el) {
       const scale = this.scale;
-      const panZoom = this.panZoom;
+      // const panZoom = this.panZoom;
 
-      el.style.setProperty('--xoffset', '' + (scale.xoffset + panZoom.xpan));
-      el.style.setProperty('--yoffset', '' + (scale.yoffset + panZoom.ypan));
-      el.style.setProperty('--mult', '' + (scale.mult + panZoom.mult));
-      el.style.setProperty('--zoom', '' + (panZoom.zoom));
-      el.style.setProperty('--xpan', '' + (panZoom.xpan));
-      el.style.setProperty('--ypan', '' + (panZoom.ypan));
+      el.style.setProperty('--xoffset', '' + (scale.xoffset + scale.xpan));
+      el.style.setProperty('--yoffset', '' + (scale.yoffset + scale.ypan));
+      el.style.setProperty('--mult', '' + scale.mult);
+      el.style.setProperty('--zoom', '' + scale.zoom);
 
       console.log(JSON.stringify(this.scale));
-      console.log(JSON.stringify(this.panZoom));
 
       console.log(`css vars updated`);
     }
@@ -94,7 +94,7 @@ export class TrackingHtmlComponent extends TrackingOptionsWrapper implements OnI
 
   @HostListener('window:keydown', ['$event'])
   onKeydown(ev: KeyboardEvent): void {
-    if (!this.panZoom.mult) {
+    if (this.scale.zoom === 1) {
       return;
     }
 
@@ -104,24 +104,21 @@ export class TrackingHtmlComponent extends TrackingOptionsWrapper implements OnI
 
     switch(ev.key) {
       case 'ArrowLeft':
-        this.panZoom.xpan -= offset;
+        this.scale.xpan -= offset;
         break;
 
       case 'ArrowRight':
-        this.panZoom.xpan += offset;
+        this.scale.xpan += offset;
         break;
 
       case 'ArrowUp':
-        this.panZoom.ypan -= offset;
+        this.scale.ypan -= offset;
         break;
 
       case 'ArrowDown':
-        this.panZoom.ypan += offset;
+        this.scale.ypan += offset;
         break;
-
-
     }
-
 
     this.updateCssVars()
   }
@@ -135,17 +132,13 @@ export class TrackingHtmlComponent extends TrackingOptionsWrapper implements OnI
     });
   }
 
-  clear(): void {
-    super.clear();
-
-    this.panZoom = { xoffset: 0, yoffset: 0, mult: 0, zoom: 1, xpan: 0, ypan: 0};
-  }
-
   analyze(analysis: TrackingAnalysis): void {
     super.analyze(analysis);
 
-    this.options.end = 1;
-    this.animate();
+    if (this.animateLoad) {
+      this.options.end = 1;
+      this.animate();
+    }
   }
 
   animate(): void {
@@ -164,13 +157,8 @@ export class TrackingHtmlComponent extends TrackingOptionsWrapper implements OnI
   }
 
   zoom(dir: number): void {
-    this.panZoom.mult += 2 * dir;
-    this.panZoom.mult = Math.max(0, this.panZoom.mult);
-
-    // this.scale.xoffset += dir * 100;
-    // this.panZoom.mult = 2 * dir;
-    // this.panZoom.xpan += dir * 100;
-    // this.panZoom.ypan += dir * 100;
+    this.scale.zoom += dir * 1;
+    this.scale.zoom = Math.max(1, this.scale.zoom);
 
     this.updateCssVars()
   }
@@ -178,5 +166,4 @@ export class TrackingHtmlComponent extends TrackingOptionsWrapper implements OnI
   disableZoom(dir: number): boolean {
     return false;
   }
-
 }
