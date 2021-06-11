@@ -3,12 +3,44 @@
 
   <ng-container>
     <div class="play mat-elevation-z2">
-      <app-tracking-html #board></app-tracking-html>
+      <app-tracking-html
+        #board
+        (hovering)="onHover($event)"
+        (dblclick)="onDblclick($event)"
+        [tracking]="tracking"></app-tracking-html>
+
+      <h3 class="tracking--heading">
+        <span *ngIf="tracking.length">
+          <span *ngIf="hover">
+            Entry {{ hover.x }}, {{ hover.y }} with {{ hover.pizzas }} pizzas.
+          </span>
+          <span *ngIf="!hover">
+            Tracking from {{ options.start }} to {{ floor(options.end) }} of {{ options.max }}.
+          </span>
+        </span>
+              <span *ngIf="!tracking.length">
+          Processing...
+        </span>
+      </h3>
+
+      <div class="tracking__pan-zoom">
+        <button mat-mini-fab aria-label="Zoom In"
+                [disabled]="disableZoom(1)"
+                (click)="zoom(1)">
+          <mat-icon>add</mat-icon>
+        </button>
+
+        <button mat-mini-fab aria-label="Zoom In"
+                [disabled]="disableZoom(-1)"
+                (click)="zoom(-1)">
+          <mat-icon>remove</mat-icon>
+        </button>
+      </div>
     </div>
 
     <app-tracking-options
-      [options]="board.options"
-      (change)="board.filter()"
-      *ngIf="board.tracking.length"></app-tracking-options>
+      [options]="options"
+      (change)="filter()"
+      *ngIf="tracking.length"></app-tracking-options>
   </ng-container>
 </div>

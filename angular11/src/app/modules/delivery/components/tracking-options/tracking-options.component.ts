@@ -78,9 +78,9 @@ export class TrackingOptionsWrapper {
 
   navChanged(current: DeliveryResults) {
     this.clear();
+    this.current = current;
 
     requestAnimationFrame(() => {
-      this.current = current;
       this.getTracking(this.current!);
     });
   }
