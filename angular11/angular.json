@@ -135,7 +135,6 @@
       }
     }
   },
-  "defaultProject": "angular11",
   "cli": {
     "analytics": false
   }
