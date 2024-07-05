@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 
-import { DeliveryResults, Grid, ScalingResults, TrackingAnalysis } from "../../services";
-import { TrackingHtmlComponent } from "../tracking-html/tracking-html.component";
-import { ExDeliveryEntry, TrackingOptionsWrapper } from "../tracking-options/tracking-options.component";
+import { DeliveryResults, Grid, ScalingResults, TrackingAnalysis } from '../../services';
+import { TrackingHtmlComponent } from '../tracking-html/tracking-html.component';
+import { ExDeliveryEntry, TrackingOptionsWrapper } from '../tracking-options/tracking-options.component';
 
 @Component({
   selector: 'app-play',
@@ -18,7 +18,7 @@ export class PlayComponent extends TrackingOptionsWrapper implements OnInit {
   hover?: ExDeliveryEntry;
   panning = false;
 
-  constructor(private elRef:ElementRef) {
+  constructor(private elRef: ElementRef) {
     super();
   }
 

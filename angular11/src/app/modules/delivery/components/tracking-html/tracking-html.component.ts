@@ -8,7 +8,7 @@ import {
   OnInit, Output,
   ViewChild
 } from '@angular/core';
-import { ExDeliveryEntry } from "../tracking-options/tracking-options.component";
+import { ExDeliveryEntry } from '../tracking-options/tracking-options.component';
 
 @Component({
   selector: 'app-tracking-html',

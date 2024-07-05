@@ -1,10 +1,10 @@
 import { AfterContentInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatLegacyPaginator as MatPaginator } from "@angular/material/legacy-paginator";
-import { MatSort } from "@angular/material/sort";
-import { MatLegacyTableDataSource as MatTableDataSource } from "@angular/material/legacy-table";
+import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 
-import { DeliveryResults } from "../../services";
-import { TrackingOptionsWrapper, ExDeliveryEntry } from "../tracking-options/tracking-options.component";
+import { DeliveryResults } from '../../services';
+import { TrackingOptionsWrapper, ExDeliveryEntry } from '../tracking-options/tracking-options.component';
 
 @Component({
   selector: 'app-reports',

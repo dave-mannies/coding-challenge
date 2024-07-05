@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MaterialModule } from "../../../material";
+import { MaterialModule } from '../../../material';
 
 import { PageHistoryComponent } from './page-history.component';
 import { HistoryComponent, ResultsComponent } from '../';

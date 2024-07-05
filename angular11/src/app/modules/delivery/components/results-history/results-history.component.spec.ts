@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MaterialModule } from "../../../material";
-import { ResultsComponent } from "../results/results.component";
+import { MaterialModule } from '../../../material';
+import { ResultsComponent } from '../results/results.component';
 
 import { ResultsHistoryComponent } from './results-history.component';
 

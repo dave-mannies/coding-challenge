@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { deliveries, test, DeliveryResults, Grid, DeliveryEntry } from "@ts/index";
+import { deliveries, test, DeliveryResults, Grid, DeliveryEntry } from '@ts/index';
 
 export interface Inputs {
   deliverees: number;

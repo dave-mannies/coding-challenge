@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DeliveryService, Inputs } from "../../services";
+import { DeliveryService, Inputs } from '../../services';
 
 export enum ModeEnum {
   Enter,

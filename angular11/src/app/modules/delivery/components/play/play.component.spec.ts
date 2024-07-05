@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ResultsComponent, ResultsHistoryComponent } from "../";
-import { MaterialModule } from "../../../material";
+import { ResultsComponent, ResultsHistoryComponent } from '../';
+import { MaterialModule } from '../../../material';
 import { PlayComponent } from './play.component';
 
 describe('PlayComponent', () => {

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { DeliveryEntry, DeliveryResults, TrackingAnalysis } from "@ts/*";
+import { DeliveryEntry, DeliveryResults, TrackingAnalysis } from '@ts/*';
 
 export interface ExDeliveryEntry extends DeliveryEntry {
   hide?: boolean;

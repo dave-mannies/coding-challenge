@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter, AfterViewInit, OnChanges, SimpleChanges } from '@angular/core';
-import { DeliveryResults, DeliveryService, Results } from "../../services";
+import { DeliveryResults, DeliveryService, Results } from '../../services';
 
 @Component({
   selector: 'app-results-history',
