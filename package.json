@@ -4,22 +4,22 @@
   "description": "This repository contains my response to the coding challenge defined  [here](https://gist.github.com/mikedelorenzo-koneksa/3d273f862e919782a181c28ef5f50f54).",
   "main": "index.js",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/dmannies/coding-cha.git"
+    "url": "git+ssh://git@github.com:dave-koneksa/coding-challenge.git"
   },
   "author": "David Mannies",
   "license": "UNLICENSED",
-  "bugs": {
-    "url": "https://bitbucket.org/dmannies/coding-cha/issues"
-  },
-  "homepage": "https://bitbucket.org/dmannies/coding-cha#readme",
   "devDependencies": {
-    "@nrwl/workspace": "latest",
-    "@nrwl/cli": "latest",
-    "@nrwl/tao": "latest",
-    "typescript": "4.2.4"
+    "prettier": "^3.3.3",
+    "turbo": "^2.0.13",
+    "typescript": "^5.5.4"
+  },
+  "packageManager": "pnpm@9.6.0",
+  "engines": {
+    "node": ">=18"
   }
 }
