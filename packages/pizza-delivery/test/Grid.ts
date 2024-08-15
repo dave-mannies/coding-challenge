@@ -1,6 +1,6 @@
 import 'mocha';
 import { expect } from 'chai';
-import { deliveries, delivery } from "../src";
+import { deliveries, delivery } from "@ts/*";
 
 import { Grid } from "../src/Grid";
 
