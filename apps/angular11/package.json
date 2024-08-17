@@ -1,6 +1,6 @@
 {
   "name": "angular11",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --host 0.0.0.0 --port 4200",
@@ -37,6 +37,9 @@
     "@angular/cli": "11.2.5",
     "@angular/compiler-cli": "11.2.6",
     "@compodoc/compodoc": "1.1.11",
+    "@repo/pizza-delivery": "workspace:*",
+    "@repo/styles": "workspace:*",
+    "@repo/ui": "workspace:*",
     "@types/jasmine": "3.6.0",
     "@types/node": "12.11.1",
     "codelyzer": "6.0.0",
