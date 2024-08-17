@@ -1,8 +1,8 @@
 import 'mocha';
 import { expect } from 'chai';
-import { deliveries, delivery } from "@ts/*";
+import { deliveries, delivery } from '../src';
 
-import { Grid } from "../src/Grid";
+import { Grid } from '../src';
 
 describe('Grid', () => {
   it('should exist', () => {
@@ -131,7 +131,6 @@ describe('Grid', () => {
 
   it('getHouses() is 1', () => {
     const grid = new Grid();
-    const key = grid.getKey(0, 0);
 
     expect(grid.getHousesCount()).to.equal(0);
 
