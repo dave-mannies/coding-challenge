@@ -1,6 +1,9 @@
 {
-  "name": "test-coding-cha",
+  "name": "@repo/pizza-delivery",
   "version": "1.0.0",
+  "author": "",
+  "license": "UNLICENSED",
+  "private": true,
   "description": "test",
   "repository": "none",
   "main": "src/index.ts",
@@ -11,8 +14,6 @@
     "compodoc": "compodoc -p tsconfig.json -d compodoc --disableSourceCode --disableStyleTab -s",
     "compodoc:all": "compodoc -p tsconfig.json -d compodoc -s"
   },
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "@compodoc/compodoc": "^1.1.11",
     "@types/chai": "^4.2.18",
