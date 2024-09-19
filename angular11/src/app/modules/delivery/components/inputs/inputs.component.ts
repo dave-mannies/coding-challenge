@@ -29,23 +29,23 @@ export class InputsComponent implements OnInit {
   }
 
   getFile(ev: Event): void {
-    let el = ev.target as HTMLInputElement;
+    const el = ev.target as HTMLInputElement;
     if (el && el.files) {
-      let file = el.files[0];
+      const file = el.files[0];
 
-      let fileReader = new FileReader();
+      const fileReader = new FileReader();
 
       fileReader.onload = (e) => {
         this.inputs.dispatch = fileReader.result?.toString() || '';
-      }
+      };
 
       fileReader.onerror = (e) => {
         console.error(`error reading file ${ fileReader.error }`);
-      }
+      };
 
       fileReader.onabort = (e) => {
         console.error(`error aborted reading file`);
-      }
+      };
 
       fileReader.readAsText(file);
     }
