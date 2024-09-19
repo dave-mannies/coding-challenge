@@ -1,6 +1,6 @@
-import { Component, Inject, Input, OnInit, TemplateRef } from '@angular/core';
-import { MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA, MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
-import { ControlContainer, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Component, Inject, OnInit, TemplateRef } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ControlContainer, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-dialog',

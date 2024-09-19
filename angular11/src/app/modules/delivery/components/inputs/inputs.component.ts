@@ -13,7 +13,6 @@ export enum ModeEnum {
   styles: []
 })
 export class InputsComponent implements OnInit {
-  DELIVEREES = DeliveryService.DELIVEREES;
   DISPATCHES = DeliveryService.DISPATCHES;
 
   inputs!: Inputs;
@@ -35,15 +34,15 @@ export class InputsComponent implements OnInit {
 
       const fileReader = new FileReader();
 
-      fileReader.onload = (e) => {
+      fileReader.onload = () => {
         this.inputs.dispatch = fileReader.result?.toString() || '';
       };
 
-      fileReader.onerror = (e) => {
+      fileReader.onerror = () => {
         console.error(`error reading file ${ fileReader.error }`);
       };
 
-      fileReader.onabort = (e) => {
+      fileReader.onabort = () => {
         console.error(`error aborted reading file`);
       };
 
