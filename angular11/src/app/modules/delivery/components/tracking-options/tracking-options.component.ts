@@ -54,8 +54,8 @@ export class TrackingOptionsComponent implements OnInit {
     this.change.emit();
   }
 
-  formatLabel(value: number) {
-    return value;
+  formatLabel(value: number): string {
+    return `${value}`;
   }
 }
 
@@ -76,12 +76,14 @@ export class TrackingOptionsWrapper {
   constructor() {
   }
 
-  navChanged(current: DeliveryResults) {
+  navChanged(current: DeliveryResults): void {
     this.clear();
     this.current = current;
 
     requestAnimationFrame(() => {
-      this.getTracking(this.current!);
+      if (this.current) {
+        this.getTracking(this.current);
+      }
     });
   }
 
