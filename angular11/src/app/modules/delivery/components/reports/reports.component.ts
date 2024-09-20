@@ -46,7 +46,7 @@ export class ReportsComponent extends TrackingOptionsWrapper implements OnInit, 
   }
 
   tableFilter(): void {
-    this.dataSource.filter = 'trigger'
+    this.dataSource.filter = 'trigger';
   }
 
   filter(): void {
