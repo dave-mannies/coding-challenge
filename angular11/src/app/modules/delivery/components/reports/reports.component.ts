@@ -30,7 +30,7 @@ export class ReportsComponent extends TrackingOptionsWrapper implements OnInit, 
     // this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.dataSource.filterPredicate =
-      (data: ExDeliveryEntry, filter: string): boolean => !data.hide ?? false;
+      (data: ExDeliveryEntry, filter: string): boolean => !(data.hide ?? false);
   }
 
   clear(): void {
