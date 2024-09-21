@@ -13,13 +13,13 @@
     <label>Pizzas Min</label>
     <mat-slider
       class="tracking-options__slider"
-      thumbLabel
       [displayWith]="formatLabel"
       min="1"
       [max]="options.pmax"
-      [(ngModel)]="options.pizzas"
-      (change)="endChanged()"
-      aria-label="pizzas">
+      [discrete]="true"
+      aria-label="pizzas"
+    >
+      <input matSliderThumb [(ngModel)]="options.pizzas" (change)="endChanged()">
     </mat-slider>
   </div>
 
@@ -27,13 +27,13 @@
     <label>Start</label>
     <mat-slider
       class="tracking-options__slider"
-      thumbLabel
       [displayWith]="formatLabel"
       min="1"
       [max]="options.max"
-      [(ngModel)]="options.start"
-      (change)="startChanged()"
-      aria-label="entry">
+      [discrete]="true"
+      aria-label="entry"
+    >
+      <input matSliderThumb [(ngModel)]="options.start" (change)="startChanged()">
     </mat-slider>
   </div>
 
@@ -41,13 +41,13 @@
     <label>End</label>
     <mat-slider
       class="tracking-options__slider"
-      thumbLabel
       [displayWith]="formatLabel"
       min="1"
       [max]="options.max"
-      [(ngModel)]="options.end"
-      (change)="endChanged()"
-      aria-label="entry">
+      [discrete]="true"
+      aria-label="entry"
+    >
+      <input matSliderThumb [(ngModel)]="options.end" (change)="endChanged()">
     </mat-slider>
   </div>
 </div>

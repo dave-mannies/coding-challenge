@@ -1,10 +1,10 @@
 import { AfterContentInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from "@angular/material/paginator";
-import { MatSort } from "@angular/material/sort";
-import { MatTableDataSource } from "@angular/material/table";
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
-import { DeliveryResults } from "../../services";
-import { TrackingOptionsWrapper, ExDeliveryEntry } from "../tracking-options/tracking-options.component";
+import { DeliveryResults } from '../../services';
+import { TrackingOptionsWrapper, ExDeliveryEntry } from '../tracking-options/tracking-options.component';
 
 @Component({
   selector: 'app-reports',
@@ -30,7 +30,7 @@ export class ReportsComponent extends TrackingOptionsWrapper implements OnInit, 
     // this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.dataSource.filterPredicate =
-      (data: ExDeliveryEntry, filter: string): boolean => !data.hide ?? false;
+      (data: ExDeliveryEntry, filter: string): boolean => !(data.hide ?? false);
   }
 
   clear(): void {
@@ -46,7 +46,7 @@ export class ReportsComponent extends TrackingOptionsWrapper implements OnInit, 
   }
 
   tableFilter(): void {
-    this.dataSource.filter = 'trigger'
+    this.dataSource.filter = 'trigger';
   }
 
   filter(): void {

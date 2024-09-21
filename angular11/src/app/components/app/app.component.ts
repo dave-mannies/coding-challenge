@@ -9,5 +9,5 @@ import { environment } from '@env/environment';
 })
 export class AppComponent {
   id = environment.gaId;
-  title = 'coding challenge: Angular 11';
+  title = 'coding challenge: Angular 11 => 18';
 }

@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MaterialModule } from "../../../material";
+import { MaterialModule } from '../../../material';
 
 import { InputsModalComponent } from './inputs-modal.component';
 

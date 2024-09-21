@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
-import { FormsModule } from "@angular/forms";
+import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MaterialModule } from "../../modules/material";
-import { GanalyticsComponent } from "../ganalytics/ganalytics.component";
+import { MaterialModule } from '../../modules/material';
+import { GanalyticsComponent } from '../ganalytics/ganalytics.component';
 import { AppComponent } from './app.component';
-import { InputsComponent, InputsModalComponent } from "../../modules/delivery/components";
+import { InputsComponent, InputsModalComponent } from '../../modules/delivery/components';
 
 describe('AppComponent', () => {
   beforeEach(async () => {

@@ -1,4 +1,4 @@
-import { HashLocationStrategy, LocationStrategy } from "@angular/common";
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -7,7 +7,7 @@ import {
   PageReportsComponent,
   PageHistoryComponent,
   InputsComponent
-} from "./modules/delivery/components";
+} from './modules/delivery/components';
 
 const routes: Routes = [
   {

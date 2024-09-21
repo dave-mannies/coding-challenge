@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { MatDialog } from "@angular/material/dialog";
-import { DeliveryService, Inputs } from "../../services";
-import { DialogComponent } from "../dialog/dialog.component";
+import { MatDialog } from '@angular/material/dialog';
+import { DeliveryService, Inputs } from '../../services';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-inputs-modal',

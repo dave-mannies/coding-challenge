@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DeliveryService, Inputs } from "../../services";
+import { DeliveryService, Inputs } from '../../services';
 
 export enum ModeEnum {
   Enter,
@@ -13,7 +13,6 @@ export enum ModeEnum {
   styles: []
 })
 export class InputsComponent implements OnInit {
-  DELIVEREES = DeliveryService.DELIVEREES;
   DISPATCHES = DeliveryService.DISPATCHES;
 
   inputs!: Inputs;
@@ -29,23 +28,23 @@ export class InputsComponent implements OnInit {
   }
 
   getFile(ev: Event): void {
-    let el = ev.target as HTMLInputElement;
+    const el = ev.target as HTMLInputElement;
     if (el && el.files) {
-      let file = el.files[0];
+      const file = el.files[0];
 
-      let fileReader = new FileReader();
+      const fileReader = new FileReader();
 
-      fileReader.onload = (e) => {
+      fileReader.onload = () => {
         this.inputs.dispatch = fileReader.result?.toString() || '';
-      }
+      };
 
-      fileReader.onerror = (e) => {
+      fileReader.onerror = () => {
         console.error(`error reading file ${ fileReader.error }`);
-      }
+      };
 
-      fileReader.onabort = (e) => {
+      fileReader.onabort = () => {
         console.error(`error aborted reading file`);
-      }
+      };
 
       fileReader.readAsText(file);
     }

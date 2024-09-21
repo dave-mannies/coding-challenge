@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource } from "@angular/material/table";
-import { DeliveryResults, DeliveryService, Results } from "../../services";
+import { MatTableDataSource } from '@angular/material/table';
+import { DeliveryResults, DeliveryService, Results } from '../../services';
 
 export enum ViewEnum {
   Cards,

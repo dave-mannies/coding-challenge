@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from "@angular/forms";
-import { MaterialModule } from "../../../material";
+import { FormsModule } from '@angular/forms';
+import { MaterialModule } from '../../../material';
 
 import { InputsComponent } from './inputs.component';
 
