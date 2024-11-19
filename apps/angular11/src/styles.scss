@@ -1,0 +1,15 @@
+@use '../../../packages/styles/delivery';
+@use './material';
+
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.app-root {
+  height: 100%;
+  width: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 14px;
+  color: #333;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
