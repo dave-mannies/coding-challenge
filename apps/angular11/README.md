@@ -1,6 +1,9 @@
-# Angular11
+# Angular11 => 18
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.5.
+Original this project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.5.
+Now updated to Angular 18.2.5.
+
+> **TODO** Unit tests are broken and need updated to Angular 18.2.5.
 
 ## Development server
 
