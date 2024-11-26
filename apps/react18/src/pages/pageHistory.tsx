@@ -20,8 +20,8 @@ export default function PageHistory() {
     <div className="history">
       <Paper elevation={2}>
         <ButtonGroup aria-label={'Basic button group'}  style={{width: '100%', justifyContent: 'end'}}>
-          <Button variant={showCards ? 'contained' : 'outlined'} onClick={() => setShowCards(true)}>Cards</Button>
-          <Button variant={!showCards ? 'contained' : 'outlined'} onClick={() => setShowCards(false)}>Table</Button>
+          <Button variant={showCards ? 'contained' : 'outlined'} onClick={() => setShowCards(true)} data-testid={'cards'}>Cards</Button>
+          <Button variant={!showCards ? 'contained' : 'outlined'} onClick={() => setShowCards(false)} data-testid={'table'}>Table</Button>
         </ButtonGroup>
       </Paper>
 
