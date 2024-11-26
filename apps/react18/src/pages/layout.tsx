@@ -19,7 +19,7 @@ export default function Layout() {
           />
 
           <div className="toolbar__links">
-            <div><NavLink to="play">Tracking</NavLink></div>
+            <div><NavLink to="tracking">Tracking</NavLink></div>
             <div><NavLink to="reports">Reports</NavLink></div>
             <div><NavLink to="history">History</NavLink></div>
           </div>
