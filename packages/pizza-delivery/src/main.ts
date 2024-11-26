@@ -16,7 +16,7 @@ function main(): void {
       dispatch = readFileSync(file, 'utf-8');
 
       console.log(`read ${ dispatch.length } characters from ${ file }`);
-    } catch (err) {
+    } catch (err: any) {
       console.error(`error reading file "${ file }\n${ err.message }"`);
     }
   } else if (process.argv.length === 4) {
