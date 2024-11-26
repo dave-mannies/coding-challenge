@@ -29,10 +29,10 @@ export default function PageHistory() {
         {showCards ? (
           <Stack spacing={2} direction="row" sx={{p: 2}}>
             {deliveryService.results.history.map((r) => (
-              <Card>
+              <Card key={r.id}>
                 <CardHeader title={`Results #${r.id}`} />
                 <CardContent>
-                  <Results key={r.id} result={r} />
+                  <Results result={r} />
                 </CardContent>
               </Card>
             ))}
