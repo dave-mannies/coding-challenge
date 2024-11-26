@@ -27,7 +27,7 @@
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --coverage",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -49,6 +49,7 @@
     ]
   },
   "devDependencies": {
+    "jest": "^29.7.0",
     "react-testing-library": "^8.0.1"
   }
 }

@@ -22,7 +22,7 @@ export default function ResultsTable({history}: ResultsTableProps) {
             <TableCell>Date</TableCell>
             <TableCell>Deliverees</TableCell>
             <TableCell>Pizzas</TableCell>
-            <TableCell>Hours</TableCell>
+            <TableCell>Houses</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
