@@ -1,6 +1,6 @@
 import {useContext, useState} from 'react';
 import {DeliveryContext} from '../app/App';
-import ResultsHistory from '../components/results-history';
+import ResultsHistory from '../components/resultsHistory';
 import TrackingOptions from '../components/tracking-options';
 import EntriesTable from '../components/entriesTable';
 import {Results} from '../pizza-delivery/types';

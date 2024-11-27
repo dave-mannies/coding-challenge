@@ -11,7 +11,7 @@ export const result = {
   analysis: [],
 }
 
-describe('results', () => {
+describe('ResultsView', () => {
   it('renders', () => {
     render(<ResultsView result={result} />);
 
