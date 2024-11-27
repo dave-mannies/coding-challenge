@@ -1,7 +1,7 @@
 
 import {render, screen} from '@testing-library/react';
 import ResultsTable from './resultsTable';
-import {result} from './results.spec';
+import {result} from './resultsView.spec';
 
 describe('results', () => {
   it('renders', () => {
