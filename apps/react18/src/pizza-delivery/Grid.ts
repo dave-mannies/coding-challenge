@@ -128,7 +128,7 @@ export class Grid {
     const ret: DeliveryEntry[] = [];
 
     this.grid.forEach((house) => {
-      house.deliveries.map(delivery => {
+      house.deliveries.forEach(delivery => {
         ret.push({
           x: house.x, y: house.y,
           order: delivery.order, dId: delivery.dId, pizzas: delivery.pizzas

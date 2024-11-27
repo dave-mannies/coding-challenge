@@ -8,7 +8,7 @@
  * @property x - optional x location
  * @property y - optional y location
  */
-export interface DeliveryEntry {
+export type DeliveryEntry = {
   dId: number;
   order: number;
   pizzas: number;
@@ -24,7 +24,7 @@ export interface DeliveryEntry {
  * @property deliveries - array of DeliveryEntry
  * @property pizzas - total of pizza delivered
  */
-export interface HouseEntry {
+export type HouseEntry = {
   x: number;
   y: number;
   deliveries: DeliveryEntry[];
@@ -44,7 +44,7 @@ export interface HouseEntry {
  * @property totalPizzas - total number of pizzas delivred
  * @property totalHouses - total unique houses delivered to
  */
-export interface TrackingAnalysis {
+export type TrackingAnalysis = {
   entries: DeliveryEntry[];
   xmin: number;
   xmax: number;
@@ -56,7 +56,7 @@ export interface TrackingAnalysis {
   totalHouses: number;
 }
 
-export interface ScalingResults {
+export type ScalingResults = {
   xoffset: number;
   yoffset: number;
   mult: number;
@@ -68,7 +68,7 @@ export interface ScalingResults {
 /**
  * Results of delivery(...) invocation.
  */
-export interface DeliveryResults {
+export type DeliveryResults = {
   id?: number;
   date?: Date;
   deliverees?: number;
@@ -79,12 +79,12 @@ export interface DeliveryResults {
   analysis: TrackingAnalysis[];
 }
 
-export interface Inputs {
+export type Inputs = {
   deliverees: number;
   dispatch: string;
 }
 
-export  interface Results {
+export type Results = {
   currentIndex: number;
   current?: DeliveryResults;
   history: DeliveryResults[];
