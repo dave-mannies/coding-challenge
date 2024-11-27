@@ -1,18 +1,17 @@
 import {Fab} from '@mui/material';
 import {NavigateBefore, NavigateNext} from '@mui/icons-material';
-import {DeliveryResults} from '../pizza-delivery/types';
-import Results from './results';
+import ResultsView from './resultsView';
+import {Results} from '../pizza-delivery/types';
 import {useEffect, useState} from 'react';
 
 export type ResultsHistoryProps = {
-  defaultIndex?: number
-  history: DeliveryResults[]
-  onSelected: (value: DeliveryResults, index: number) => void
+  results: Results
+  onSelected: (value: Results) => void
 }
 
-export default function ResultsHistory({defaultIndex = 0, history, onSelected}: ResultsHistoryProps) {
-  const [index, setIndex] = useState(defaultIndex);
-  const max = history.length - 1;
+export default function ResultsHistory({results, onSelected}: ResultsHistoryProps) {
+  const [index, setIndex] = useState(results.currentIndex);
+  const max = results.history.length - 1;
 
   const nav = (dir: number) => {
     if (dir === -1) {
@@ -27,13 +26,11 @@ export default function ResultsHistory({defaultIndex = 0, history, onSelected}: 
   }
 
   useEffect(() => {
-    onSelected(history?.[index], index);
+    onSelected({...results, currentIndex: index, current: results.history[index]});
   }, [index]);
 
   return (
     <div className={'results-history'}>
-      <h1>{index}</h1>
-
       <Fab
         size={'small'}
         disabled={index === 0}
@@ -44,7 +41,7 @@ export default function ResultsHistory({defaultIndex = 0, history, onSelected}: 
       </Fab>
 
       <div className={'results-history__history compressed'}>
-        <Results result={history?.[index]}/>
+        {results.current ? <ResultsView result={results.current} /> : <div>Empty History</div>}
       </div>
 
       <Fab

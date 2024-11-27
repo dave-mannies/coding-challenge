@@ -1,4 +1,4 @@
-import Results from './results';
+import ResultsView from './resultsView';
 import {render, screen} from '@testing-library/react';
 
 export const result = {
@@ -13,7 +13,7 @@ export const result = {
 
 describe('results', () => {
   it('renders', () => {
-    render(<Results result={result} />);
+    render(<ResultsView result={result} />);
 
     expect(screen.getByText('Id:')).toBeDefined();
     expect(screen.getByText('Date:')).toBeDefined();

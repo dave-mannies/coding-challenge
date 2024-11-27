@@ -4,11 +4,11 @@ import {
 import React from 'react';
 import {DeliveryResults} from '../pizza-delivery/types';
 
-export type ResultsTableProps = {
+export type ResultsViewProps = {
   result: DeliveryResults
 };
 
-export default function Results({result} : ResultsTableProps) {
+export default function ResultsView({result} : ResultsViewProps) {
   return (
     <>
       <Box>

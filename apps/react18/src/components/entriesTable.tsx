@@ -25,9 +25,10 @@ export default function EntriesTable({entries}: EntriesTableProps) {
             <TableCell>Pizzas</TableCell>
           </TableRow>
         </TableHead>
+
         <TableBody>
-          {entries.map((entry) => (
-            <TableRow key={entry.dId}>
+          {entries.map((entry, index) => (
+            <TableRow key={index}>
               <TableCell align="right">{entry.order}</TableCell>
               <TableCell align="right">{entry.dId}</TableCell>
               <TableCell align="right">{entry.x}</TableCell>
