@@ -10,7 +10,7 @@ import React, {useContext, useState} from 'react';
 import {DeliveryContext} from '../app/App';
 import Paper from '@mui/material/Paper';
 import ResultsTable from '../components/resultsTable';
-import Results from '../components/results';
+import ResultsView from '../components/resultsView';
 
 export default function PageHistory() {
   const deliveryService = useContext(DeliveryContext).deliveryService;
@@ -32,7 +32,7 @@ export default function PageHistory() {
               <Card key={r.id}>
                 <CardHeader title={`Results #${r.id}`} />
                 <CardContent>
-                  <Results result={r} />
+                  <ResultsView result={r} />
                 </CardContent>
               </Card>
             ))}
