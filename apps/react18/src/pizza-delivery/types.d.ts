@@ -85,8 +85,6 @@ export type Inputs = {
 }
 
 export type Results = {
-  currentIndex: number;
-  current?: DeliveryResults;
   history: DeliveryResults[];
   updated?: Date;
 }

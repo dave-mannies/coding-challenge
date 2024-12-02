@@ -13,11 +13,10 @@ export class DeliveryService {
     dispatch: DeliveryService.DISPATCHES[0]!
   };
   results: Results = {
-    currentIndex: 0,
-    current: undefined,
     history: [],
     updated: undefined
   };
+  currentIndex: number = 0;
   nextId = 1;
 
   constructor() {
@@ -31,8 +30,7 @@ export class DeliveryService {
     this.getAddResults({ deliverees: 3, dispatch: test });
     this.getAddResults({ deliverees: 4, dispatch: test });
 
-    this.results.current = this.results.history[0];
-    this.results.currentIndex = 0;
+    this.currentIndex = 0;
   }
 
   getDeliveryResults(inputs?: Inputs): DeliveryResults {
@@ -42,17 +40,16 @@ export class DeliveryService {
   addResults(results: DeliveryResults): void {
     results.id = this.nextId++;
 
-    this.results.current = results;
     this.results.history.push(results);
-    this.results.updated = new Date();
+    this.currentIndex = this.results.history.length - 1;
 
+    this.results.updated = new Date();
     const len = this.results.history.length;
     if (len > DeliveryService.MAX_HISTORY_LEN) {
       const del = len - DeliveryService.MAX_HISTORY_LEN;
       this.results.history.splice(0, del);
-    }
 
-    this.results.currentIndex = this.results.history.length - 1;
+    }
   }
 
   getAddResults(inputs?: Inputs): DeliveryResults {
@@ -63,15 +60,7 @@ export class DeliveryService {
     return res;
   }
 
-  getDeliveryTracking(results?: DeliveryResults): DeliveryEntry[] {
-    let ret: DeliveryEntry[] = [];
-
-    results = results ?? this.results.current;
-
-    if (results && results.analysis.length) {
-      ret = results.analysis[0]!.entries;
-    }
-
-    return ret;
+  getDeliveryTracking(index: number): DeliveryEntry[] {
+    return this.results.history?.[index]?.analysis?.[0].entries ?? [];
   }
 }

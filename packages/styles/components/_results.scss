@@ -15,6 +15,27 @@
   }
 }
 
+.compressed {
+  .results {
+    flex-direction: row;
+    min-height: 2.5em;
+    align-items: center;
+
+    > div {
+      margin: 2em;
+      border-radius: 1em;
+    }
+
+    label {
+      margin-right: 0.5em;
+    }
+  }
+
+  .compressed--hide {
+    display: none;
+  }
+}
+
 .results__dispatch {
   max-width: 10em;
   display: inline-block;
@@ -35,25 +56,34 @@
     flex-grow: 2;
     border-radius: 1em;
   }
-}
 
-.compressed {
-  .results {
-    flex-direction: row;
-    justify-content: space-around;
-    background-color: #eee;
-    padding: 0 1em;
-    border-radius: 1em;
-    min-height: 2.5em;
-    align-items: center;
+  .compressed {
+    .results {
+      flex-direction: row;
+      justify-content: space-around;
+      background-color: #eee;
+      padding: 0 1em;
+      border-radius: 1em;
+      min-height: 2.5em;
+      align-items: center;
 
-    @include res.mobile {
-      padding: 0 0.25em;
-      border-radius: 0.5em;
+      > div {
+        margin: 0;
+      }
+
+      label {
+        margin-right: 0.5em;
+      }
+
+      @include res.mobile {
+        padding: 0 0.25em;
+        border-radius: 0.5em;
+      }
+    }
+
+    .compressed--hide {
+      display: none;
     }
   }
-
-  .compressed--hide {
-    display: none;
-  }
 }
+
