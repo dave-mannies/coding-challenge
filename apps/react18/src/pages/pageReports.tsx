@@ -1,26 +1,18 @@
-import {useContext, useState} from 'react';
-import {DeliveryContext} from '../app/App';
 import ResultsHistory from '../components/resultsHistory';
 import TrackingOptions from '../components/tracking-options';
 import EntriesTable from '../components/entriesTable';
-import {Results} from '../pizza-delivery/types';
+import {useNavResults} from '../hooks/useNavResults';
 
 export default function PageReports() {
-  const deliveryService = useContext(DeliveryContext).deliveryService;
-  const [results, setResults] = useState<Results>(deliveryService.results);
-
-  const onSelected = (value: Results) => {
-    setResults(value);
-    deliveryService.results = value;
-  };
+  const {index, results, entries, onNav} = useNavResults();
 
   return (
     <div className={'reports'}>
-      <ResultsHistory results={results} onSelected={onSelected} />
+      <ResultsHistory results={results} onNav={onNav} index={index} />
 
       <TrackingOptions />
 
-      <EntriesTable entries={results.current?.analysis?.[0].entries ?? []} />
+      <EntriesTable entries={entries} />
     </div>
   )
 }

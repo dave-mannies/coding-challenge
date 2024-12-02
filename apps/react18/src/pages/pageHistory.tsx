@@ -25,9 +25,9 @@ export default function PageHistory() {
         </ButtonGroup>
       </Paper>
 
-      <Paper elevation={2}>
+      <Paper elevation={2} className={'compressed'}>
         {showCards ? (
-          <Stack spacing={2} direction="row" sx={{p: 2}}>
+          <div className={'results'}>
             {deliveryService.results.history.map((r) => (
               <Card key={r.id}>
                 <CardHeader title={`Results #${r.id}`} />
@@ -36,7 +36,7 @@ export default function PageHistory() {
                 </CardContent>
               </Card>
             ))}
-          </Stack>
+          </div>
         ) : (
           <ResultsTable history={deliveryService.results.history} />
         )}
