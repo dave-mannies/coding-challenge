@@ -27,7 +27,7 @@ export default function EntriesTable({entries}: EntriesTableProps) {
         </TableHead>
 
         <TableBody>
-          {entries.map((entry, index) => (
+          {entries.filter((e) => !e.hide).map((entry, index) => (
             <TableRow key={index}>
               <TableCell align="right">{entry.order}</TableCell>
               <TableCell align="right">{entry.dId}</TableCell>

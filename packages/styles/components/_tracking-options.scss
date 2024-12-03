@@ -13,17 +13,21 @@
     max-width: calc(50% - 4em);
   }
 
-  > * {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 6em;
     min-width: 128px;
     max-width: 128px;
-    padding: 0 0.25em;
+    padding: 0 1em;
     border-radius: 1em;
     background-color: #eee;
 
     label {
       display: block;
       text-align: center;
-      margin: 0 -0.25em;
+      margin: 0 -1em;
       background-color: #ccc;
       border-radius: 1em 1em 0 0;
     }
