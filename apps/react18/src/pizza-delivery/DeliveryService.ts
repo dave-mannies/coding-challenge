@@ -1,6 +1,16 @@
-import {DeliveryEntry, DeliveryResults, Inputs, Results} from './types';
+import {DeliveryEntry, DeliveryResults, Inputs, Results, TrackingAnalysis} from './types';
 import {deliveries} from './delivery';
 import {test} from './PizzaDeliveryInput';
+
+export type TrackingOptions = {
+  deliverees: number;
+  showDel: boolean[];
+  start: number;
+  end: number;
+  max: number;
+  pmax: number;
+  pizzas: number;
+}
 
 export class DeliveryService {
   static DELIVEREES = [1, 2, 3, 4];
@@ -60,7 +70,39 @@ export class DeliveryService {
     return res;
   }
 
+  getTrackingOptions(index: number): TrackingOptions {
+    const results = this.getDeliveryResultsByIndex(index);
+    const analysis = this.getDeliveryTrackingAnalysis(index);
+    const deliverees = results?.deliverees ?? 0;
+    const showDel = new Array(deliverees).fill(true);
+    const max = (analysis?.entries?.length ?? 0) / deliverees;
+    const start = 0;
+    const end = max;
+    const pmax = analysis?.pmax ?? 0;
+    const pizzas = 1;
+
+    return {deliverees, showDel, start, end, max, pmax, pizzas};
+  }
+
+  filter(entries: DeliveryEntry[],  options: TrackingOptions): void {
+    entries.forEach(track => {
+      track.hide =
+        options.start > track.order ||
+        options.end < track.order ||
+        track.pizzas < options.pizzas ||
+        !options.showDel[track.dId - 1];
+    });
+  }
+
+  getDeliveryResultsByIndex(index: number): DeliveryResults | undefined {
+    return this.results.history?.[index];
+  }
+
+  getDeliveryTrackingAnalysis(index: number): TrackingAnalysis | undefined {
+    return this.getDeliveryResultsByIndex(index)?.analysis?.[0];
+  }
+
   getDeliveryTracking(index: number): DeliveryEntry[] {
-    return this.results.history?.[index]?.analysis?.[0].entries ?? [];
+    return this.getDeliveryTrackingAnalysis(index)?.entries ?? [];
   }
 }

@@ -14,6 +14,8 @@ export type DeliveryEntry = {
   pizzas: number;
   x?: number;
   y?: number;
+  hide?: boolean;
+  title?: string;
 }
 
 /**

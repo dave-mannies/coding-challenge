@@ -1,5 +1,5 @@
 <div class="tracking-options">
-  <div class="tracking-options__deliverees mat-elevation-z2" *ngIf="options.deliverees > 1">
+  <div class="tracking-options__container mat-elevation-z2" *ngIf="options.deliverees > 1">
     <label>Deliverees</label>
     <mat-button-toggle name="deliverees" aria-label="Deliverees" [attr.deliverees]="options.deliverees" >
       <mat-button-toggle [checked]="options.showDel[0]" (change)="toggleChanged(0)">1</mat-button-toggle>
@@ -9,7 +9,7 @@
     </mat-button-toggle>
   </div>
 
-  <div class="tracking-options__slider-container mat-elevation-z2">
+  <div class="tracking-options__container mat-elevation-z2">
     <label>Pizzas Min</label>
     <mat-slider
       class="tracking-options__slider"
@@ -23,7 +23,7 @@
     </mat-slider>
   </div>
 
-  <div class="tracking-options__slider-container mat-elevation-z2">
+  <div class="tracking-options__container mat-elevation-z2">
     <label>Start</label>
     <mat-slider
       class="tracking-options__slider"
@@ -37,7 +37,7 @@
     </mat-slider>
   </div>
 
-  <div class="tracking-options__slider-container mat-elevation-z2">
+  <div class="tracking-options__container mat-elevation-z2">
     <label>End</label>
     <mat-slider
       class="tracking-options__slider"
