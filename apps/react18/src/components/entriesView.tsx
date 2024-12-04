@@ -1,8 +1,9 @@
 import React, {CSSProperties, useEffect, useLayoutEffect, useRef, useState} from 'react';
 import Paper from '@mui/material/Paper';
 import {DeliveryEntry, ScalingResults, TrackingAnalysis} from '../pizza-delivery/types';
-import {Container} from '@mui/material';
+import {Container, Fab} from '@mui/material';
 import {Grid, TrackingOptions} from '../pizza-delivery';
+import {Add, Remove} from '@mui/icons-material';
 
 export type EntriesViewProps = {
   options: TrackingOptions
@@ -13,6 +14,11 @@ export type EntriesViewProps = {
 export default function EntriesView({options, entries, analysis}: EntriesViewProps) {
   const ref = useRef(null);
   const [scale, setScale] = useState<ScalingResults>({ xoffset: 0, yoffset: 0, mult: 10, zoom: 1, xpan: 0, ypan: 0});
+  const scaleRef = useRef(scale);
+
+  useEffect(() => {
+    scaleRef.current = scale;
+  }, [scale])
 
   useEffect(() => {
     calcScale();
@@ -22,6 +28,40 @@ export default function EntriesView({options, entries, analysis}: EntriesViewPro
     calcScale();
   }, []);
 
+  // panning keyboard event handling when zoom is not 1
+  useEffect(() => {
+    const handleKeyPress = (ev: KeyboardEvent) => {
+      const offset = 20;
+      const updating = {...scaleRef.current};
+
+      // ignore panning when not zoomed in
+      if (updating.zoom === 1) {
+        return;
+      }
+
+      switch(ev.key) {
+        case 'ArrowLeft':
+          setScale({...updating, xpan: updating.xpan - offset});
+          break;
+
+        case 'ArrowRight':
+          setScale({...updating, xpan: updating.xpan + offset});
+          break;
+
+        case 'ArrowUp':
+          setScale({...updating, ypan: updating.ypan - offset});
+          break;
+
+        case 'ArrowDown':
+          setScale({...updating, ypan: updating.ypan + offset});
+          break;
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [])
+
   const calcScale = () => {
     // @ts-ignore todo current type
     const { width, height } = ref.current!.getBoundingClientRect();
@@ -30,15 +70,28 @@ export default function EntriesView({options, entries, analysis}: EntriesViewPro
     setScale(scale);
   }
 
+  const zoom = (dir: number) => () => {
+    const zoom = scale.zoom + dir;
+
+    setScale({
+      ...scale,
+      zoom: Math.max(1, zoom),
+      xpan: zoom === 1 ? 0 : scale.xpan,
+      ypan: zoom === 1 ? 0 : scale.ypan
+    });
+  }
+
   return (
     <Container component={Paper} classes={{root: 'play'}} sx={{marginRight: '-14px'}}>
-      <h3 className={'tracking--heading'}>Tracking from {options.start} to {Math.floor(options.end)} of {options.max}.</h3>
+      <h3 className={'tracking--heading'}>
+        Tracking from {options.start} to {Math.floor(options.end)} of {options.max}.
+      </h3>
 
       <div ref={ref} className="tracking__container mat-elevation-z4">
         <div className="tracking" style={{
           '--zoom': scale.zoom,
-          '--xoffset': scale.xoffset,
-          '--yoffset': scale.yoffset,
+          '--xoffset': scale.xoffset + scale.xpan,
+          '--yoffset': scale.yoffset + scale.ypan,
           '--mult': scale.mult
         } as CSSProperties}>
           <span className="tracking__x-axis"></span>
@@ -61,6 +114,23 @@ export default function EntriesView({options, entries, analysis}: EntriesViewPro
         </div>
 
         <div className="tracking__pan-zoom">
+          <Fab
+            size={'small'}
+            aria-label={'Zoom In'}
+            onClick={zoom(1)}
+            disabled={scale.zoom >= 5}
+          >
+            <Add />
+          </Fab>
+
+          <Fab
+            size={'small'}
+            aria-label={'Zoom out'}
+            onClick={zoom(-1)}
+            disabled={scale.zoom <= 1}
+          >
+            <Remove />
+          </Fab>
         </div>
       </div>
     </Container>
