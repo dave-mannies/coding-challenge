@@ -14,7 +14,7 @@ export type EntriesTableProps = {
 
 export default function EntriesTable({entries}: EntriesTableProps) {
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} className={'reports__table'}>
       <Table sx={{maxWidth: 650}} aria-label="entries table">
         <TableHead>
           <TableRow>
