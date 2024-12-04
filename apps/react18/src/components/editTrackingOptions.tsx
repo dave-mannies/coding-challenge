@@ -17,9 +17,17 @@ export default function EditTrackingOptions({options, onChangeOptions}: EditTrac
       {options.deliverees > 1 && (
         <div className="tracking-options__container">
           <label>Deliverees</label>
-          <ButtonGroup aria-label={''}>
+          <ButtonGroup className="tracking-options__buttons" aria-label={'Toggle deliveree visibility'}>
             {options.showDel.map((value, index) =>
-              <Button variant={options.showDel[index] ? 'contained' : 'outlined'} onClick={() => toggle(index)}>{index + 1}</Button>
+              <Button
+                key={index}
+                variant={options.showDel[index] ? 'contained' : 'outlined'}
+                className={options.showDel[index] ? 'contained' : 'outlined'}
+                onClick={() => toggle(index)}
+                aria-label={`Toggle Deliveree ${index + 1} visibility`}
+              >
+                {index + 1}
+              </Button>
             )}
           </ButtonGroup>
         </div>
@@ -28,24 +36,24 @@ export default function EditTrackingOptions({options, onChangeOptions}: EditTrac
       <div className="tracking-options__container">
         <label>Pizzas Min</label>
         <Slider
+          className={'tracking-options__slider'}
           aria-label="Minimum Pizzas delivered to location"
           value={options.pizzas}
           valueLabelDisplay={'on'}
           min={1}
           max={options.pmax}
-          marks
           onChange={(ev, pizzas) => onChangeOptions({...options, pizzas: pizzas as number}) } />
       </div>
 
       <div className="tracking-options__container">
         <label>Orders Range</label>
         <Slider
-          aria-label="Orders range"
+          className={'tracking-options__slider'}
+          getAriaLabel={() => 'Orders range visibility'}
           value={[options.start, options.end]}
           valueLabelDisplay={'on'}
           min={1}
           max={options.max}
-          marks
           onChange={(ev, values) => {
             const [start, end] = values as number[];
             onChangeOptions({...options, start, end});

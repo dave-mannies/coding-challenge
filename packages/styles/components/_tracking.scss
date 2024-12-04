@@ -34,13 +34,6 @@
   overflow: hidden;
 }
 
-@mixin coordinates() {
-  @for $i from -200 through 200 {
-    &[x='#{$i}'] { --left: #{$i}; }
-    &[y='#{$i}'] { --top: #{-1 * $i}; }
-  }
-}
-
 .tracking {
   position: absolute;
   left: 0;
@@ -62,14 +55,12 @@
   border-radius: 100%;
   cursor: pointer;
 
-  &[hidden=true] { opacity: 0; }
-  &[did='1'] { background-color: var(--did-1-color); };
-  &[did='2'] { background-color: var(--did-2-color); };
-  &[did='3'] { background-color: var(--did-3-color); };
-  &[did='4'] { background-color: var(--did-4-color); };
-  &:hover[hidden=false] { opacity: 1; background-color: var(--did-hover-color); }
-
-  @include coordinates();
+  &[data-hidden=true] { opacity: 0; }
+  &[data-did='1'] { background-color: var(--did-1-color); };
+  &[data-did='2'] { background-color: var(--did-2-color); };
+  &[data-did='3'] { background-color: var(--did-3-color); };
+  &[data-did='4'] { background-color: var(--did-4-color); };
+  &:hover[data-hidden=false] { opacity: 1; background-color: var(--did-hover-color); }
 }
 
 .tracking__x-axis {

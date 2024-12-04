@@ -9,12 +9,14 @@ export const useNavResults = () => {
   const [results] = useState<Results>(deliveryService.results);
   const [options, setOptions] = useState<TrackingOptions>(deliveryService.getTrackingOptions(deliveryService.currentIndex));
   const [entries, setEntries] = useState(deliveryService.getDeliveryTracking(index));
+  const [analysis, setAnalysis] = useState(deliveryService.getDeliveryTrackingAnalysis(index));
 
   const onNav = (value: number) => {
     deliveryService.currentIndex = value;
     setIndex(value);
     setOptions(deliveryService.getTrackingOptions(value));
     setEntries(deliveryService.getDeliveryTracking(value));
+    setAnalysis(deliveryService.getDeliveryTrackingAnalysis(value));
   };
 
   const onChangeOptions = (options: TrackingOptions) : void => {
@@ -22,5 +24,5 @@ export const useNavResults = () => {
     deliveryService.filter(entries, options);
   }
 
-  return {index, results, entries, onNav, options, onChangeOptions};
+  return {index, results, analysis, entries, onNav, options, onChangeOptions};
 }

@@ -16,18 +16,19 @@
   &__container {
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: space-between;
     min-height: 6em;
-    min-width: 128px;
-    max-width: 128px;
-    padding: 0 1em;
+    min-width: 12em;
+    max-width: 12em;
     border-radius: 1em;
     background-color: #eee;
 
     label {
       display: block;
+      align-self: stretch;
       text-align: center;
-      margin: 0 -1em;
+      padding: 0.25em;
       background-color: #ccc;
       border-radius: 1em 1em 0 0;
     }
@@ -41,6 +42,36 @@
       min-width: 90px;
       max-width: 90px;
       margin: 1em;
+    }
+  }
+
+  &__slider {
+    max-width: 80%;
+  }
+
+  &__buttons {
+    width: 100%;
+    justify-content: space-around;
+    border-radius: 0 0 1em 1em;
+
+    .button > span {
+      border-radius: 1em !important;
+    }
+
+    button.contained:nth-child(1) {
+      background-color: var(--did-1-color);
+    }
+
+    button.contained:nth-child(2) {
+      background-color: var(--did-2-color);
+    }
+
+    button.contained:nth-child(3) {
+      background-color: var(--did-3-color);
+    }
+
+    button.contained:nth-child(4) {
+      background-color: var(--did-4-color);
     }
   }
 }

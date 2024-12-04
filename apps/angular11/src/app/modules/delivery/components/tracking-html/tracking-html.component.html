@@ -4,18 +4,19 @@
     <span class="tracking__y-axis"></span>
 
     <ng-container *ngFor="let track of tracking; let i = index">
-          <span
-            class="tracking__entry"
-            [attr.index]="i"
-            [attr.hidden]="track.hide"
-            [attr.x]="track.x"
-            [attr.y]="track.y"
-            [attr.pizzas]="track.pizzas"
-            [attr.did]="track.dId"
-            [attr.order]="track.order"
-            (mouseenter)="onMouseenterEntry($event)"
-            (mouseleave)="onMouseleaveEntry($event)"
-          >&nbsp;</span>
+      <span
+        class="tracking__entry"
+        [attr.data-index]="i"
+        [attr.data-hidden]="track.hide"
+        [attr.data-x]="track.x"
+        [attr.data-y]="track.y"
+        [attr.data-pizzas]="track.pizzas"
+        [attr.data-did]="track.dId"
+        [attr.data-order]="track.order"
+        [ngStyle]="{'--left': track.x, '--top': (-1 * track.y!)}"
+        (mouseenter)="onMouseenterEntry($event)"
+        (mouseleave)="onMouseleaveEntry($event)"
+      >&nbsp;</span>
     </ng-container>
   </div>
 </div>
