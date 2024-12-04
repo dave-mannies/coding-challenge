@@ -2,14 +2,15 @@ import React, {CSSProperties, useEffect, useLayoutEffect, useRef, useState} from
 import Paper from '@mui/material/Paper';
 import {DeliveryEntry, ScalingResults, TrackingAnalysis} from '../pizza-delivery/types';
 import {Container} from '@mui/material';
-import {Grid} from '../pizza-delivery';
+import {Grid, TrackingOptions} from '../pizza-delivery';
 
 export type EntriesViewProps = {
+  options: TrackingOptions
   entries: DeliveryEntry[]
   analysis: TrackingAnalysis
 };
 
-export default function EntriesView({entries, analysis}: EntriesViewProps) {
+export default function EntriesView({options, entries, analysis}: EntriesViewProps) {
   const ref = useRef(null);
   const [scale, setScale] = useState<ScalingResults>({ xoffset: 0, yoffset: 0, mult: 10, zoom: 1, xpan: 0, ypan: 0});
 
@@ -30,7 +31,9 @@ export default function EntriesView({entries, analysis}: EntriesViewProps) {
   }
 
   return (
-    <Container component={Paper} className={'play'}>
+    <Container component={Paper} classes={{root: 'play'}} sx={{marginRight: '-14px'}}>
+      <h3 className={'tracking--heading'}>Tracking from {options.start} to {Math.floor(options.end)} of {options.max}.</h3>
+
       <div ref={ref} className="tracking__container mat-elevation-z4">
         <div className="tracking" style={{
           '--zoom': scale.zoom,
@@ -54,8 +57,10 @@ export default function EntriesView({entries, analysis}: EntriesViewProps) {
               data-order={e.order}
               style={{'--left': e.x, '--top': (-1 * e.y!)} as CSSProperties}
             >&nbsp;</span>
-
           ))}
+        </div>
+
+        <div className="tracking__pan-zoom">
         </div>
       </div>
     </Container>

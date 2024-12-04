@@ -52,7 +52,7 @@ export default function EditTrackingOptions({options, onChangeOptions}: EditTrac
           getAriaLabel={() => 'Orders range visibility'}
           value={[options.start, options.end]}
           valueLabelDisplay={'on'}
-          min={1}
+          min={0}
           max={options.max}
           onChange={(ev, values) => {
             const [start, end] = values as number[];

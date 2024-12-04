@@ -12,7 +12,7 @@ export default function PageTracking() {
 
       <EditTrackingOptions options={options} onChangeOptions={onChangeOptions} />
 
-      {analysis && <EntriesView analysis={analysis} entries={entries} />}
+      {analysis && <EntriesView options={options} analysis={analysis} entries={entries} />}
     </div>
   )
 }

@@ -32,7 +32,7 @@
   top: 11.5em;
   left: 1em;
   right: 1em;
-  background-color: #ffdddd;
+  background-color: #ffdddd !important;
   border-radius: 1em;
 
   @include res.mobile {
