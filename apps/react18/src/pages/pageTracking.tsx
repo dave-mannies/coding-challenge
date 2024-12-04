@@ -1,22 +1,18 @@
 import {useNavResults} from '../hooks/useNavResults';
 import ResultsHistory from '../components/resultsHistory';
 import EditTrackingOptions from '../components/editTrackingOptions';
+import EntriesView from '../components/entriesView';
 
 export default function PageTracking() {
-  const {index, results, entries, onNav, options, onChangeOptions} = useNavResults();
+  const {index, results, analysis, entries, onNav, options, onChangeOptions} = useNavResults();
 
   return (
     <div className={'reports'}>
-      <ResultsHistory results={results} onNav={onNav} index={index}/>
+      <ResultsHistory results={results} onNav={onNav} index={index} />
 
-      <EditTrackingOptions options={options} onChangeOptions={onChangeOptions}/>
+      <EditTrackingOptions options={options} onChangeOptions={onChangeOptions} />
 
-      <div>{JSON.stringify(options, null, 2)}</div>
-
-      <div>{entries.filter((e) => e.hide === true).length}</div>
-
-
-      <div>Tracking {entries.length}</div>
+      {analysis && <EntriesView analysis={analysis} entries={entries} />}
     </div>
   )
 }

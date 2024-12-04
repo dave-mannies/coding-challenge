@@ -2,8 +2,14 @@
   <div class="tracking-options__container mat-elevation-z2" *ngIf="options.deliverees > 1">
     <label>Deliverees</label>
     <!-- todo selected buttons view is glitching hard to tell what is toggled on -->
-    <mat-button-toggle-group name="deliverees" multiple hideMultipleSelectionIndicator aria-label="Toggle Deliverees to Show" [attr.deliverees]="options.deliverees">
-      <mat-button-toggle *ngFor="let item of options.showDel.slice(0, options.deliverees); let i = index" [checked]="options.showDel[i]" (change)="toggleChanged(i)">{{i + 1}}</mat-button-toggle>
+    <mat-button-toggle-group [ngClass]="'tracking-options__buttons'" name="deliverees" multiple hideMultipleSelectionIndicator aria-label="Toggle Deliverees to Show" [attr.deliverees]="options.deliverees">
+      <mat-button-toggle
+        *ngFor="let item of options.showDel.slice(0, options.deliverees); let i = index"
+        [checked]="options.showDel[i]"
+        (change)="toggleChanged(i)"
+      >
+        {{i + 1}}
+      </mat-button-toggle>
     </mat-button-toggle-group>
   </div>
 
