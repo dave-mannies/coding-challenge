@@ -26,7 +26,7 @@ export default function EditTrackingOptions({options, onChangeOptions}: EditTrac
       )}
 
       <div className="tracking-options__container">
-        <label>Delivered Min</label>
+        <label>Pizzas Min</label>
         <Slider
           aria-label="Minimum Pizzas delivered to location"
           value={options.pizzas}
@@ -38,9 +38,9 @@ export default function EditTrackingOptions({options, onChangeOptions}: EditTrac
       </div>
 
       <div className="tracking-options__container">
-        <label>Delivered Range</label>
+        <label>Orders Range</label>
         <Slider
-          aria-label="Pizzas deliveries range"
+          aria-label="Orders range"
           value={[options.start, options.end]}
           valueLabelDisplay={'on'}
           min={1}

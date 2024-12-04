@@ -1,12 +1,10 @@
 <div class="tracking-options">
   <div class="tracking-options__container mat-elevation-z2" *ngIf="options.deliverees > 1">
     <label>Deliverees</label>
-    <mat-button-toggle name="deliverees" aria-label="Deliverees" [attr.deliverees]="options.deliverees" >
-      <mat-button-toggle [checked]="options.showDel[0]" (change)="toggleChanged(0)">1</mat-button-toggle>
-      <mat-button-toggle [checked]="options.showDel[1]" (change)="toggleChanged(1)" *ngIf="options.deliverees > 1">2</mat-button-toggle>
-      <mat-button-toggle [checked]="options.showDel[2]" (change)="toggleChanged(2)" *ngIf="options.deliverees > 2">3</mat-button-toggle>
-      <mat-button-toggle [checked]="options.showDel[3]" (change)="toggleChanged(3)" *ngIf="options.deliverees > 3">4</mat-button-toggle>
-    </mat-button-toggle>
+    <!-- todo selected buttons view is glitching hard to tell what is toggled on -->
+    <mat-button-toggle-group name="deliverees" multiple hideMultipleSelectionIndicator aria-label="Toggle Deliverees to Show" [attr.deliverees]="options.deliverees">
+      <mat-button-toggle *ngFor="let item of options.showDel.slice(0, options.deliverees); let i = index" [checked]="options.showDel[i]" (change)="toggleChanged(i)">{{i + 1}}</mat-button-toggle>
+    </mat-button-toggle-group>
   </div>
 
   <div class="tracking-options__container mat-elevation-z2">
@@ -24,7 +22,7 @@
   </div>
 
   <div class="tracking-options__container mat-elevation-z2">
-    <label>Start</label>
+    <label>Orders Range</label>
     <mat-slider
       class="tracking-options__slider"
       [displayWith]="formatLabel"
@@ -33,21 +31,8 @@
       [discrete]="true"
       aria-label="entry"
     >
-      <input matSliderThumb [(ngModel)]="options.start" (change)="startChanged()">
-    </mat-slider>
-  </div>
-
-  <div class="tracking-options__container mat-elevation-z2">
-    <label>End</label>
-    <mat-slider
-      class="tracking-options__slider"
-      [displayWith]="formatLabel"
-      min="1"
-      [max]="options.max"
-      [discrete]="true"
-      aria-label="entry"
-    >
-      <input matSliderThumb [(ngModel)]="options.end" (change)="endChanged()">
+      <input matSliderStartThumb [(ngModel)]="options.start" (change)="startChanged()">
+      <input matSliderEndThumb [(ngModel)]="options.end" (change)="endChanged()">
     </mat-slider>
   </div>
 </div>
