@@ -19,8 +19,14 @@ export const useScale = (analysis: TrackingAnalysis) => {
     calcScale();
   }, []);
 
-  // panning keyboard event handling when zoom is not 1
+  // window events
+  // resize
+  // panning keyboard when zoom is not 1
   useEffect(() => {
+    const handleResize = () => {
+      calcScale();
+    }
+
     const handleKeyPress = (ev: KeyboardEvent) => {
       const offset = 20;
       const updating = {...scaleRef.current};
@@ -49,8 +55,12 @@ export const useScale = (analysis: TrackingAnalysis) => {
       }
     }
 
+    window.addEventListener('resize', handleResize);
     window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('keydown', handleKeyPress);
+    }
   }, [])
 
   const calcScale = () => {
