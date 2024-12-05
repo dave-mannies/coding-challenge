@@ -1,4 +1,4 @@
-import {useEffect, useLayoutEffect, useRef, useState} from 'react';
+import {useEffect, useLayoutEffect, useRef, useState, useCallback} from 'react';
 import {ScalingResults, TrackingAnalysis} from '../pizza-delivery/types';
 import {Grid} from '../pizza-delivery';
 
@@ -11,13 +11,21 @@ export const useScale = (analysis: TrackingAnalysis) => {
     scaleRef.current = scale;
   }, [scale])
 
+  const calcScale = useCallback(() => {
+    // @ts-ignore todo current type
+    const { width, height } = ref.current!.getBoundingClientRect();
+    const maxMult = 25;
+    const scale = Grid.getFit(analysis, width, height, maxMult);
+    setScale(scale);
+  }, [analysis]);
+
   useEffect(() => {
     calcScale();
-  }, [analysis]);
+  }, [analysis, calcScale]);
 
   useLayoutEffect(() => {
     calcScale();
-  }, []);
+  }, [calcScale]);
 
   // window events
   // resize
@@ -61,15 +69,7 @@ export const useScale = (analysis: TrackingAnalysis) => {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('keydown', handleKeyPress);
     }
-  }, [])
-
-  const calcScale = () => {
-    // @ts-ignore todo current type
-    const { width, height } = ref.current!.getBoundingClientRect();
-    const maxMult = 25;
-    const scale = Grid.getFit(analysis, width, height, maxMult);
-    setScale(scale);
-  }
+  }, [calcScale])
 
   const zoom = (dir: number) => () => {
     const zoom = scale.zoom + dir;

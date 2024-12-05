@@ -15,8 +15,6 @@ export type EntriesViewProps = {
 export default function EntriesView({options, entries, analysis}: EntriesViewProps) {
   const {ref, scale, zoom} = useScale(analysis);
 
-  console.log('EntriesView')
-
   return (
     <Container component={Paper} classes={{root: 'play'}} sx={{marginRight: '-14px'}}>
       <h3 className={'tracking--heading'}>

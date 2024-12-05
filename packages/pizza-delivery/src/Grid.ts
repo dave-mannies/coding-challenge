@@ -77,9 +77,6 @@ export class Grid {
   // current y position
   y = 0;
 
-  constructor () {
-  }
-
   /**
    * Reset current x, y grid position to start.
    */
