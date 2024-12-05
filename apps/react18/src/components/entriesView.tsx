@@ -15,6 +15,8 @@ export type EntriesViewProps = {
 export default function EntriesView({options, entries, analysis}: EntriesViewProps) {
   const {ref, scale, zoom} = useScale(analysis);
 
+  console.log('EntriesView')
+
   return (
     <Container component={Paper} classes={{root: 'play'}} sx={{marginRight: '-14px'}}>
       <h3 className={'tracking--heading'}>
@@ -53,6 +55,7 @@ export default function EntriesView({options, entries, analysis}: EntriesViewPro
             aria-label={'Zoom In'}
             onClick={zoom(1)}
             disabled={scale.zoom >= 5}
+            color={'info'}
           >
             <Add />
           </Fab>
@@ -62,6 +65,7 @@ export default function EntriesView({options, entries, analysis}: EntriesViewPro
             aria-label={'Zoom out'}
             onClick={zoom(-1)}
             disabled={scale.zoom <= 1}
+            color={'info'}
           >
             <Remove />
           </Fab>

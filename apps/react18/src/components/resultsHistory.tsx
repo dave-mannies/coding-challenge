@@ -31,6 +31,7 @@ export default function ResultsHistory({index, results, onNav}: ResultsHistoryPr
         disabled={index === 0}
         onClick={() => nav(-1)}
         aria-label={'Show Previous Results'}
+        color={'info'}
       >
         <NavigateBefore/>
       </Fab>
@@ -46,6 +47,7 @@ export default function ResultsHistory({index, results, onNav}: ResultsHistoryPr
         disabled={index === max}
         onClick={() => nav(1)}
         aria-label={'Show Next Results'}
+        color={'info'}
       >
         <NavigateNext/>
       </Fab>
