@@ -119,14 +119,14 @@ describe('deliveries', () => {
 
   it ('should return 2639 for 2 deliverees and test', () => {
     const dispatch = test;
-    const res = deliveries(2, test);
+    const res = deliveries(2, dispatch);
 
     expect(res.housesCount).toBe(2639);
   })
 
   it ('should return 2565 for 1 deliverees and test', () => {
     const dispatch = test;
-    const res = deliveries(1, test);
+    const res = deliveries(1, dispatch);
 
     expect(res.housesCount).toBe(2565);
   })
@@ -134,7 +134,7 @@ describe('deliveries', () => {
   it ('should deliver test length + 1 pizzas', () => {
     const dispatch = test;
     const count = 2;
-    const res = deliveries(count, test);
+    const res = deliveries(count, dispatch);
 
     expect(res.pizzasCount).toBe(test.length + count);
   });

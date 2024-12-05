@@ -1,8 +1,8 @@
-import React, {CSSProperties, useEffect, useLayoutEffect, useRef, useState} from 'react';
+import React, {CSSProperties} from 'react';
 import Paper from '@mui/material/Paper';
-import {DeliveryEntry, ScalingResults, TrackingAnalysis} from '../pizza-delivery/types';
+import {DeliveryEntry, TrackingAnalysis} from '../pizza-delivery/types';
 import {Container, Fab} from '@mui/material';
-import {Grid, TrackingOptions} from '../pizza-delivery';
+import {TrackingOptions} from '../pizza-delivery';
 import {Add, Remove} from '@mui/icons-material';
 import {useScale} from '../hooks/useScale';
 

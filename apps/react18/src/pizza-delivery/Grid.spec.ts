@@ -5,7 +5,7 @@ import {DeliveryEntry} from './types';
 describe('Grid', () => {
   it('should exist', () => {
     const grid = new Grid();
-    expect(Grid).toBeDefined();
+    expect(grid).toBeDefined();
   })
 
   it('defaults to 0, 0', () => {
@@ -130,7 +130,6 @@ describe('Grid', () => {
 
   it('getHouses() is 1', () => {
     const grid = new Grid();
-    const key = grid.getKey(0, 0);
 
     expect(grid.getHousesCount()).toBe(0);
 
