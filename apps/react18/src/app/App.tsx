@@ -1,5 +1,5 @@
 import {createContext} from 'react';
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {HashRouter, Route, Routes} from 'react-router-dom';
 import Layout from '../pages/layout';
 import PageTracking from '../pages/pageTracking';
 import PageReports from '../pages/pageReports';
@@ -12,7 +12,7 @@ export const DeliveryContext = createContext({deliveryService});
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <DeliveryContext.Provider value={{deliveryService}}>
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -23,7 +23,7 @@ export default function App() {
           </Route>
         </Routes>
       </DeliveryContext.Provider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
