@@ -7,12 +7,12 @@ export default function PageTracking() {
   const {index, results, analysis, entries, onNav, options, onChangeOptions} = useNavResults();
 
   return (
-    <div className={'reports'}>
+    <>
       <ResultsHistory results={results} onNav={onNav} index={index} />
 
       <EditTrackingOptions options={options} onChangeOptions={onChangeOptions} />
 
       {analysis && <EntriesView options={options} analysis={analysis} entries={entries} />}
-    </div>
+    </>
   )
 }

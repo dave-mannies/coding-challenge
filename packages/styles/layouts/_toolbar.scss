@@ -2,15 +2,12 @@
 
 .toolbar {
   box-sizing: border-box;
-  z-index: 2;
-  position: fixed;
   width: 100%;
-  height: 4em;
   background-color: #eee;
   color: #333;
   border: 2px solid #ddd;
   display: grid;
-  grid-template-columns: 3em auto 3em;
+  grid-template-columns: 3.5em auto 3.5em;
   grid-template-rows: auto auto;
   grid-template-areas:
     "logo title inputs"
@@ -25,11 +22,17 @@
 .toolbar__logo {
   grid-area: logo;
   pointer-events: none;
+  height: 32px;
+  padding: 4px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .toolbar__logo.spin {
+  .spin {
     animation: spin infinite 60s linear;
+  }
+
+  .reverse-spin {
+    animation: reverse-spin infinite 60s linear;
   }
 }
 
@@ -39,6 +42,15 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes reverse-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
   }
 }
 
@@ -54,13 +66,18 @@
   }
 
   a {
-    padding: 0.5em;
+    padding: 0.125em 0.5em 0.5em;
     font-weight: normal;
-    border-radius: 0.5em;
+    border-radius: 0.5em 0.5em 0 0;
 
-    &.active {
+    &.active,
+    &.active:hover {
       color: #00e;
       background-color: #fff;
+    }
+
+    &.active:hover {
+      color: #88e;
     }
 
     &:hover {

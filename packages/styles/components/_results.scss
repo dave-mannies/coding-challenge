@@ -7,11 +7,7 @@
 
   > div {
     white-space: nowrap;
-    line-height: 2em;
-
-    @include res.mobile {
-      line-height: 1em;
-    }
+    line-height: 1em;
   }
 }
 
@@ -20,11 +16,6 @@
     flex-direction: row;
     min-height: 2.5em;
     align-items: center;
-
-    > div {
-      margin: 2em;
-      border-radius: 1em;
-    }
 
     label {
       margin-right: 0.5em;
@@ -49,10 +40,10 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: -1em 0 1em;
+  margin: 0 var(--gap);
+  gap: var(--gap);
 
   .results-history__history {
-    margin: 0 1em;
     flex-grow: 2;
     border-radius: 1em;
   }
@@ -62,14 +53,12 @@
       flex-direction: row;
       justify-content: space-around;
       background-color: #eee;
-      padding: 0 1em;
+      padding: 0 var(--gap);
       border-radius: 1em;
-      min-height: 2.5em;
+      min-height: 3em;
+      max-height: 3em;
       align-items: center;
-
-      > div {
-        margin: 0;
-      }
+      column-gap: 1em;
 
       label {
         margin-right: 0.5em;

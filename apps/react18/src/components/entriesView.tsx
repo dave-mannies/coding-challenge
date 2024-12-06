@@ -16,7 +16,7 @@ export default function EntriesView({options, entries, analysis}: EntriesViewPro
   const {ref, scale, zoom} = useScale(analysis);
 
   return (
-    <Container component={Paper} classes={{root: 'play'}} sx={{marginRight: '-14px'}}>
+    <Container component={'div'} classes={{root: 'play'}} maxWidth={false}>
       <h3 className={'tracking--heading'}>
         Tracking {options.start}-{options.end} of {options.max}
         {scale.zoom > 1 && ` Zoom = ${scale.zoom}`}

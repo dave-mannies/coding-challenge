@@ -1,49 +1,44 @@
 @use '../utilities/responsive' as res;
 
-.content {
-  position: relative;
-  top: 5em;
-  margin: 0 1em;
-  height: calc(100% - 6.5em);
-
-  > mat-card {
-    height: calc(100% - 2em);
-  }
-
-  .page-title {
-    display: none;
-  }
-
-  @include res.mobile() {
-    top: 4em;
-    margin: 0;
-    height: calc(100% - 4em);
-
-    > mat-card {
-      height: calc(100% - 2em);
-      box-shadow: none !important;
-    }
-  }
-
-  @include res.mobile_landscape() {
-    top: 0;
-    left: 4em;
-    margin: 0;
-    height: 100%;
-    width: calc(100% - 4em);
-
-    @include res.mobile_landscape_notch() {
-      width: calc(100% - 1em);
-    }
-
-    > mat-card {
-      height: calc(100% - 2em);
-      box-shadow: none !important;
-    }
-
-    .page-title {
-      display: none;
-    }
-  }
-}
+//.content {
+//  margin: 0 1em;
+//  height: calc(100% - 6.5em);
+//
+//  > * {
+//    height: calc(100% - 2em);
+//  }
+//
+//  .page-title {
+//    display: none;
+//  }
+//
+//  @include res.mobile() {
+//    margin: 0;
+//    height: calc(100% - 4em);
+//
+//    > * {
+//      height: calc(100% - 2em);
+//      box-shadow: none !important;
+//    }
+//  }
+//
+//  @include res.mobile_landscape() {
+//    margin: 0;
+//    height: 100%;
+//    width: calc(100% - 4em);
+//
+//    @include res.mobile_landscape_notch() {
+//      width: calc(100% - 1em);
+//    }
+//
+//    > * {
+//      height: calc(100% - 2em);
+//      box-shadow: none !important;
+//    }
+//
+//    .page-title {
+//      display: none;
+//    }
+//  }
+//}
 

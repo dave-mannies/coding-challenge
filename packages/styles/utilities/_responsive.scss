@@ -19,7 +19,7 @@ $mobile-smallest: 700px;
 @mixin mobile {
   @media
   only screen and (orientation: portrait) and (min-aspect-ratio: 9/16) and (max-width: $tablet-width - 1),
-  only screen and (orientation: landscape) and (min-aspect-ratio: 16/9) {
+  only screen and (orientation: landscape) and (min-aspect-ratio: 16/9) and (max-width: $desktop-width - 1) {
     @content;
   }
 }

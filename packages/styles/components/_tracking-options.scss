@@ -6,7 +6,7 @@
   flex-direction: row;
   justify-content: space-around;
   border-radius: 1em;
-  max-width: calc(100% - 2em);
+  max-width: 60em;
   margin: 0 auto;
 
   &__container {
@@ -15,8 +15,8 @@
     align-items: center;
     justify-content: space-around;
     min-height: 4em;
-    min-width: 12em;
-    max-width: 33%;
+    min-width: 8em;
+    max-width: 12em;
     border-radius: 1em;
     background-color: #eee;
 
@@ -30,13 +30,14 @@
     }
 
     @include res.mobile() {
-      min-width: 30%;
-      max-width: 30%;
+      min-width: 8em;
+      max-width: 8em;
     }
-    //
-    //@include res.mobile_landscape() {
-    //  margin: 1em;
-    //}
+
+    @include res.not_mobile() {
+      min-width: 12em;
+      max-width: 12em;
+    }
   }
 
   &__slider {

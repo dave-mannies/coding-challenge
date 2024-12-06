@@ -2,51 +2,24 @@
 
 .play__container {
   margin-top: 1em;
-
-  @include res.mobile_landscape() {
-    margin-top: 0;
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-
-    .tracking-options {
-      margin-top: 9em;
-    }
-  }
 }
 
 .play__results-history {
-  @include res.mobile_landscape() {
-    position: absolute;
-    left: 1em;
-    top: 2em;
-    width: calc(50% - 4em);
-  }
 }
 
 .play {
-  position: absolute;
-  bottom: 1em;
-  top: 11.5em;
-  left: 1em;
-  right: 1em;
-  background-color: #ffdddd !important;
-  border-radius: 1em;
+  flex-grow: 1;
+  position: relative;
+  padding: 0;
+  background-color: #FFDDDD !important;
+  border-radius: 1em 1em 0 0;
+}
 
-  @include res.mobile {
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 0.25em;
-  }
+.react18 .play {
+  background-color: #61DAF666 !important;
+}
 
-  @include res.mobile_landscape() {
-    left: calc(50% - 2em);
-    top: 0;
-    right: 0;
-    bottom: 0;
-  }
+.angular11 .play {
+  background-color: #FFDDDD !important;
 }
 
