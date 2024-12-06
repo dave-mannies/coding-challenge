@@ -2,8 +2,8 @@ import React, {CSSProperties} from 'react';
 import Paper from '@mui/material/Paper';
 import {DeliveryEntry, TrackingAnalysis} from '../pizza-delivery/types';
 import {Container, Fab} from '@mui/material';
-import {TrackingOptions} from '../pizza-delivery';
 import {Add, Remove} from '@mui/icons-material';
+import {TrackingOptions} from '../pizza-delivery';
 import {useScale} from '../hooks/useScale';
 
 export type EntriesViewProps = {
@@ -18,10 +18,11 @@ export default function EntriesView({options, entries, analysis}: EntriesViewPro
   return (
     <Container component={Paper} classes={{root: 'play'}} sx={{marginRight: '-14px'}}>
       <h3 className={'tracking--heading'}>
-        Tracking from {options.start} to {Math.floor(options.end)} of {options.max}.
+        Tracking {options.start}-{options.end} of {options.max}
+        {scale.zoom > 1 && ` Zoom = ${scale.zoom}`}
       </h3>
 
-      <div ref={ref} className="tracking__container mat-elevation-z4">
+      <div ref={ref} className="tracking__container">
         <div className="tracking" style={{
           '--zoom': scale.zoom,
           '--xoffset': scale.xoffset + scale.xpan,

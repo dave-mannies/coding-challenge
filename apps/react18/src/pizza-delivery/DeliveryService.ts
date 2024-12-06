@@ -75,7 +75,7 @@ export class DeliveryService {
     const analysis = this.getDeliveryTrackingAnalysis(index);
     const deliverees = results?.deliverees ?? 0;
     const showDel = new Array(deliverees).fill(true);
-    const max = (analysis?.entries?.length ?? 0) / deliverees;
+    const max = Math.ceil((analysis?.entries?.length ?? 0) / deliverees);
     const start = 0;
     const end = max;
     const pmax = analysis?.pmax ?? 0;

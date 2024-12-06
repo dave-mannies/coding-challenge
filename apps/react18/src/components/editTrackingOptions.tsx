@@ -39,7 +39,7 @@ export default function EditTrackingOptions({options, onChangeOptions}: EditTrac
           className={'tracking-options__slider'}
           aria-label="Minimum Pizzas delivered to location"
           value={options.pizzas}
-          valueLabelDisplay={'on'}
+          valueLabelDisplay={'auto'}
           min={1}
           max={options.pmax}
           onChange={(ev, pizzas) => onChangeOptions({...options, pizzas: pizzas as number}) } />
@@ -51,7 +51,7 @@ export default function EditTrackingOptions({options, onChangeOptions}: EditTrac
           className={'tracking-options__slider'}
           getAriaLabel={() => 'Orders range visibility'}
           value={[options.start, options.end]}
-          valueLabelDisplay={'on'}
+          valueLabelDisplay={'auto'}
           min={0}
           max={options.max}
           onChange={(ev, values) => {
