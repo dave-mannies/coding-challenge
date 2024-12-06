@@ -7,12 +7,12 @@ export default function PageReports() {
   const {index, results, entries, onNav, options, onChangeOptions} = useNavResults();
 
   return (
-    <div className={'reports'}>
+    <>
       <ResultsHistory results={results} onNav={onNav} index={index} />
 
       <EditTrackingOptions options={options} onChangeOptions={onChangeOptions} />
 
       <EntriesTable entries={entries} />
-    </div>
+    </>
   )
 }

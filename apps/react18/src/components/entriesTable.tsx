@@ -14,8 +14,8 @@ export type EntriesTableProps = {
 
 export default function EntriesTable({entries}: EntriesTableProps) {
   return (
-    <TableContainer component={Paper} className={'reports__table'}>
-      <Table sx={{maxWidth: 650}} aria-label="entries table">
+    <div className={'reports__table'}>
+      <Table stickyHeader aria-label="entries table">
         <TableHead>
           <TableRow>
             <TableCell>Order</TableCell>
@@ -38,6 +38,6 @@ export default function EntriesTable({entries}: EntriesTableProps) {
           ))}
         </TableBody>
       </Table>
-    </TableContainer>
+    </div>
   )
 }

@@ -14,8 +14,8 @@ export type ResultsTableProps = {
 
 export default function ResultsTable({history}: ResultsTableProps) {
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{maxWidth: 650}} aria-label="results table">
+    <div className={'history__table'}>
+      <Table stickyHeader aria-label="results table">
         <TableHead>
           <TableRow>
             <TableCell>Id</TableCell>
@@ -41,6 +41,6 @@ export default function ResultsTable({history}: ResultsTableProps) {
           ))}
         </TableBody>
       </Table>
-    </TableContainer>
+    </div>
   )
 }

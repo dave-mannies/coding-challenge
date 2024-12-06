@@ -1,36 +1,20 @@
 @use '../utilities/responsive' as res;
 
 .history {
-  margin-top: 4em;
+  display: contents;
 
-  .history__view {
-    margin-top: 2em;
+  .results {
+    padding: 0 var(--gap);
   }
 
-  .history__results {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin: 0 0.5em;
+  &-buttons {
+    padding: 0 var(--gap);
+    justify-content: end;
   }
 
-  @include res.mobile {
-    margin-top: 6em;
-
-    .history__view {
-      margin-top: 4em;
-    }
-  }
-
-  .view-mode {
-    position: absolute;
-    right: 0;
-    top: 0;
-
-    @include res.mobile() {
-      top: 2em;
-      right: 1em;
-    }
+  .history__table {
+    padding: 0 var(--gap);
+    margin-bottom: var(--gap);
+    overflow: auto;
   }
 }

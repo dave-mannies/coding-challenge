@@ -16,30 +16,27 @@ export default function PageHistory() {
   const [showCards, setShowCards] = useState(true);
 
   return (
-    <div className="history">
-      <Paper elevation={2}>
-        <ButtonGroup aria-label={'Basic button group'}  style={{width: '100%', justifyContent: 'end'}}>
-          <Button variant={showCards ? 'contained' : 'outlined'} onClick={() => setShowCards(true)} data-testid={'cards'}>Cards</Button>
-          <Button variant={!showCards ? 'contained' : 'outlined'} onClick={() => setShowCards(false)} data-testid={'table'}>Table</Button>
-        </ButtonGroup>
-      </Paper>
+    <div className="history compressed">
 
-      <Paper elevation={2} className={'compressed'}>
-        {showCards ? (
-          <div className={'results'}>
-            {deliveryService.results.history.map((r) => (
-              <Card key={r.id}>
-                <CardHeader title={`Results #${r.id}`} />
-                <CardContent>
-                  <ResultsView result={r} />
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        ) : (
-          <ResultsTable history={deliveryService.results.history} />
-        )}
-      </Paper>
+      <ButtonGroup className={'history-buttons'} aria-label={'Basic button group'}>
+        <Button variant={showCards ? 'contained' : 'outlined'} onClick={() => setShowCards(true)} data-testid={'cards'}>Cards</Button>
+        <Button variant={!showCards ? 'contained' : 'outlined'} onClick={() => setShowCards(false)} data-testid={'table'}>Table</Button>
+      </ButtonGroup>
+
+      {showCards ? (
+        <div className={'results'}>
+          {deliveryService.results.history.map((r) => (
+            <Card key={r.id}>
+              <CardHeader title={`Results #${r.id}`} />
+              <CardContent>
+                <ResultsView result={r} />
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      ) : (
+        <ResultsTable history={deliveryService.results.history} />
+      )}
     </div>
   )
 }
