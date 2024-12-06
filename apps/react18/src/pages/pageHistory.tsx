@@ -1,3 +1,4 @@
+import React, {useContext, useState} from 'react';
 import {
   Button,
   ButtonGroup,
@@ -5,9 +6,7 @@ import {
   CardHeader,
   CardContent,
 } from '@mui/material';
-import React, {useContext, useState} from 'react';
 import {DeliveryContext} from '../app/App';
-import Paper from '@mui/material/Paper';
 import ResultsTable from '../components/resultsTable';
 import ResultsView from '../components/resultsView';
 

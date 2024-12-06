@@ -1,10 +1,9 @@
 import React, {CSSProperties} from 'react';
-import Paper from '@mui/material/Paper';
-import {DeliveryEntry, TrackingAnalysis} from '../pizza-delivery/types';
 import {Container, Fab} from '@mui/material';
 import {Add, Remove} from '@mui/icons-material';
-import {TrackingOptions} from '../pizza-delivery';
 import {useScale} from '../hooks/useScale';
+import {DeliveryEntry, TrackingAnalysis} from '../pizza-delivery/types';
+import {TrackingOptions} from '../pizza-delivery';
 
 export type EntriesViewProps = {
   options: TrackingOptions
