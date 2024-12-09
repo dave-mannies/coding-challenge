@@ -17,7 +17,7 @@ export default function PageHistory() {
   return (
     <div className="history compressed">
 
-      <ButtonGroup className={'history-buttons'} aria-label={'Basic button group'}>
+      <ButtonGroup className={'history-buttons'} aria-label={'History view layout selector by card or table'}>
         <Button variant={showCards ? 'contained' : 'outlined'} onClick={() => setShowCards(true)} data-testid={'cards'}>Cards</Button>
         <Button variant={!showCards ? 'contained' : 'outlined'} onClick={() => setShowCards(false)} data-testid={'table'}>Table</Button>
       </ButtonGroup>

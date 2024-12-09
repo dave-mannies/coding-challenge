@@ -11,7 +11,7 @@ import { ExDeliveryEntry, TrackingOptionsWrapper } from '../tracking-options/tra
   ]
 })
 export class PlayComponent extends TrackingOptionsWrapper implements OnInit {
-  @Input() animateLoad = true;
+  @Input() animateLoad = false;
   @ViewChild('board') board!: TrackingHtmlComponent;
 
   scale: ScalingResults = { xoffset: 0, yoffset: 0, mult: 10, zoom: 1, xpan: 0, ypan: 0};

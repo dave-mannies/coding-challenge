@@ -1,4 +1,4 @@
-<div class="app-root" appViewport>
+<div class="app-root angular11">
   <!-- disabled google analytics -->
   <!--  <app-ganalytics [id]="id" [debug]="false"></app-ganalytics>-->
 
@@ -19,12 +19,8 @@
 
     <div class="toolbar__title">{{ title }}</div>
 
-    <app-inputs-modal class="toolbar__inputs"></app-inputs-modal>
+<!--    <app-inputs-modal class="toolbar__inputs"></app-inputs-modal>-->
   </div>
 
-  <div class="content">
-    <mat-card>
-      <router-outlet></router-outlet>
-    </mat-card>
-  </div>
+  <router-outlet></router-outlet>
 </div>

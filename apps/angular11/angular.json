@@ -34,7 +34,7 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
-              "./node_modules/@repo/styles/delivery.scss"
+              "./src/styles.scss"
             ],
             "scripts": [],
             "extractLicenses": false,

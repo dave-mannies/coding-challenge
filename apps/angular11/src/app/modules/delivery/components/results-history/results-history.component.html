@@ -6,7 +6,11 @@
       <mat-icon>navigate_before</mat-icon>
     </button>
 
-    <app-results class="results-history__history compressed mat-elevation-z2" [results]="results.current"></app-results>
+    <div class="results-history__history compressed">
+      <div class="results">
+        <app-results [results]="results.current"></app-results>
+      </div>
+    </div>
 
     <button mat-mini-fab aria-label="Show Next Results"
             [disabled]="disableNav(1)"

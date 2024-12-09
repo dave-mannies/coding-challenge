@@ -8,6 +8,8 @@
   }
 
   &-buttons {
+    border: none !important;
+    display: flex !important;
     padding: 0 var(--gap);
     justify-content: end;
   }

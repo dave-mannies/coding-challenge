@@ -1,3 +1,17 @@
-@use '@repo/styles';
+@use '@repo/styles/delivery';
 
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+// todo not sure if this right but it works
+router-outlet,
+app-results-history,
+app-results,
+app-tracking-options,
+app-page-play,
+app-play,
+app-page-reports,
+app-reports,
+app-page-history,
+app-history {
+  display: contents;
+}

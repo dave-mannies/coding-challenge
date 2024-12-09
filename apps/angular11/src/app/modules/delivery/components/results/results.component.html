@@ -1,4 +1,4 @@
-<div class="results" *ngIf="results">
+<ng-container *ngIf="results">
   <div class="results__id">
     <label>Id: </label>
     <span>#{{ results.id }}</span>
@@ -6,7 +6,7 @@
 
   <div class="results__date">
     <label>Date: </label>
-    <span>{{ results.date | date:'short' }}</span>
+    <span>{{ results.date | date:'shortDate' }}</span>
   </div>
 
   <div class="results__deliverees">
@@ -28,4 +28,4 @@
     <label>Houses: </label>
     <span>{{ results.housesCount }}</span>
   </div>
-</div>
+</ng-container>
